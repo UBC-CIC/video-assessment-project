@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7ac2e1ad-e88c-47b9-8acb-5b2dbfb16172" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/images/navbarComponent.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/images/navbarComponent.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/images/templateScreenshot_image.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/images/templateScreenshot_image.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/images/templateScreenshot_static.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/images/templateScreenshot_static.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/images/templateScreenshot_video.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/images/templateScreenshot_video.png" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1nxVrdtRcJDY7TirBskyg6dSjAX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Assets/Images" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\aamirs\Desktop\Template\CIC-React-Project-Login-Template\src\Assets\Images" />
+      <recent name="C:\Users\aamirs\Desktop\Template\CIC-React-Project-Login-Template\public\Assets\Images" />
+      <recent name="C:\Users\aamirs\Desktop\Template\CIC-React-Project-Login-Template\src\Reducers" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7ac2e1ad-e88c-47b9-8acb-5b2dbfb16172" name="Default Changelist" comment="" />
+      <created>1612331929854</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612331929854</updated>
+      <workItem from="1612331932663" duration="61420000" />
+      <workItem from="1614016771093" duration="2583000" />
+      <workItem from="1614211328003" duration="452000" />
+      <workItem from="1614916292378" duration="1124000" />
+      <workItem from="1615189783640" duration="2825000" />
+      <workItem from="1615319686634" duration="451000" />
+      <workItem from="1615829403742" duration="2031000" />
+      <workItem from="1617035811061" duration="3838000" />
+      <workItem from="1617217282757" duration="6406000" />
+      <workItem from="1617228168291" duration="5556000" />
+      <workItem from="1617255813037" duration="224000" />
+      <workItem from="1617855280777" duration="1717000" />
+      <workItem from="1618248047289" duration="1337000" />
+      <workItem from="1623087472242" duration="2712000" />
+      <workItem from="1623261548724" duration="1762000" />
+      <workItem from="1623363594294" duration="595000" />
+      <workItem from="1623691616652" duration="42763000" />
+      <workItem from="1626666380314" duration="5499000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1195" height="150" key="GridCell.Tab.0.bottom" timestamp="1626672853742">
+      <screen x="1920" y="0" width="2560" height="1040" />
+    </state>
+    <state width="1195" height="150" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.2560.1040@1920.0.2560.1040" timestamp="1626672853742" />
+    <state width="1195" height="150" key="GridCell.Tab.0.center" timestamp="1626672853741">
+      <screen x="1920" y="0" width="2560" height="1040" />
+    </state>
+    <state width="1195" height="150" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.2560.1040@1920.0.2560.1040" timestamp="1626672853741" />
+    <state width="1195" height="150" key="GridCell.Tab.0.left" timestamp="1626672853741">
+      <screen x="1920" y="0" width="2560" height="1040" />
+    </state>
+    <state width="1195" height="150" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.2560.1040@1920.0.2560.1040" timestamp="1626672853741" />
+    <state width="1195" height="150" key="GridCell.Tab.0.right" timestamp="1626672853741">
+      <screen x="1920" y="0" width="2560" height="1040" />
+    </state>
+    <state width="1195" height="150" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.2560.1040@1920.0.2560.1040" timestamp="1626672853741" />
+  </component>
+</project>

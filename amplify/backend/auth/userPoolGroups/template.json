@@ -1,0 +1,55 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+        "authcicreactprojectloginauthUserPoolId": {
+            "Type": "String",
+            "Default": "authcicreactprojectloginauthUserPoolId"
+        },
+        
+        "authcicreactprojectloginauthAppClientID": {
+            "Type": "String",
+            "Default": "authcicreactprojectloginauthAppClientID"
+        },
+        "authcicreactprojectloginauthAppClientIDWeb": {
+            "Type": "String",
+            "Default": "authcicreactprojectloginauthAppClientIDWeb"
+        },
+        "AuthRoleArn": {
+            "Type": "String"
+        },
+        "UnauthRoleArn": {
+            "Type": "String"
+        },
+        "env": {
+            "Type": "String"
+        }
+    },
+    "Conditions": {
+        "ShouldNotCreateEnvResources": {
+            "Fn::Equals": [
+                {
+                    "Ref": "env"
+                },
+                "NONE"
+            ]
+        }
+    },
+    "Resources": {
+    
+        "adminGroup": {
+          "Type" : "AWS::Cognito::UserPoolGroup",
+          "Properties" : {
+              "GroupName" : "admin",
+              "Precedence" : 1,
+              
+              "UserPoolId" : {
+                "Ref": "authcicreactprojectloginauthUserPoolId"
+              }
+            }
+        },
+        
+    
+    
+    },
+    
+}
