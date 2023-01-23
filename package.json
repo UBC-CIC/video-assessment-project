@@ -1,0 +1,22 @@
+{
+  "name": "video-assessment-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UBC-CIC/video-assessment-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UBC-CIC/video-assessment-project/issues"
+  },
+  "homepage": "https://github.com/UBC-CIC/video-assessment-project#readme",
+  "dependencies": {
+    "amazon-kinesis-video-streams-webrtc": "^2.0.2"
+  }
+}
