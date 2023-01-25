@@ -2,8 +2,8 @@ let ROLE = null; // Possible values: 'master', 'viewer', null
 
 const CHANNEL_NAME_LENGTH = 5;
 
-const KEYID       = "AKIAWPFL3GVMSPSV4BG3";
-const SECRETKEY   = "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";
+//const KEYID       =
+//const SECRETKEY   = 
 const REGION      = "us-west-2";
 const TRICKLEICE  = true;
 const WIDESCREEN  = true;
