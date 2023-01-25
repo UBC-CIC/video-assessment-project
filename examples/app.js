@@ -2,9 +2,16 @@ let ROLE = null; // Possible values: 'master', 'viewer', null
 
 const CHANNEL_NAME_LENGTH = 5;
 
-const KEYID     = "AKIAWPFL3GVMSPSV4BG3";
-const SECRETKEY = "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";
-const REGION    = "us-west-2";
+const KEYID       = "AKIAWPFL3GVMSPSV4BG3";
+const SECRETKEY   = "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";
+const REGION      = "us-west-2";
+const TRICKLEICE  = true;
+const WIDESCREEN  = true;
+const SENDVID     = true;
+const SENDAUD     = true;
+const DATACHANNEL = false;
+const FORCETURN   = false;
+const NATDISABLE  = false;
 
 function configureLogging() {
     function log(level, messages) {
@@ -60,15 +67,15 @@ function getFormValues() {
     return {
         region: REGION, //$('#region').val(),
         channelName: channelName, //$('#channelName').val(),
-        clientId: $('#clientId').val() || getRandomClientId(),
-        sendVideo: $('#sendVideo').is(':checked'),
-        sendAudio: $('#sendAudio').is(':checked'),
-        openDataChannel: $('#openDataChannel').is(':checked'),
-        widescreen: $('#widescreen').is(':checked'),
-        fullscreen: $('#fullscreen').is(':checked'),
-        useTrickleICE: $('#useTrickleICE').is(':checked'),
-        natTraversalDisabled: $('#natTraversalDisabled').is(':checked'),
-        forceTURN: $('#forceTURN').is(':checked'),
+        clientId: getRandomClientId(),
+        sendVideo: SENDVID,
+        sendAudio: SENDAUD,
+        openDataChannel: DATACHANNEL,
+        widescreen: WIDESCREEN,
+        fullscreen: !WIDESCREEN,
+        useTrickleICE: TRICKLEICE,
+        natTraversalDisabled: NATDISABLE,
+        forceTURN: FORCETURN,
         accessKeyId: KEYID, // accessKeyId: $('#accessKeyId').val(),
         // endpoint: $('#endpoint').val() || null,
         secretAccessKey: SECRETKEY, // secretAccessKey: $('#secretAccessKey').val(),
@@ -133,6 +140,10 @@ $('#master-button').click(async () => {
     $(remoteMessage).empty();
     localMessage.value = '';
     toggleDataChannelElements();
+
+    createSignalingChannel(formValues);
+
+    await new Promise(r => setTimeout(r, 1000)); //sleep 1 second
 
     startMaster(localView, remoteView, formValues, onStatsReport, event => {
         remoteMessage.append(`${event.data}\n`);
