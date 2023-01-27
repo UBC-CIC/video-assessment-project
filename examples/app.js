@@ -76,9 +76,9 @@ function getFormValues() {
         useTrickleICE: TRICKLEICE,
         natTraversalDisabled: NATDISABLE,
         forceTURN: FORCETURN,
-        accessKeyId: KEYID, // accessKeyId: $('#accessKeyId').val(),
+        accessKeyId: $('#accessKeyId').val(),
         // endpoint: $('#endpoint').val() || null,
-        secretAccessKey: SECRETKEY, // secretAccessKey: $('#secretAccessKey').val(),
+        secretAccessKey: $('#secretAccessKey').val(),
         // sessionToken: $('#sessionToken').val() || null,
     };
 }
