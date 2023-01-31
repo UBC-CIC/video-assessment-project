@@ -77,9 +77,9 @@ function getFormValues() {
         natTraversalDisabled: NATDISABLE,
         forceTURN: FORCETURN,
         accessKeyId: $('#accessKeyId').val(),
-        // endpoint: $('#endpoint').val() || null,
+        endpoint: null, // $('#endpoint').val() || null,
         secretAccessKey: $('#secretAccessKey').val(),
-        // sessionToken: $('#sessionToken').val() || null,
+        sessionToken: null, //$('#sessionToken').val() || null,
     };
 }
 

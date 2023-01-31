@@ -10,6 +10,7 @@ const master = {
     localStream: null,
     remoteStreams: [],
     peerConnectionStatsInterval: null,
+    startTimestamp: null,
 };
 
 async function startMaster(localView, remoteView, formValues, onStatsReport, onRemoteDataMessage) {
@@ -21,8 +22,8 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
         region: formValues.region,
         accessKeyId: formValues.accessKeyId,
         secretAccessKey: formValues.secretAccessKey,
-        sessionToken: null, //formValues.sessionToken,
-        endpoint: null, //formValues.endpoint,
+        sessionToken: formValues.sessionToken,
+        endpoint: formValues.endpoint,
         correctClockSkew: true,
     });
 
@@ -215,6 +216,7 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
 
     console.log('[MASTER] Starting master connection');
     master.signalingClient.open();
+    master.startTimestamp = Date.now();
 }
 
 async function joinSession(formValues) {
@@ -330,6 +332,9 @@ function stopMaster() {
     if (master.dataChannelByClientId) {
         master.dataChannelByClientId = {};
     }
+
+    // not sure when to get endpoint, placed at the end of this function for now
+    parseStream(master.kinesisVideoClient, master.channelARN, master.startTimestamp);
 }
 
 function sendMasterMessage(message) {
