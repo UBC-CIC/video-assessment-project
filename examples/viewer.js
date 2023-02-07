@@ -1,4 +1,4 @@
-const signalingChannelONE = 'arn:aws:kinesisvideo:us-west-2:444889511257:channel/muhan-signal-test/1675293420759';
+// const signalingChannelONE = 'arn:aws:kinesisvideo:us-west-2:444889511257:channel/muhan-signal-test/1675293420759';
 
 /**
  * This file demonstrates the process of starting WebRTC streaming using a KVS Signaling Channel.

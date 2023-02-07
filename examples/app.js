@@ -200,24 +200,23 @@ $('#get-media').click(async () => {
         region: 'us-west-2',
         accessKeyId: formValues.accessKeyId,
         secretAccessKey: formValues.secretAccessKey,
-        endpoint: formValues.endpoint,
+        endpoint: null,
         correctClockSkew: true,
     });
-
-    getDataEndpointPromise(KVSClient, 'GET_MEDIA', StreamARN)
+      
+    getDataEndpoint(KVSClient, 'GET_MEDIA', StreamARN)
     .then(data => {
         console.log(`[SUCCESS]: Endpoint = ${data.DataEndpoint}`)
 
-        getMediaWorker(data.DataEndpoint, StreamARN)
+        getMediaWorker(formValues, data.DataEndpoint, StreamARN)
         .then(data => console.log('[SUCCESS]: ' + data))
         .catch(err => console.error('[ERROR]: getMedia fail, ' + err));
     })
     .catch(err => console.log('[ERROR]: Failed to get data endpoint ' + err, err.stack));
+
 });
 
-
-
-function getDataEndpointPromise(KVSClient, APIName, StreamARN) {
+function getDataEndpoint(KVSClient, APIName, StreamARN) {
     return new Promise((resolve, reject) => {
         KVSClient.getDataEndpoint(
             {APIName: APIName, StreamARN: StreamARN},
@@ -229,8 +228,7 @@ function getDataEndpointPromise(KVSClient, APIName, StreamARN) {
     })
 }
 
-function getMediaWorker(APIEndpoint, StreamARN) {
-    const formValues = getFormValues();
+function getMediaWorker(formValues, APIEndpoint, StreamARN) {
     const KVSMediaClient = new AWS.KinesisVideoMedia({
         region: 'us-west-2',
         accessKeyId: formValues.accessKeyId,
