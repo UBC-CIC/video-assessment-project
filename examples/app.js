@@ -139,8 +139,6 @@ $('#master-button').click(async () => {
     localMessage.value = '';
     toggleDataChannelElements();
 
-    createSignalingChannel(formValues);
-
     await new Promise(r => setTimeout(r, 1000)); //sleep 1 second
 
     startMaster(localView, remoteView, formValues, onStatsReport, event => {
@@ -194,6 +192,63 @@ $('#viewer .send-message').click(async () => {
     const viewerLocalMessage = $('#viewer .local-message')[0];
     sendViewerMessage(viewerLocalMessage.value);
 });
+
+$('#get-media').click(async () => {
+    const StreamARN = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
+    const formValues = getFormValues();
+    const KVSClient = new AWS.KinesisVideo({
+        region: 'us-west-2',
+        accessKeyId: formValues.accessKeyId,
+        secretAccessKey: formValues.secretAccessKey,
+        endpoint: formValues.endpoint,
+        correctClockSkew: true,
+    });
+
+    getDataEndpointPromise(KVSClient, 'GET_MEDIA', StreamARN)
+    .then(data => {
+        console.log(`[SUCCESS]: Endpoint = ${data.DataEndpoint}`)
+
+        getMediaWorker(data.DataEndpoint, StreamARN)
+        .then(data => console.log('[SUCCESS]: ' + data))
+        .catch(err => console.error('[ERROR]: getMedia fail, ' + err));
+    })
+    .catch(err => console.log('[ERROR]: Failed to get data endpoint ' + err, err.stack));
+});
+
+
+
+function getDataEndpointPromise(KVSClient, APIName, StreamARN) {
+    return new Promise((resolve, reject) => {
+        KVSClient.getDataEndpoint(
+            {APIName: APIName, StreamARN: StreamARN},
+            (err, data) =>{
+                if (err) return reject(err);
+                else resolve(data);    
+            }
+        )
+    })
+}
+
+function getMediaWorker(APIEndpoint, StreamARN) {
+    const formValues = getFormValues();
+    const KVSMediaClient = new AWS.KinesisVideoMedia({
+        region: 'us-west-2',
+        accessKeyId: formValues.accessKeyId,
+        secretAccessKey: formValues.secretAccessKey,
+        endpoint: APIEndpoint,
+        correctClockSkew: true,
+    });
+
+    return new Promise((resolve, reject) => {
+        KVSMediaClient.getMedia(
+            {StartSelector: {StartSelectorType: 'NOW'}, StreamARN: StreamARN},
+            (err, data) => {
+                if (err) return reject(err);
+                else resolve(data);
+            }
+        )
+    })
+} 
 
 // Read/Write all of the fields to/from localStorage so that fields are not lost on refresh.
 const urlParams = new URLSearchParams(window.location.search);

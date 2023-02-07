@@ -1,3 +1,5 @@
+const signalingChannelONE = 'arn:aws:kinesisvideo:us-west-2:444889511257:channel/muhan-signal-test/1675293420759';
+
 /**
  * This file demonstrates the process of starting WebRTC streaming using a KVS Signaling Channel.
  */
@@ -18,12 +20,13 @@ async function startViewer(localView, remoteView, formValues, onStatsReport, onR
     });
 
     // Get signaling channel ARN
-    const describeSignalingChannelResponse = await kinesisVideoClient
-        .describeSignalingChannel({
-            ChannelName: formValues.channelName,
-        })
-        .promise();
-    const channelARN = describeSignalingChannelResponse.ChannelInfo.ChannelARN;
+    // const describeSignalingChannelResponse = await kinesisVideoClient
+    //     .describeSignalingChannel({
+    //         ChannelName: formValues.channelName,
+    //     })
+    //     .promise();
+    // const channelARN = describeSignalingChannelResponse.ChannelInfo.ChannelARN;
+    const channelARN = signalingChannelONE;
     console.log('[VIEWER] Channel ARN: ', channelARN);
 
     // Get signaling channel endpoints

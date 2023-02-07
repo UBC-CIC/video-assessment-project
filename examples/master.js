@@ -1,3 +1,6 @@
+const signalingChannelONE = 'arn:aws:kinesisvideo:us-west-2:444889511257:channel/muhan-signal-test/1675293420759';
+const signalingChannelTWO = 'arn:aws:kinesisvideo:us-west-2:444889511257:channel/muhan-signal-2/1675295268569';
+
 /**
  * This file demonstrates the process of starting WebRTC streaming using a KVS Signaling Channel.
  */
@@ -10,7 +13,6 @@ const master = {
     localStream: null,
     remoteStreams: [],
     peerConnectionStatsInterval: null,
-    startTimestamp: null,
 };
 
 async function startMaster(localView, remoteView, formValues, onStatsReport, onRemoteDataMessage) {
@@ -30,12 +32,13 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
     master.kinesisVideoClient = kinesisVideoClient;
 
     // Get signaling channel ARN
-    const describeSignalingChannelResponse = await kinesisVideoClient
-        .describeSignalingChannel({
-            ChannelName: formValues.channelName,
-        })
-        .promise();
-    const channelARN = describeSignalingChannelResponse.ChannelInfo.ChannelARN;
+    // const describeSignalingChannelResponse = await kinesisVideoClient
+    //     .describeSignalingChannel({
+    //         ChannelName: formValues.channelName,
+    //     })
+    //     .promise();
+    // const channelARN = describeSignalingChannelResponse.ChannelInfo.ChannelARN;
+    const channelARN = signalingChannelONE;
     console.log('[MASTER] Channel ARN: ', channelARN);
 
     master.channelARN = channelARN;
@@ -65,7 +68,7 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
         credentials: {
             accessKeyId: formValues.accessKeyId,
             secretAccessKey: formValues.secretAccessKey,
-            sessionToken: null, //formValues.sessionToken,
+            sessionToken: formValues.sessionToken,
         },
         systemClockOffset: kinesisVideoClient.config.systemClockOffset,
     });
@@ -216,7 +219,6 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
 
     console.log('[MASTER] Starting master connection');
     master.signalingClient.open();
-    master.startTimestamp = Date.now();
 }
 
 async function joinSession(formValues) {
@@ -332,9 +334,6 @@ function stopMaster() {
     if (master.dataChannelByClientId) {
         master.dataChannelByClientId = {};
     }
-
-    // not sure when to get endpoint, placed at the end of this function for now
-    parseStream(master.kinesisVideoClient, master.channelARN, master.startTimestamp);
 }
 
 function sendMasterMessage(message) {
@@ -351,43 +350,25 @@ function printSignalingLog(message, clientId) {
     console.log(`${message}${clientId ? ': ' + clientId : ''}`);
 }
 
-function parseStream(KVSClient, channelARN, startTimestamp) {
-    // get Data endpoint
-    KVSClient.getDataEndpoint(
-        {APIName: 'GET_MEDIA', StreamARN: channelARN}, 
-        function(err, data) {
-            if (err) console.log(err, err.stack);  
-            else{
-                console.log(data);
-                getMediaWorker(data, channelARN, {StartSelectorType: "StartTimestamp", StartTimestamp: startTimestamp});
-            }     
-    });
-    
-    
-    // parse? 
-    // save to S3?
-}
+// function getMediaWorker(KVSClient, channelARN){
+//     console.log('[MASTER] Start getMedia API call');
+//     KVSClient.getDataEndpoint(
+//         {APIName: 'GET_MEDIA', StreamARN: channelARN}, 
+//         function(err, data) {
+//             if (err){
+//                 console.log('[ERROR]: Failed to get data endpoint ' + err, err.stack);
+//             }  
+//             else{
+//                 console.log('[RESPONSE]: data ' + data);
+//             }     
+//     });
 
-function getMediaWorker(KVSEndpoint, channelARN, startSelector) {
-    const fragments = new Array();
-    let responseHeader = null;
+//     fetch(KVSEndpoint + '/getMedia', {
+//         StartSelector: {StartSelectorType: "NOW"},
+//         StreamARN: channelARN,
+//     })
+//     .then(response => response.json())
+//     .then(response => console.log(JSON.stringify(response)))
+//     .then(response => responseHeader = response.header);
+// }
 
-    fetch(KVSEndpoint + '/getMedia', {
-        StartSelector: { 
-            "AfterFragmentNumber": null,            // where to get this fragment number??
-            "ContinuationToken": null,
-            "StartSelectorType": "StartTimestamp",  
-            "StartTimestamp": startTimestamp,       // unsure if this is correct timestamp
-        },
-        StreamARN: channelARN,
-    })
-    .then(response => response.json())
-    .then(response => console.log(JSON.stringify(response)))
-    .then(response => responseHeader = response.header);
-
-    for(let pair of responseHeader.entries()){      // need to read up on this bs
-        if(pair[0] == 'Payload'){
-
-        }
-    }
-}
