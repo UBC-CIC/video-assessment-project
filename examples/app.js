@@ -195,7 +195,9 @@ $('#viewer .send-message').click(async () => {
 
 $('#get-media').click(async () => {
     const StreamARN = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
+    const startTime = new Date().toISOString();
     const formValues = getFormValues();
+    
     const KVSClient = new AWS.KinesisVideo({
         region: 'us-west-2',
         accessKeyId: formValues.accessKeyId,
@@ -203,16 +205,20 @@ $('#get-media').click(async () => {
         endpoint: null,
         correctClockSkew: true,
     });
-      
+
     getDataEndpoint(KVSClient, 'GET_MEDIA', StreamARN)
     .then(data => {
-        console.log(`[SUCCESS]: Endpoint = ${data.DataEndpoint}`)
-
-        getMediaWorker(formValues, data.DataEndpoint, StreamARN)
-        .then(data => console.log('[SUCCESS]: ' + data))
-        .catch(err => console.error('[ERROR]: getMedia fail, ' + err));
+        console.log('[SUCCESS] endpoint: ' + data.DataEndpoint);
+        
+        getMediaWorker(formValues, data.DataEndpoint, StreamARN, {StartSelectorType: 'SERVER_TIMESTAMP', StartTimestamp: startTime})
+        .then(data => {
+            console.log(data);
+        })
+        .catch(err => console.error(err));
     })
-    .catch(err => console.log('[ERROR]: Failed to get data endpoint ' + err, err.stack));
+    .catch(err => console.error(err));
+      
+    
 
 });
 
@@ -228,7 +234,7 @@ function getDataEndpoint(KVSClient, APIName, StreamARN) {
     })
 }
 
-function getMediaWorker(formValues, APIEndpoint, StreamARN) {
+function getMediaWorker(formValues, APIEndpoint, StreamARN, StartSelector) {
     const KVSMediaClient = new AWS.KinesisVideoMedia({
         region: 'us-west-2',
         accessKeyId: formValues.accessKeyId,
@@ -239,7 +245,7 @@ function getMediaWorker(formValues, APIEndpoint, StreamARN) {
 
     return new Promise((resolve, reject) => {
         KVSMediaClient.getMedia(
-            {StartSelector: {StartSelectorType: 'NOW'}, StreamARN: StreamARN},
+            {StartSelector: StartSelector, StreamARN: StreamARN},
             (err, data) => {
                 if (err) return reject(err);
                 else resolve(data);
