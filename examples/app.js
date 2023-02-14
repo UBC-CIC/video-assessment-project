@@ -222,6 +222,10 @@ $('#get-media').click(async () => {
 
 });
 
+$('get-timestamp').click(async () => {
+    console.log(new Date.toISOString());
+});
+
 function getDataEndpoint(KVSClient, APIName, StreamARN) {
     return new Promise((resolve, reject) => {
         KVSClient.getDataEndpoint(
