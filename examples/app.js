@@ -11,6 +11,8 @@ const DATACHANNEL = false;
 const FORCETURN   = false;
 const NATDISABLE  = false;
 
+const startTime = '';
+
 function configureLogging() {
     function log(level, messages) {
         const text = messages
@@ -195,7 +197,7 @@ $('#viewer .send-message').click(async () => {
 
 $('#get-media').click(async () => {
     const StreamARN = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
-    const startTime = new Date().toISOString();
+    const startTime_ = new Date().toISOString();
     const formValues = getFormValues();
     
     const KVSClient = new AWS.KinesisVideo({
@@ -210,21 +212,52 @@ $('#get-media').click(async () => {
     .then(data => {
         console.log('[SUCCESS] endpoint: ' + data.DataEndpoint);
         
-        getMediaWorker(formValues, data.DataEndpoint, StreamARN, {StartSelectorType: 'SERVER_TIMESTAMP', StartTimestamp: startTime})
+        getMediaWorker(formValues, data.DataEndpoint, StreamARN, {StartSelectorType: 'SERVER_TIMESTAMP', StartTimestamp: startTime_})
         .then(data => {
             console.log(data);
         })
         .catch(err => console.error(err));
     })
     .catch(err => console.error(err));
-      
-    
-
 });
 
 $('#get-timestamp').click(async () => {
-    const out = new Date.toISOString();
+    const out = new Date().toISOString();
+    startTime = out;
     console.log(out);
+});
+
+$('#get-fragment').click(async () => {
+    const StreamARN = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
+    const endTime = new Date().toISOString();
+    const formValues = getFormValues();
+
+    const KVSClient = new AWS.KinesisVideo({
+        region: 'us-west-2',
+        accessKeyId: formValues.accessKeyId,
+        secretAccessKey: formValues.secretAccessKey,
+        endpoint: null,
+        correctClockSkew: true,
+    });
+
+    const KVSArchiveClient = new AWS.KinesisVideoArchivedMedia({
+        region: 'us-west-2',
+        accessKeyId: formValues.accessKeyId,
+        secretAccessKey: formValues.secretAccessKey,
+        endpoint: null,
+        correctClockSkew: true,
+    })
+
+    getDataEndpoint(KVSClient, 'LIST_FRAGMENTS', StreamARN)
+    .then(data => {
+        KVSArchiveClient.endpoint = data.DataEndpoint;
+        listFragmentWorker(KVSArchiveClient, startTime, endTime)
+        .then(data => {
+            console.log(data);
+        })
+        .catch(err => console.error(err));
+    })
+    .catch(err => console.error(err));
 });
 
 function getDataEndpoint(KVSClient, APIName, StreamARN) {
@@ -258,6 +291,22 @@ function getMediaWorker(formValues, APIEndpoint, StreamARN, StartSelector) {
         )
     })
 } 
+
+function listFragmentWorker(KVSArchiveClient, startTime, endTime){
+    return new Promise((resolve, reject) => {
+        KVSArchiveClient.listFragment(
+            {
+                FragmentSelectorType: 'SERVER_TIMESTAMP',
+                TimestampRange: {StartTimestamp: startTime, EndTimestamp: endTime}
+            },
+            (err, data) => {
+                if (err) return reject(err);
+                else resolve(data);
+            }
+        )
+    })
+    
+}
 
 // Read/Write all of the fields to/from localStorage so that fields are not lost on refresh.
 const urlParams = new URLSearchParams(window.location.search);
