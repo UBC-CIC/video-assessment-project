@@ -222,7 +222,7 @@ $('#get-media').click(async () => {
 
 });
 
-$('get-timestamp').click(async () => {
+$('#get-timestamp').click(async () => {
     const out = new Date.toISOString();
     console.log(out);
 });
