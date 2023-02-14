@@ -294,7 +294,7 @@ function getMediaWorker(formValues, APIEndpoint, StreamARN, StartSelector) {
 
 function listFragmentWorker(KVSArchiveClient, startTime, endTime){
     return new Promise((resolve, reject) => {
-        KVSArchiveClient.listFragment(
+        KVSArchiveClient.listFragments(
             {
                 FragmentSelectorType: 'SERVER_TIMESTAMP',
                 TimestampRange: {StartTimestamp: startTime, EndTimestamp: endTime}
