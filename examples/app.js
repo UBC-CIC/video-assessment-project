@@ -11,7 +11,7 @@ const DATACHANNEL = false;
 const FORCETURN   = false;
 const NATDISABLE  = false;
 
-const startTime = '';
+let   startTime = '';
 
 function configureLogging() {
     function log(level, messages) {
