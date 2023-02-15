@@ -251,7 +251,7 @@ $('#get-fragment').click(async () => {
     getDataEndpoint(KVSClient, 'LIST_FRAGMENTS', StreamARN)
     .then(data => {
         KVSArchiveClient.endpoint = data.DataEndpoint;
-        listFragmentWorker(KVSArchiveClient, startTime, endTime)
+        listFragmentWorker(KVSArchiveClient, startTime, endTime, StreamARN)
         .then(data => {
             console.log(data);
         })
@@ -292,13 +292,17 @@ function getMediaWorker(formValues, APIEndpoint, StreamARN, StartSelector) {
     })
 } 
 
-function listFragmentWorker(KVSArchiveClient, startTime, endTime){
+function listFragmentWorker(KVSArchiveClient, startTime, endTime, StreamARN){
     return new Promise((resolve, reject) => {
         KVSArchiveClient.listFragments(
             {
-                FragmentSelectorType: 'SERVER_TIMESTAMP',
-                TimestampRange: {StartTimestamp: startTime, EndTimestamp: endTime}
-            },
+                FragmentSelector: {
+                    FragmentSelectorType: 'SERVER_TIMESTAMP',
+                    TimestampRange: {StartTimestamp: startTime, EndTimestamp: endTime}
+                },
+                StreamARN: StreamARN
+            }
+            ,
             (err, data) => {
                 if (err) return reject(err);
                 else resolve(data);
