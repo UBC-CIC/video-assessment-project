@@ -228,8 +228,15 @@ $('#get-timestamp').click(async () => {
 });
 
 $('#get-fragment').click(async () => {
-    const StreamARN = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
-    const endTime = new Date().toISOString();
+    const EndTime = new Date().toISOString();
+    const StreamInfo = {
+        StreamARN:  'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403',
+        StreamName: 'muhan-ingestion-test'
+    };
+    const TimeInfo = {
+        StartTime: startTime,
+        EndTime:   EndTime
+    };
     const formValues = getFormValues();
 
     const KVSClient = new AWS.KinesisVideo({
@@ -248,10 +255,12 @@ $('#get-fragment').click(async () => {
         correctClockSkew: true,
     })
 
-    getDataEndpoint(KVSClient, 'LIST_FRAGMENTS', StreamARN)
+    listFragmentWorker(KVSClient, KVSArchiveClient, TimeInfo, StreamInfo)
     .then(data => {
-        KVSArchiveClient.endpoint = data.DataEndpoint;
-        listFragmentWorker(KVSArchiveClient, startTime, endTime, StreamARN)
+        const FragmentIDList = processFragmentsData(data.Fragments);
+
+        console.log('calling getmedia fragments');
+        getMediaforFragmentListWorker(KVSClient, KVSArchiveClient, FragmentIDList, StreamInfo)
         .then(data => {
             console.log(data);
         })
@@ -269,68 +278,101 @@ function getDataEndpoint(KVSClient, APIName, StreamARN) {
                 else resolve(data);    
             }
         )
-    })
+    });
 }
 
-function getMediaWorker(formValues, APIEndpoint, StreamARN, StartSelector) {
-    const KVSMediaClient = new AWS.KinesisVideoMedia({
-        region: 'us-west-2',
-        accessKeyId: formValues.accessKeyId,
-        secretAccessKey: formValues.secretAccessKey,
-        endpoint: APIEndpoint,
-        correctClockSkew: true,
-    });
+// function getMediaWorker(formValues, APIEndpoint, StreamARN, StartSelector) {
+//     const KVSMediaClient = new AWS.KinesisVideoMedia({
+//         region: 'us-west-2',
+//         accessKeyId: formValues.accessKeyId,
+//         secretAccessKey: formValues.secretAccessKey,
+//         endpoint: APIEndpoint,
+//         correctClockSkew: true,
+//     });
 
-    return new Promise((resolve, reject) => {
-        KVSMediaClient.getMedia(
-            {StartSelector: StartSelector, StreamARN: StreamARN},
-            (err, data) => {
-                if (err) return reject(err);
-                else resolve(data);
-            }
-        )
-    })
-} 
+//     return new Promise((resolve, reject) => {
+//         KVSMediaClient.getMedia(
+//             {StartSelector: StartSelector, StreamARN: StreamARN},
+//             (err, data) => {
+//                 if (err) return reject(err);
+//                 else resolve(data);
+//             }
+//         )
+//     });
+// } 
 
-function listFragmentWorker(KVSArchiveClient, startTime, endTime, StreamARN){
+function listFragmentWorker(KVSClient, KVSArchiveClient, TimeInfo, StreamInfo){
     return new Promise((resolve, reject) => {
-        KVSArchiveClient.listFragments(
-            {
+        getDataEndpoint(KVSClient, 'LIST_FRAGMENTS', StreamInfo.StreamARN)
+        .then(resp => {
+            KVSArchiveClient.endpoint = resp.DataEndpoint;
+            KVSArchiveClient.listFragments({
                 FragmentSelector: {
                     FragmentSelectorType: 'SERVER_TIMESTAMP',
-                    TimestampRange: {StartTimestamp: startTime, EndTimestamp: endTime}
+                    TimestampRange: {StartTimestamp: TimeInfo.StartTime, EndTimestamp: TimeInfo.EndTime}
                 },
-                StreamARN: StreamARN
-            }
-            ,
+                StreamName: StreamInfo.StreamName
+            },
             (err, data) => {
                 if (err) return reject(err);
                 else resolve(data);
-            }
-        )
-    })
-    
+            });
+        })
+        .catch(err => {
+            console.error(err);
+            return reject(err);
+        });
+    });
+}
+
+function getMediaforFragmentListWorker(KVSClient, KVSArchiveClient, Fragments, StreamInfo){
+    return new Promise((resolve, reject) => {
+        getDataEndpoint(KVSClient, 'GET_MEDIA_FOR_FRAGMENT_LIST', StreamInfo.StreamARN)
+        .then(resp => {
+            console.log('data endpoint (getmediafragments) ' + resp.DataEndpoint);
+            KVSArchiveClient.endpoint = resp.DataEndpoint;
+            KVSArchiveClient.getMediaForFragmentList({
+                Fragments: Fragments,
+                StreamName: StreamInfo.StreamName
+            },
+            (err, data) => {
+                console.log('data received');
+                if(err) return reject(err);
+                else return resolve(data);
+            })
+        })
+        .catch(err => {
+            console.error(err);
+            return reject(err);
+        })
+    });
+}
+
+function processFragmentsData(FragmentsInfo){
+    return FragmentsInfo.map((fragment) => {
+        return fragment.FragmentNumber;
+    });
 }
 
 // Read/Write all of the fields to/from localStorage so that fields are not lost on refresh.
 const urlParams = new URLSearchParams(window.location.search);
 const fields = [
-    { field: 'channelName', type: 'text' },
-    { field: 'clientId', type: 'text' },
-    { field: 'region', type: 'text' },
+    // { field: 'channelName', type: 'text' },
+    // { field: 'clientId', type: 'text' },
+    // { field: 'region', type: 'text' },
     { field: 'accessKeyId', type: 'text' },
     { field: 'secretAccessKey', type: 'text' },
-    { field: 'sessionToken', type: 'text' },
-    { field: 'endpoint', type: 'text' },
-    { field: 'sendVideo', type: 'checkbox' },
-    { field: 'sendAudio', type: 'checkbox' },
-    { field: 'widescreen', type: 'radio', name: 'resolution' },
-    { field: 'fullscreen', type: 'radio', name: 'resolution' },
-    { field: 'openDataChannel', type: 'checkbox' },
-    { field: 'useTrickleICE', type: 'checkbox' },
-    { field: 'natTraversalEnabled', type: 'radio', name: 'natTraversal' },
-    { field: 'forceTURN', type: 'radio', name: 'natTraversal' },
-    { field: 'natTraversalDisabled', type: 'radio', name: 'natTraversal' },
+    // { field: 'sessionToken', type: 'text' },
+    // { field: 'endpoint', type: 'text' },
+    // { field: 'sendVideo', type: 'checkbox' },
+    // { field: 'sendAudio', type: 'checkbox' },
+    // { field: 'widescreen', type: 'radio', name: 'resolution' },
+    // { field: 'fullscreen', type: 'radio', name: 'resolution' },
+    // { field: 'openDataChannel', type: 'checkbox' },
+    // { field: 'useTrickleICE', type: 'checkbox' },
+    // { field: 'natTraversalEnabled', type: 'radio', name: 'natTraversal' },
+    // { field: 'forceTURN', type: 'radio', name: 'natTraversal' },
+    // { field: 'natTraversalDisabled', type: 'radio', name: 'natTraversal' },
 ];
 fields.forEach(({ field, type, name }) => {
     const id = '#' + field;
