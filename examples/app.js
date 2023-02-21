@@ -259,12 +259,14 @@ $('#get-fragment').click(async () => {
     .then(data => {
         const FragmentIDList = processFragmentsData(data.Fragments);
 
+        console.log(data);
         console.log('calling getmedia fragments');
-        getMediaforFragmentListWorker(KVSClient, KVSArchiveClient, FragmentIDList, StreamInfo)
-        .then(data => {
-            console.log(data);
-        })
-        .catch(err => console.error(err));
+        console.log(FragmentIDList);
+        // getMediaforFragmentListWorker(KVSClient, KVSArchiveClient, FragmentIDList, StreamInfo)
+        // .then(data => {
+        //     console.log(data);
+        // })
+        // .catch(err => console.error(err));
     })
     .catch(err => console.error(err));
 });
