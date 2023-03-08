@@ -11,7 +11,8 @@ const DATACHANNEL = false;
 const FORCETURN   = false;
 const NATDISABLE  = false;
 
-let   startTime = '';
+let   StartTime = '';
+let   EndTime   = '';
 
 function configureLogging() {
     function log(level, messages) {
@@ -195,80 +196,63 @@ $('#viewer .send-message').click(async () => {
     sendViewerMessage(viewerLocalMessage.value);
 });
 
-$('#get-media').click(async () => {
-    const StreamARN = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
-    const startTime_ = new Date().toISOString();
-    const formValues = getFormValues();
-    
-    const KVSClient = new AWS.KinesisVideo({
-        region: 'us-west-2',
-        accessKeyId: formValues.accessKeyId,
-        secretAccessKey: formValues.secretAccessKey,
-        endpoint: null,
-        correctClockSkew: true,
-    });
-
-    getDataEndpoint(KVSClient, 'GET_MEDIA', StreamARN)
-    .then(data => {
-        console.log('[SUCCESS] endpoint: ' + data.DataEndpoint);
-        
-        getMediaWorker(formValues, data.DataEndpoint, StreamARN, {StartSelectorType: 'SERVER_TIMESTAMP', StartTimestamp: startTime_})
-        .then(data => {
-            console.log(data);
-        })
-        .catch(err => console.error(err));
-    })
-    .catch(err => console.error(err));
-});
-
 $('#get-timestamp').click(async () => {
     const out = new Date().toISOString();
-    startTime = out;
+    StartTime = out;
     console.log(out);
 });
 
-$('#get-fragment').click(async () => {
-    const EndTime = new Date().toISOString();
-    const StreamInfo = {
-        StreamARN:  'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403',
-        StreamName: 'muhan-ingestion-test'
-    };
-    const TimeInfo = {
-        StartTime: startTime,
-        EndTime:   EndTime
-    };
+$('#upload-fragments').click(async () => {
     const formValues = getFormValues();
-
-    const KVSClient = new AWS.KinesisVideo({
+    const lambdaClient = new AWS.Lambda({
         region: 'us-west-2',
         accessKeyId: formValues.accessKeyId,
-        secretAccessKey: formValues.secretAccessKey,
-        endpoint: null,
-        correctClockSkew: true,
+        secretAccessKey: formValues.secretAccessKey
     });
+    const sessionID = Math.random().toString(36).substring(6).toUpperCase();
+    EndTime = new Date().toISOString();
 
-    const KVSArchiveClient = new AWS.KinesisVideoArchivedMedia({
-        region: 'us-west-2',
-        accessKeyId: formValues.accessKeyId,
-        secretAccessKey: formValues.secretAccessKey,
-        endpoint: null,
-        correctClockSkew: true,
-    })
+    try{
+        const getClipPayload = {
+            StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403',
+            BucketName: 'fragments-raw',
+            startTime: StartTime,
+            endTime: EndTime,
+            SessionID: sessionID
+        }
+        const clipResponse = await lambdaClient.invoke({
+            FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
+            InvocationType: 'RequestResponse',
+            LogType: 'Tail',
+            Payload: JSON.stringify(getClipPayload)
+        }).promise();
+        if(!clipResponse) throw new Error('no response from getclip');
+        clipResponseBody = JSON.parse(clipResponse.Payload).body;
+        console.log(clipResponseBody);
 
-    listFragmentWorker(KVSClient, KVSArchiveClient, TimeInfo, StreamInfo)
-    .then(data => {
-        const FragmentIDList = processFragmentsData(data.Fragments);
-
-        console.log(data);
-        console.log('calling getmedia fragments');
-        console.log(FragmentIDList);
-        // getMediaforFragmentListWorker(KVSClient, KVSArchiveClient, FragmentIDList, StreamInfo)
-        // .then(data => {
-        //     console.log(data);
-        // })
-        // .catch(err => console.error(err));
-    })
-    .catch(err => console.error(err));
+        const mp4StitchPayload = {
+            SessionID: sessionID,
+            NumOfClips: clipResponseBody.fragmentcount,
+            OutputBucket: 'recording-output',
+            InputBucket: clipResponseBody.destination,
+            RecordingName: `${sessionID}-${clipResponseBody.fragmentcount}`,
+        }
+        const recordingResponse = await lambdaClient.invoke({
+            FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
+            InvocationType: 'RequestResponse',
+            LogType: 'Tail',
+            Payload: JSON.stringify(mp4StitchPayload)
+        }).promise();
+        if(!recordingResponse) throw new Error('no response from mp4stitch');
+        recordingResponseBody = JSON.parse(recordingResponse.Payload).body;
+        const temp = JSON.parse(recordingResponseBody);
+        console.log(temp);
+        console.log(temp.stack);
+        
+    }catch(err){
+        console.log('ERROR');
+        console.error(err);
+    }
 });
 
 function getDataEndpoint(KVSClient, APIName, StreamARN) {
@@ -283,76 +267,15 @@ function getDataEndpoint(KVSClient, APIName, StreamARN) {
     });
 }
 
-// function getMediaWorker(formValues, APIEndpoint, StreamARN, StartSelector) {
-//     const KVSMediaClient = new AWS.KinesisVideoMedia({
-//         region: 'us-west-2',
-//         accessKeyId: formValues.accessKeyId,
-//         secretAccessKey: formValues.secretAccessKey,
-//         endpoint: APIEndpoint,
-//         correctClockSkew: true,
-//     });
-
-//     return new Promise((resolve, reject) => {
-//         KVSMediaClient.getMedia(
-//             {StartSelector: StartSelector, StreamARN: StreamARN},
-//             (err, data) => {
-//                 if (err) return reject(err);
-//                 else resolve(data);
-//             }
-//         )
-//     });
-// } 
-
-function listFragmentWorker(KVSClient, KVSArchiveClient, TimeInfo, StreamInfo){
+function lambdaInvokeWorker(lambdaClient, params){
     return new Promise((resolve, reject) => {
-        getDataEndpoint(KVSClient, 'LIST_FRAGMENTS', StreamInfo.StreamARN)
-        .then(resp => {
-            KVSArchiveClient.endpoint = resp.DataEndpoint;
-            KVSArchiveClient.listFragments({
-                FragmentSelector: {
-                    FragmentSelectorType: 'SERVER_TIMESTAMP',
-                    TimestampRange: {StartTimestamp: TimeInfo.StartTime, EndTimestamp: TimeInfo.EndTime}
-                },
-                StreamName: StreamInfo.StreamName
-            },
+        lambdaClient.invoke(
+            params,
             (err, data) => {
-                if (err) return reject(err);
-                else resolve(data);
-            });
-        })
-        .catch(err => {
-            console.error(err);
-            return reject(err);
-        });
-    });
-}
-
-function getMediaforFragmentListWorker(KVSClient, KVSArchiveClient, Fragments, StreamInfo){
-    return new Promise((resolve, reject) => {
-        getDataEndpoint(KVSClient, 'GET_MEDIA_FOR_FRAGMENT_LIST', StreamInfo.StreamARN)
-        .then(resp => {
-            console.log('data endpoint (getmediafragments) ' + resp.DataEndpoint);
-            KVSArchiveClient.endpoint = resp.DataEndpoint;
-            KVSArchiveClient.getMediaForFragmentList({
-                Fragments: Fragments,
-                StreamName: StreamInfo.StreamName
-            },
-            (err, data) => {
-                console.log('data received');
                 if(err) return reject(err);
-                else return resolve(data);
-            })
-        })
-        .catch(err => {
-            console.error(err);
-            return reject(err);
-        })
-    });
-}
-
-function processFragmentsData(FragmentsInfo){
-    return FragmentsInfo.map((fragment) => {
-        return fragment.FragmentNumber;
+                else resolve(data);
+            }
+        )
     });
 }
 
