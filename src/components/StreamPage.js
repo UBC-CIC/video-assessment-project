@@ -7,8 +7,6 @@ import Button from '@mui/material/Button';
 
 let ROLE = null; // Possible values: 'master', 'viewer', null
 
-const KEYID       = 'AKIAWPFL3GVMRQYN5H2U';
-const SECRETKEY   = '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';
 const REGION      = "us-west-2";
 const TRICKLEICE  = true;
 const WIDESCREEN  = true;
@@ -18,6 +16,9 @@ const DATACHANNEL = false;
 const FORCETURN   = false;
 const NATDISABLE  = false;
 const drawerWidth = 240;
+
+let startTime = new Date();
+let endTime   = new Date();
 
 export default function StreamPage() {
   return (
@@ -61,8 +62,8 @@ export default function StreamPage() {
           <Button variant="outlined" onClick={masterClick} id="master-button" type="button" className="btn btn-primary">Start Stream</Button>
           <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop Recording</Button>
           <Button variant="outlined" >Review Recording</Button>
-          <Button variant="outlined">Start Recording</Button>
-          <Button variant="outlined">Save Recording</Button>
+          <Button variant="outlined" onClick={startRecording} id="start-recording" type="button" className="btn btn-primary">Start Recording</Button>
+          <Button variant="outlined" onClick={saveRecording} id="save-recording" type="button" className="btn btn=primary">Save Recording</Button>
         </div>
       </div>
       </Box>
@@ -161,3 +162,60 @@ async function masterClick() {
       remoteMessage.append(`${event.data}\n`);
   });
 };
+
+async function startRecording(){
+
+}
+
+async function saveRecording(){
+  const formValues = getFormValues();
+  const lambdaClient = new AWS.Lambda({
+    region: 'us-west-2',
+    accessKeyId: formValues.accessKeyId,
+    secretAccessKey: formValues.secretAccessKey // changed for cognito
+  });
+  const sessionID = Math.random().toString(36).substring(6).toUpperCase();
+  endTime = new Date().toISOString();
+
+  try{
+    const getClipPayload = {
+      StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403',
+      BucketName: 'fragments-raw',
+      startTime: startTime,
+      endTime: endTime,
+      SessionID: sessionID
+    }
+    const clipResponse = await lambdaClient.invoke({
+      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
+      InvocationType: 'RequestResponse',
+      LogType: 'Tail',
+      Payload: JSON.stringify(getClipPayload)
+    }).promise();
+    if(!clipResponse) throw new Error('no response from getclip');
+    let clipResponseBody = JSON.parse(clipResponse.Payload).body;
+    console.log(clipResponseBody);
+
+    const mp4StitchPayload = {
+      SessionID: sessionID,
+      NumOfClips: clipResponseBody.fragmentcount,
+      OutputBucket: 'recording-output',
+      InputBucket: clipResponseBody.destination,
+      RecordingName: `${sessionID}-${clipResponseBody.fragmentcount}`,
+    }
+    const recordingResponse = await lambdaClient.invoke({
+      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
+      InvocationType: 'RequestResponse',
+      LogType: 'Tail',
+      Payload: JSON.stringify(mp4StitchPayload)
+    }).promise();
+    if(!recordingResponse) throw new Error('no response from mp4stitch');
+    let recordingResponseBody = JSON.parse(recordingResponse.Payload).body;
+    const temp = JSON.parse(recordingResponseBody);
+    console.log(temp);
+    console.log(temp.stack);
+    
+  }catch(err){
+    console.log('ERROR');
+    console.error(err);
+  }
+}
