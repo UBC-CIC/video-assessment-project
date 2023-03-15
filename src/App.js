@@ -26,6 +26,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import StreamPage from "./components/StreamPage";
 import { createSignalingChannel } from './createSignalingChannel';
+import Dashboard from './login';
 
 
 function App() {
@@ -90,9 +91,9 @@ function App() {
           </Drawer>
 
           <Routes>
-            <Route path="/"></Route>
-            <Route path="/record" element={<StreamPage></StreamPage>}></Route>
-            <Route path="/recordings" element={<Container>Recordings</Container>}></Route>
+            <Route path="/" element={<Dashboard/>}/>
+            <Route path="/record" element={<StreamPage/>}/>
+            <Route path="/recordings" element={<Container>Recordings</Container>}/>
           </Routes>
         </div>
       </Router>
