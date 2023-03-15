@@ -30,12 +30,12 @@ export default function StreamPage() {
       <br/>
       <br/>
 
-        {/* <div className="form-group">
+        <div className="form-group">
             <label>Access Key ID </label>
             <input type="text" className="form-control" id="accessKeyId" placeholder="Access key ID"></input>
             <label>   Secret Access Key </label>
             <input type="password" className="form-control" id="secretAccessKey" placeholder="Secret access key"></input>
-        </div> */}
+        </div>
         <br/>
         <div id="master" className="d-none">
             <div className="row">
@@ -58,9 +58,11 @@ export default function StreamPage() {
         </div>
         <div className="card">
         <div style = {{alignItems: 'flex-right'}}>
-          <Button variant="outlined" onClick={masterClick} id="master-button" type="button" className="btn btn-primary">Start Recording</Button>
+          <Button variant="outlined" onClick={masterClick} id="master-button" type="button" className="btn btn-primary">Start Stream</Button>
           <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop Recording</Button>
           <Button variant="outlined" >Review Recording</Button>
+          <Button variant="outlined">Start Recording</Button>
+          <Button variant="outlined">Save Recording</Button>
         </div>
       </div>
       </Box>

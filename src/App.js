@@ -38,13 +38,13 @@ function App() {
       <Router>
         <div style={{ display: 'flex' }}>
           <CssBaseline />
-          <AppBar position="fixed">
+          {/* <AppBar position="fixed">
             <Toolbar>
               <Typography variant="h6" noWrap component="div">
                 Video Upload Centre
               </Typography>
             </Toolbar>
-          </AppBar>
+          </AppBar> */}
           <Drawer
             style={{ width: '500px' }}
             variant="permanent"
