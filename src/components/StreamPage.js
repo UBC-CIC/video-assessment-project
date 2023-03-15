@@ -164,7 +164,78 @@ async function masterClick() {
 };
 
 async function startRecording(){
+  let getSignalingChannelEndpointResponse;
+  try {
+    // Get signaling channel endpoints for WEBRTC
+    getSignalingChannelEndpointResponse = await master.kinesisVideoClient
+      .getSignalingChannelEndpoint({
+          ChannelARN: master.channelARN,
+          SingleMasterChannelEndpointConfiguration: {
+              Protocols: ['WEBRTC'],
+              Role: KVSWebRTC.Role.MASTER,
+          },
+      })
+      .promise();
+  } catch (e) {
+    console.error('[MASTER] Storage Session is not configured for this channel');
+    return;
+  }
 
+  // Fetch webrtc endpoint
+  const endpointsByProtocol = getSignalingChannelEndpointResponse.ResourceEndpointList.reduce((endpoints, endpoint) => {
+    endpoints[endpoint.Protocol] = endpoint.ResourceEndpoint;
+    return endpoints;
+  }, {});
+
+  console.log('[MASTER] Received webrtc endpoint: ' + endpointsByProtocol.WEBRTC);
+
+  // TODO: Remove sigv4 signing logic once changes are added to the KinesisVideoClient
+  const endpoint = new AWS.Endpoint(endpointsByProtocol.WEBRTC);
+  const request = new AWS.HttpRequest(endpoint, formValues.region);
+
+  request.method = 'POST';
+  request.path = '/joinStorageSession';
+  request.body = JSON.stringify({
+    "channelArn": master.channelARN
+  });
+  request.headers['Host'] = endpoint.host;
+
+  const signer = new AWS.Signers.V4(request, 'kinesisvideo', true);
+  signer.addAuthorization({
+    accessKeyId: formValues.accessKeyId,
+    secretAccessKey: formValues.secretAccessKey,
+    sessionToken: null,
+  }, new Date());
+
+  const response = await fetch(endpointsByProtocol.WEBRTC + request.path, {
+    method: request.method,
+    headers: {
+        'Content-Type': 'application/json',
+        ...request.headers
+    },
+    body: request.body})
+    .then((response) => {
+        return new Promise((resolve) => response.json()
+            .then((json) => resolve({
+                status: response.status,
+                ok: response.ok,
+                json,
+            })));
+    })
+    .then(({ status, json, ok }) => {
+        if (!ok) {
+            console.log('[MASTER] Error occured while calling join session: ', json);
+        } else {
+            console.log('[MASTER] Successfully called join session.');
+        }
+    })
+    .catch((error) => {
+        console.error('[MASTER] Error occured while calling join session:', error);
+    });
+
+  const out = new Date().toISOString();
+  startTime = out;
+  console.log(out);
 }
 
 async function saveRecording(){
