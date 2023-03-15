@@ -2,6 +2,10 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.7.3\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
+    "GROUP": {
+      "Type": "String",
+      "Default": ""
+    },
     "modules": {
       "Type": "String",
       "Default": "",
@@ -63,12 +67,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "videoassessmentapp75a7ee21DefineAuthChallenge",
+            "videoassessmentappfbec165bPostConfirmation",
             {
               "Fn::Join": [
                 "",
                 [
-                  "videoassessmentapp75a7ee21DefineAuthChallenge",
+                  "videoassessmentappfbec165bPostConfirmation",
                   "-",
                   {
                     "Ref": "env"
@@ -88,6 +92,9 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "GROUP": {
+              "Ref": "GROUP"
             }
           }
         },
@@ -115,12 +122,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "videoassessmentapp75a7ee21DefineAuthChallenge",
+            "videoassessmentappfbec165bPostConfirmation",
             {
               "Fn::Join": [
                 "",
                 [
-                  "videoassessmentapp75a7ee21DefineAuthChallenge",
+                  "videoassessmentappfbec165bPostConfirmation",
                   "-",
                   {
                     "Ref": "env"

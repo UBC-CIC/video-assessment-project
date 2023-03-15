@@ -1,15 +1,46 @@
 {
   "auth": {
+    "userPoolGroups": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "videoassessmentappfbec165b"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups"
+    },
     "videoassessmentappfbec165b": {
       "customAuth": false,
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "videoassessmentappfbec165bPostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
       "frontendAuthConfig": {
-        "mfaConfiguration": "OFF",
+        "mfaConfiguration": "OPTIONAL",
         "mfaTypes": [
-          "SMS"
+          "TOTP"
         ],
         "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [],
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_UPPERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS"
+          ],
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
@@ -35,6 +66,69 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "videoassessmentappfbec165bPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_videoassessmentapp75a7ee21CreateAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "videoassessmentapp75a7ee21CreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_videoassessmentapp75a7ee21CreateAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "videoassessmentapp75a7ee21CreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_videoassessmentapp75a7ee21DefineAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "videoassessmentapp75a7ee21DefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_videoassessmentapp75a7ee21DefineAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "videoassessmentapp75a7ee21DefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_videoassessmentappfbec165bPostConfirmation_GROUP": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "videoassessmentappfbec165bPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_videoassessmentappfbec165bPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "videoassessmentappfbec165bPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_videoassessmentappfbec165bPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "videoassessmentappfbec165bPostConfirmation"
+        }
+      ]
     }
   }
 }
