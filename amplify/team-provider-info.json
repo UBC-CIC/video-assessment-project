@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-videoassessmentapp-dev-10516-authRole",
+      "UnauthRoleArn": "arn:aws:iam::444889511257:role/amplify-videoassessmentapp-dev-10516-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::444889511257:role/amplify-videoassessmentapp-dev-10516-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-videoassessmentapp-dev-10516-deployment",
+      "UnauthRoleName": "amplify-videoassessmentapp-dev-10516-unauthRole",
+      "StackName": "amplify-videoassessmentapp-dev-10516",
+      "StackId": "arn:aws:cloudformation:us-west-2:444889511257:stack/amplify-videoassessmentapp-dev-10516/ce0d6a20-b1c6-11ed-a09f-0a474ed40e1b",
+      "AmplifyAppId": "dxwp8g16s5onh"
+    },
+    "categories": {
+      "auth": {
+        "videoassessmentapp75a7ee21": {},
+        "videoassessmentapp0df83452": {},
+        "videoassessmentappfbec165b": {}
+      },
+      "function": {
+        "videoassessmentapp75a7ee21DefineAuthChallenge": {},
+        "videoassessmentapp75a7ee21CreateAuthChallenge": {}
+      }
+    }
+  }
+}
