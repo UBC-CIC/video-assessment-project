@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 
 let ROLE = null; // Possible values: 'master', 'viewer', null
 
+const KEYID       = '';
+const SECRETKEY   = '';
 const REGION      = "us-west-2";
 const TRICKLEICE  = true;
 const WIDESCREEN  = true;
@@ -250,7 +252,7 @@ async function saveRecording(){
 
   try{
     const getClipPayload = {
-      StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403',
+      StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/michael-testing/1677783281493',
       BucketName: 'fragments-raw',
       startTime: startTime,
       endTime: endTime,
