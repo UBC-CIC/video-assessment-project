@@ -224,18 +224,20 @@ async function startRecording(){
                 ok: response.ok,
                 json,
             })));
-    })
-    .then(({ status, json, ok }) => {
-        if (!ok) {
-            console.log('[MASTER] Error occured while calling join session: ', json);
-        } else {
-            console.log('[MASTER] Successfully called join session.');
-        }
-    })
-    .catch((error) => {
-        console.error('[MASTER] Error occured while calling join session:', error);
-    });
+  })
+  .then(({ status, json, ok }) => {
+      if (!ok) {
+          console.log('[MASTER] Error occured while calling join session: ', json);
+      } else {
+          console.log('[MASTER] Successfully called join session.');
+      }
+  })
+  .catch((error) => {
+      console.error('[MASTER] Error occured while calling join session:', error);
+  });
 
+  await new Promise(r => setTimeout(r, 5000));
+  
   const out = new Date().toISOString();
   startTime = out;
   console.log(out);
