@@ -1,9 +1,13 @@
 import * as React from 'react';
-import { stopMaster, startMaster } from './master';
+import { useState } from 'react';
+import { startMaster, stopMaster, master }from './master';
 import { stopViewer } from './viewer';
+import AWS from 'aws-sdk';
+import * as KVSWebRTC from 'amazon-kinesis-video-streams-webrtc';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { Stream } from '@mui/icons-material';
 
 let ROLE = null; // Possible values: 'master', 'viewer', null
 
@@ -20,59 +24,55 @@ const drawerWidth = 240;
 let startTime = new Date();
 let endTime   = new Date();
 
-export default function StreamPage() {
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
-      >
-      <br/>
-      <br/>
-      <br/>
-
-        <div className="form-group">
-            <label>Access Key ID </label>
-            <input type="text" className="form-control" id="accessKeyId" placeholder="Access key ID"></input>
-            <label>   Secret Access Key </label>
-            <input type="password" className="form-control" id="secretAccessKey" placeholder="Secret access key"></input>
-        </div>
+class StreamPage extends React.Component {
+  render () {
+    return <Box sx={{ display: 'flex' }}>
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+        >
         <br/>
-        <div id="master" className="d-none">
-            <div className="row">
-                <div className="col">
-                    <div className="video-container"><video className="local-view" autoPlay playsInline controls muted /></div>
-                </div>
-            </div>
-            {/* <div className="row datachannel">
-                <div className="col">
-                    <div className="form-group">
-                      <textarea type="text" className="form-control local-message" placeholder="DataChannel Message"> </textarea>
-                    </div>
-                </div>
-                <div className="col">
-                    <div className="card bg-light mb-3">
-                        <pre className="remote-message card-body text-monospace preserve-whitespace"></pre>
-                    </div>
-                </div>
-            </div> */}
+        <br/>
+        <br/>
+
+          <form>
+              <input type="text" name="accessKeyId" className="form-control" id="accessKeyId" placeholder="Access Key ID" onChange={this.handleAccessKeyChange}></input>
+              <input type="password" name="secretAccessKey" className="form-control" id="secretAccessKey" placeholder="Secret Access Key" onChange={this.handleSecretAccessKeyChange}></input>
+          </form>
+          <br/>
+          <div id="master" className="d-none">
+              <div className="row">
+                  <div className="col">
+                      <div className="video-container"><video className="local-view" autoPlay playsInline controls muted /></div>
+                  </div>
+              </div>
+              {/* <div className="row datachannel">
+                  <div className="col">
+                      <div className="form-group">
+                        <textarea type="text" className="form-control local-message" placeholder="DataChannel Message"> </textarea>
+                      </div>
+                  </div>
+                  <div className="col">
+                      <div className="card bg-light mb-3">
+                          <pre className="remote-message card-body text-monospace preserve-whitespace"></pre>
+                      </div>
+                  </div>
+              </div> */}
+          </div>
+          <div className="card">
+          <div style = {{alignItems: 'flex-right'}}>
+            <Button variant="outlined" onClick={masterClick} id="master-button" type="button" className="btn btn-primary">Start Stream</Button>
+            <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop Stream and Recording</Button>
+            <Button variant="outlined" >Review Recording</Button>
+            <Button variant="outlined" onClick={startRecording} id="start-recording" type="button" className="btn btn-primary">Start Recording</Button>
+            <Button variant="outlined" onClick={saveRecording} id="save-recording" type="button" className="btn btn=primary">Save Recording</Button>
+          </div>
         </div>
-        <div className="card">
-        <div style = {{alignItems: 'flex-right'}}>
-          <Button variant="outlined" onClick={masterClick} id="master-button" type="button" className="btn btn-primary">Start Stream</Button>
-          <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop Recording</Button>
-          <Button variant="outlined" >Review Recording</Button>
-          <Button variant="outlined" onClick={startRecording} id="start-recording" type="button" className="btn btn-primary">Start Recording</Button>
-          <Button variant="outlined" onClick={saveRecording} id="save-recording" type="button" className="btn btn=primary">Save Recording</Button>
-        </div>
-      </div>
+        </Box>
       </Box>
-    </Box>
-);
+    
+  }
 }
-
-
-
 
 function getRandomClientId() {
   return Math.random()
@@ -96,9 +96,9 @@ function getFormValues() {
       useTrickleICE: TRICKLEICE,
       natTraversalDisabled: NATDISABLE,
       forceTURN: FORCETURN,
-      accessKeyId: KEYID, // 'accessKeyId'.val(),
+      accessKeyId: document.getElementById('accessKeyId').value,// 'accessKeyId'.val(),
       // endpoint: $('#endpoint').val() || null,
-      secretAccessKey: SECRETKEY, //'secretAccessKey'.val(),
+      secretAccessKey: document.getElementById('secretAccessKey').value, //'secretAccessKey'.val(),
       // sessionToken: $('#sessionToken').val() || null,
   };
 }
@@ -164,6 +164,7 @@ async function masterClick() {
 };
 
 async function startRecording(){
+  const formValues = getFormValues();
   let getSignalingChannelEndpointResponse;
   try {
     // Get signaling channel endpoints for WEBRTC
@@ -290,3 +291,5 @@ async function saveRecording(){
     console.error(err);
   }
 }
+
+export default StreamPage;
