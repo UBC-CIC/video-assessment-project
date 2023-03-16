@@ -217,13 +217,13 @@ async function startRecording(){
         ...request.headers
     },
     body: request.body})
-    .then((response) => {
-        return new Promise((resolve) => response.json()
-            .then((json) => resolve({
-                status: response.status,
-                ok: response.ok,
-                json,
-            })));
+  .then((response) => {
+    return new Promise((resolve) => response.json()
+        .then((json) => resolve({
+            status: response.status,
+            ok: response.ok,
+            json,
+        })));
   })
   .then(({ status, json, ok }) => {
       if (!ok) {
@@ -240,7 +240,7 @@ async function startRecording(){
   
   const out = new Date().toISOString();
   startTime = out;
-  console.log(out);
+  console.log('startTime = ' + startTime);
 }
 
 async function saveRecording(){
@@ -252,6 +252,7 @@ async function saveRecording(){
   });
   const sessionID = Math.random().toString(36).substring(6).toUpperCase();
   endTime = new Date().toISOString();
+  console.log('endTime = ' + endTime);
 
   try{
     const getClipPayload = {
@@ -261,6 +262,7 @@ async function saveRecording(){
       endTime: endTime,
       SessionID: sessionID
     }
+    console.log(getClipPayload);
     const clipResponse = await lambdaClient.invoke({
       FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
       InvocationType: 'RequestResponse',
