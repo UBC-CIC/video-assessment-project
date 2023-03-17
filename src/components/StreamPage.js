@@ -210,6 +210,8 @@ async function startRecording(){
     sessionToken: null,
   }, new Date());
 
+  startTime = new Date().toISOString();
+
   const response = await fetch(endpointsByProtocol.WEBRTC + request.path, {
     method: request.method,
     headers: {
@@ -228,6 +230,8 @@ async function startRecording(){
   .then(({ status, json, ok }) => {
       if (!ok) {
           console.log('[MASTER] Error occured while calling join session: ', json);
+          startTime = new Date().toISOString();
+          console.log(startTime);
       } else {
           console.log('[MASTER] Successfully called join session.');
       }
@@ -236,11 +240,6 @@ async function startRecording(){
       console.error('[MASTER] Error occured while calling join session:', error);
   });
   console.log(response);
-
-  await new Promise(r => setTimeout(r, 5000));
-  
-  startTime = new Date().toISOString();
-  console.log('startTime = ' + startTime);
 }
 
 async function saveRecording(){
