@@ -23,8 +23,8 @@ const FORCETURN   = false;
 const NATDISABLE  = false;
 const drawerWidth = 240;
 
-let startTime = new Date();
-let endTime   = new Date();
+let startTime = new Date().toISOString();
+let endTime   = new Date().toISOString();
 
 class StreamPage extends React.Component {
   render () {
@@ -235,11 +235,11 @@ async function startRecording(){
   .catch((error) => {
       console.error('[MASTER] Error occured while calling join session:', error);
   });
+  console.log(response);
 
   await new Promise(r => setTimeout(r, 5000));
   
-  const out = new Date().toISOString();
-  startTime = out;
+  startTime = new Date().toISOString();
   console.log('startTime = ' + startTime);
 }
 
