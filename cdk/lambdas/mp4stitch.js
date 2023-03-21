@@ -64,7 +64,7 @@ exports.handler = async (event) => {
                     OutputGroupSettings: {
                         Type: 'FILE_GROUP_SETTINGS',
                         FileGroupSettings: {
-                            Destination: `s3://${OutputBucket}/`,
+                            Destination: `s3://${OutputBucket}/${UserID}/`,
                             // destination settings - security, encryption, etc
                         },
                     },
@@ -73,7 +73,7 @@ exports.handler = async (event) => {
                             Container: 'MP4',
                             Mp4Settings: {}
                         },
-                        NameModifier: `${UserID}/${AssessmentID}`,
+                        NameModifier: '',
                         VideoDescription: Outputs_VideoDescription,
                         AudioDescriptions: [Outputs_AudioDescription],
                         Extension: 'mp4',
@@ -92,7 +92,7 @@ exports.handler = async (event) => {
 
         return {statusCode: 200, body: JSON.stringify({
             message: '[SUCCESS]: Recording uploaded to S3',
-            recordingName: `placeholder`,                       //TODO: change this to reflect actual name
+            recordingName: `${AssessmentID}-0`,                       //TODO: change this to reflect actual name
             mediaConvertResponse: createJobResponse
         })};
     }catch(err){

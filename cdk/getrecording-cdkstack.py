@@ -60,6 +60,12 @@ class RecordWithFaceBlurStack(cdk.Stack):
             ]
         ))
 
+        mp4stitch.add_to_role_policy(_iam.PolicyStatement(
+            effect=_iam.Effect.ALLOW,
+            actions=["mediaconvert:CreateJob"],
+            resources=["*"]
+        ))
+
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,
             code=lambda_.Code.from_asset('./cdk/lambdas/startfacedetect.py'),
