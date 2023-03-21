@@ -18,11 +18,11 @@ exports.handler = async(event) => {
     if(isNaN(startTime.getTime())) throw new Error('[ERROR]: invalid start time');
     if(isNaN(endTime.getTime()))   throw new Error('[ERROR]: invalid end time');
     
-    if(event.StreamARN)  StreamARN     = event.StreamARN;
-    if(event.StreamName) StreamName    = event.StreamName;
-    if(event.BucketName) BucketName    = event.BucketName;
-    if(event.SessionID)  AssessmentID  = event.SessionID;
-    if(event.UserID)     UserID        = event.UserID;
+    if(event.StreamARN)    StreamARN     = event.StreamARN;
+    if(event.StreamName)   StreamName    = event.StreamName;
+    if(event.BucketName)   BucketName    = event.BucketName;
+    if(event.AssessmentID) AssessmentID  = event.AssessmentID;
+    if(event.UserID)       UserID        = event.UserID;
 
     const KVSClient = new AWS.KinesisVideo({
         region: 'us-west-2',
