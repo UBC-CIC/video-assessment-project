@@ -254,9 +254,9 @@ async function saveRecording(){
   });
   endTime = new Date().toISOString();
   console.log('endTime = ' + endTime);
-  
-  UserID = Math.random().toString(36).substring(6).toUpperCase();
-  AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
+
+  UserID = '123456'// Math.random().toString(36).substring(6).toUpperCase();
+  AssessmentID = 'FACEBLUR'// Math.random().toString(36).substring(6).toUpperCase();
   console.log(`UserID: ${UserID}`);
   console.log(`AssessmentID: ${AssessmentID}`);
 
