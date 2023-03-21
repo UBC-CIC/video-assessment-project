@@ -1,12 +1,13 @@
 const AWS = require('aws-sdk');
 
 exports.handler = async(event) => {
-    let   StreamARN  = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
-    let   StreamName = 'muhan-ingestion-test';
-    let   BucketName = 'fragments-raw';
-    let   SessionID  = Math.random().toString(36).substring(6).toUpperCase();
-    let   startTime  = new Date();
-    let   endTime    = new Date();
+    let   StreamARN    = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
+    let   StreamName   = 'muhan-ingestion-test';
+    let   BucketName   = 'fragments-raw';
+    let   AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
+    let   UserID       = Math.random().toString(36).substring(6).toUpperCase();
+    let   startTime    = new Date();
+    let   endTime      = new Date();
     
     if(!event.startTime || !event.endTime) throw new Error('[ERROR]: missing time parameters');
     startTime = new Date(event.startTime);
@@ -17,10 +18,11 @@ exports.handler = async(event) => {
     if(isNaN(startTime.getTime())) throw new Error('[ERROR]: invalid start time');
     if(isNaN(endTime.getTime()))   throw new Error('[ERROR]: invalid end time');
     
-    if(event.StreamARN)  StreamARN  = event.StreamARN;
-    if(event.StreamName) StreamName = event.StreamName;
-    if(event.BucketName) BucketName = event.BucketName;
-    if(event.SessionID)  SessionID  = event.SessionID;
+    if(event.StreamARN)  StreamARN     = event.StreamARN;
+    if(event.StreamName) StreamName    = event.StreamName;
+    if(event.BucketName) BucketName    = event.BucketName;
+    if(event.SessionID)  AssessmentID  = event.SessionID;
+    if(event.UserID)     UserID        = event.UserID;
 
     const KVSClient = new AWS.KinesisVideo({
         region: 'us-west-2',
@@ -68,7 +70,7 @@ exports.handler = async(event) => {
             const putObjResponse = await S3Client.putObject({
                 Body: clip.Payload,
                 Bucket: BucketName,
-                Key: `${SessionID}-${i}.mp4`
+                Key: `${UserID}/${AssessmentID}-${i}.mp4`
             }).promise();
             if(!putObjResponse) throw new Error('[ERROR]: no response');
             console.log(`[SUCCESS] Loop ${i} Response from S3: `); 

@@ -9,22 +9,25 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Stream } from '@mui/icons-material';
 
-let ROLE = null; // Possible values: 'master', 'viewer', null
+let   ROLE          = null; // Possible values: 'master', 'viewer', null
 
-const KEYID       = '';
-const SECRETKEY   = '';
-const REGION      = "us-west-2";
-const TRICKLEICE  = true;
-const WIDESCREEN  = true;
-const SENDVID     = true;
-const SENDAUD     = true;
-const DATACHANNEL = false;
-const FORCETURN   = false;
-const NATDISABLE  = false;
-const drawerWidth = 240;
+const KEYID         = '';
+const SECRETKEY     = '';
+const REGION        = "us-west-2";
+const TRICKLEICE    = true;
+const WIDESCREEN    = true;
+const SENDVID       = true;
+const SENDAUD       = true;
+const DATACHANNEL   = false;
+const FORCETURN     = false;
+const NATDISABLE    = false;
+const drawerWidth   = 240;
 
-let startTime = new Date().toISOString();
-let endTime   = new Date().toISOString();
+let   startTime     = new Date().toISOString();
+let   endTime       = new Date().toISOString();
+
+let   UserID        = Math.random().toString(36).substring(6).toUpperCase();
+let   AssessmentID  = Math.random().toString(36).substring(6).toUpperCase();
 
 class StreamPage extends React.Component {
   render () {
@@ -230,10 +233,10 @@ async function startRecording(){
   .then(({ status, json, ok }) => {
       if (!ok) {
           console.log('[MASTER] Error occured while calling join session: ', json);
-          startTime = new Date().toISOString();
-          console.log(startTime);
       } else {
           console.log('[MASTER] Successfully called join session.');
+          startTime = new Date().toISOString();
+          console.log(startTime);
       }
   })
   .catch((error) => {
@@ -247,9 +250,8 @@ async function saveRecording(){
   const lambdaClient = new AWS.Lambda({
     region: 'us-west-2',
     accessKeyId: formValues.accessKeyId,
-    secretAccessKey: formValues.secretAccessKey // changed for cognito
+    secretAccessKey: formValues.secretAccessKey // TODO: replace with IAM role permissions
   });
-  const sessionID = Math.random().toString(36).substring(6).toUpperCase();
   endTime = new Date().toISOString();
   console.log('endTime = ' + endTime);
 
@@ -259,7 +261,8 @@ async function saveRecording(){
       BucketName: 'fragments-raw',
       startTime: startTime,
       endTime: endTime,
-      SessionID: sessionID
+      UserID: UserID,
+      AssessmentID: AssessmentID
     }
     console.log(getClipPayload);
     const clipResponse = await lambdaClient.invoke({
@@ -273,11 +276,11 @@ async function saveRecording(){
     console.log(clipResponseBody);
 
     const mp4StitchPayload = {
-      SessionID: sessionID,
+      UserID: UserID,
+      AssessmentID: AssessmentID,
       NumOfClips: clipResponseBody.fragmentcount,
       OutputBucket: 'recording-output',
       InputBucket: clipResponseBody.destination,
-      RecordingName: `${sessionID}-${clipResponseBody.fragmentcount}`,
     }
     const recordingResponse = await lambdaClient.invoke({
       FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',

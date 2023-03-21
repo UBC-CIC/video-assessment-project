@@ -2,18 +2,18 @@ const AWS = require('aws-sdk');
 
 exports.handler = async (event) => {
     const AccessRole    = 'arn:aws:iam::444889511257:role/service-role/mediaconvert';
-    let   SessionID     = '';
+    let   UserID        = '';
+    let   AssessmentID  = '';
     let   NumOfClips    = 0;
     let   OutputBucket  = 'recording-output';
     let   InputBucket   = 'fragments-raw';
-    let   RecordingName = 'placeholder-name';
     let   UserMetadata  = {};
     
-    if(event.SessionID)     SessionID      = event.SessionID;
+    if(event.UserID)        UserID         = event.UserID;
+    if(event.AssessmentID)  AssessmentID   = event.AssessmentID;
     if(event.NumOfClips)    NumOfClips     = event.NumOfClips;
     if(event.OutputBucket)  OutputBucket   = event.OutputBucket;
     if(event.InputBucket)   InputBucket    = event.InputBucket;
-    if(event.RecordingName) RecordingName  = event.RecordingName;
     if(event.UserMetadata)  UserMetadata   = event.UserMetadata;
 
     const Outputs_VideoDescription = {
@@ -51,7 +51,7 @@ exports.handler = async (event) => {
     })
 
     try{
-        const inputList = getInputList(InputBucket, NumOfClips, SessionID);
+        const inputList = getInputList(InputBucket, NumOfClips, UserID, AssessmentID);
         const convertJobParams = {
             Queue: "arn:aws:mediaconvert:us-west-2:444889511257:queues/Default",
             UserMetadata: UserMetadata,
@@ -73,7 +73,7 @@ exports.handler = async (event) => {
                             Container: 'MP4',
                             Mp4Settings: {}
                         },
-                        NameModifier: RecordingName,
+                        NameModifier: `${UserID}/${AssessmentID}`,
                         VideoDescription: Outputs_VideoDescription,
                         AudioDescriptions: [Outputs_AudioDescription],
                         Extension: 'mp4',
@@ -92,7 +92,7 @@ exports.handler = async (event) => {
 
         return {statusCode: 200, body: JSON.stringify({
             message: '[SUCCESS]: Recording uploaded to S3',
-            recordingName: `${SessionID}-${RecordingName}`,
+            recordingName: `placeholder`,                       //TODO: change this to reflect actual name
             mediaConvertResponse: createJobResponse
         })};
     }catch(err){
@@ -105,14 +105,14 @@ exports.handler = async (event) => {
     }
 };
 
-function getInputList(InputBucket, NumOfClips, SessionID){
+function getInputList(InputBucket, NumOfClips, UserID, AssessmentID){
     const output = new Array(NumOfClips);
 
     for(let i=0; i<NumOfClips; i++){
         output[i] = {
             AudioSelectors: {'Audio Selector 1': {DefaultSelection: 'DEFAULT'}},
             TimecodeSource: 'ZEROBASED',
-            FileInput: `s3://${InputBucket}/${SessionID}-${i}.mp4`,
+            FileInput: `s3://${InputBucket}/${UserID}/${AssessmentID}-${i}.mp4`,
         }
         console.log(`File ${i}: ${output[i].FileInput}`);
     }
