@@ -26,8 +26,8 @@ const drawerWidth   = 240;
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
 
-let   UserID        = Math.random().toString(36).substring(6).toUpperCase();
-let   AssessmentID  = Math.random().toString(36).substring(6).toUpperCase();
+const UserID        = Math.random().toString(36).substring(6).toUpperCase();
+const AssessmentID  = Math.random().toString(36).substring(6).toUpperCase();
 
 class StreamPage extends React.Component {
   render () {
