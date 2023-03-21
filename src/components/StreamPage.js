@@ -26,8 +26,8 @@ const drawerWidth   = 240;
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
 
-const UserID        = Math.random().toString(36).substring(6).toUpperCase();
-const AssessmentID  = Math.random().toString(36).substring(6).toUpperCase();
+let   UserID        = '';
+let   AssessmentID  = '';
 
 class StreamPage extends React.Component {
   render () {
@@ -254,6 +254,11 @@ async function saveRecording(){
   });
   endTime = new Date().toISOString();
   console.log('endTime = ' + endTime);
+  
+  UserID = Math.random().toString(36).substring(6).toUpperCase();
+  AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
+  console.log(`UserID: ${UserID}`);
+  console.log(`AssessmentID: ${AssessmentID}`);
 
   try{
     const getClipPayload = {
