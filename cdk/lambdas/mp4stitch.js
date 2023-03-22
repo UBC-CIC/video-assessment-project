@@ -8,13 +8,15 @@ exports.handler = async (event) => {
     let   OutputBucket  = 'recording-output';
     let   InputBucket   = 'fragments-raw';
     let   UserMetadata  = {};
+    let   RecordingName = '';
     
-    if(event.UserID)        UserID         = event.UserID;
-    if(event.AssessmentID)  AssessmentID   = event.AssessmentID;
-    if(event.NumOfClips)    NumOfClips     = event.NumOfClips;
-    if(event.OutputBucket)  OutputBucket   = event.OutputBucket;
-    if(event.InputBucket)   InputBucket    = event.InputBucket;
-    if(event.UserMetadata)  UserMetadata   = event.UserMetadata;
+    if(event.UserID)        UserID        = event.UserID;
+    if(event.AssessmentID)  AssessmentID  = event.AssessmentID;
+    if(event.NumOfClips)    NumOfClips    = event.NumOfClips;
+    if(event.OutputBucket)  OutputBucket  = event.OutputBucket;
+    if(event.InputBucket)   InputBucket   = event.InputBucket;
+    if(event.UserMetadata)  UserMetadata  = event.UserMetadata;
+    if(event.RecordingName) RecordingName = event.RecordingName;
 
     const Outputs_VideoDescription = {
         CodecSettings: {
@@ -51,7 +53,7 @@ exports.handler = async (event) => {
     })
 
     try{
-        const inputList = getInputList(InputBucket, NumOfClips, UserID, AssessmentID);
+        const inputList = getInputList(InputBucket, NumOfClips, UserID, AssessmentID, RecordingName);
         const convertJobParams = {
             Queue: "arn:aws:mediaconvert:us-west-2:444889511257:queues/Default",
             UserMetadata: UserMetadata,
@@ -92,7 +94,7 @@ exports.handler = async (event) => {
 
         return {statusCode: 200, body: JSON.stringify({
             message: '[SUCCESS]: Recording uploaded to S3',
-            recordingName: `${AssessmentID}-0`,                       //TODO: change this to reflect actual name
+            recordingName: RecordingName,                       //TODO: change this to reflect actual name
             mediaConvertResponse: createJobResponse
         })};
     }catch(err){
@@ -105,11 +107,11 @@ exports.handler = async (event) => {
     }
 };
 
-function getInputList(InputBucket, NumOfClips, UserID, AssessmentID){
+function getInputList(InputBucket, NumOfClips, UserID, AssessmentID, RecordingName){
     const output = new Array(NumOfClips);
 
     for(let i=0; i<NumOfClips; i++){
-        clipName = (i==0) ? `s3://${InputBucket}/${UserID}/${AssessmentID}.mp4` : `s3://${InputBucket}/${UserID}/${AssessmentID}-${i}.mp4`
+        let clipName = (i==0) ? `s3://${InputBucket}/${RecordingName}` : `s3://${InputBucket}/${UserID}/${AssessmentID}-${i}.mp4`
         output[i] = {
             AudioSelectors: {'Audio Selector 1': {DefaultSelection: 'DEFAULT'}},
             TimecodeSource: 'ZEROBASED',

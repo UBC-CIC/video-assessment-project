@@ -67,7 +67,7 @@ exports.handler = async(event) => {
             console.log('[SUCCESS]: ');
             console.log(clip.Payload);
 
-            clipName = (i==0) ? `${UserID}/${AssessmentID}.mp4` : `${UserID}/${AssessmentID}-${i}.mp4`;
+            let clipName = (i==0) ? `${UserID}/${AssessmentID}-${startTime}.mp4` : `${UserID}/${AssessmentID}-${i}.mp4`;
 
             const putObjResponse = await S3Client.putObject({
                 Body: clip.Payload,
