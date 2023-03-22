@@ -286,6 +286,8 @@ async function saveRecording(){
       NumOfClips: clipResponseBody.fragmentcount,
       OutputBucket: 'recording-output',
       InputBucket: clipResponseBody.destination,
+      UserMetadata: {UserID: UserID, AssessmentID: AssessmentID},
+      RecordingName: `${UserID}/${AssessmentID}-${startTime}.mp4`
     }
     const recordingResponse = await lambdaClient.invoke({
       FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
