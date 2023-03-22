@@ -109,10 +109,11 @@ function getInputList(InputBucket, NumOfClips, UserID, AssessmentID){
     const output = new Array(NumOfClips);
 
     for(let i=0; i<NumOfClips; i++){
+        clipName = (i==0) ? `s3://${InputBucket}/${UserID}/${AssessmentID}.mp4` : `s3://${InputBucket}/${UserID}/${AssessmentID}-${i}.mp4`
         output[i] = {
             AudioSelectors: {'Audio Selector 1': {DefaultSelection: 'DEFAULT'}},
             TimecodeSource: 'ZEROBASED',
-            FileInput: `s3://${InputBucket}/${UserID}/${AssessmentID}-${i}.mp4`,
+            FileInput: clipName,
         }
         console.log(`File ${i}: ${output[i].FileInput}`);
     }
