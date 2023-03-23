@@ -196,10 +196,10 @@ class RecordWithFaceBlurStack(cdk.Stack):
         )
 
         ## Adding the State Machine ARN to the ENV variables of the Lambda startFaceDetectFunction
-        startFaceDetectFunction.add_environment(key="STATE_MACHINE_ARN", value=stateMachine.state_machine_arn)
+        startFaceDetect.add_environment(key="STATE_MACHINE_ARN", value=stateMachine.state_machine_arn)
 
         # Allowing startFaceDetectFunction to start the StepFunctions workflow
-        startFaceDetectFunction.add_to_role_policy(_iam.PolicyStatement(
+        startFaceDetect.add_to_role_policy(_iam.PolicyStatement(
             effect=_iam.Effect.ALLOW,
             actions=["states:StartExecution"],
             resources=[
