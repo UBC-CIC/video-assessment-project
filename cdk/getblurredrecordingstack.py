@@ -27,8 +27,10 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         ## Set up two lambda functions for calling getclip from KVS and also mediaconvert to stitch clips together into recording
         #get clip and put to 1st bucket
-        getClipFromKVS = lambda_.Function(self, "getClips-KVS", timeout=cdk.Duration.seconds(600), memory_size=1024,
-            code=lambda_.Code.from_asset('./cdk/lambdas/getclip.js'),
+        getClipFromKVS = lambda_.Function(self, "getClips-KVS", 
+            timeout=cdk.Duration.seconds(600), 
+            memory_size=1024,
+            code=lambda_.Code.from_asset('./lambdas/getclip.js'),
             handler='lambda_function.lambda_handler',
             runtime=lambda_.Runtime.NODEJS_16_X
         )
@@ -44,7 +46,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         #start mediaconvert and store unblurred recording into 2nd bucket
         mp4stitch = lambda_.Function(self, "mp4stitch", timeout=cdk.Duration.seconds(600), memory_size=512,
-            code=lambda_.Code.from_asset('./cdk/lambdas/mp4stitch.js'),
+            code=lambda_.Code.from_asset('./lambdas/mp4stitch.js'),
             handler='lambda_function.lambda_handler',
             runtime=lambda_.Runtime.NODEJS_16_X
         )
@@ -68,7 +70,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,
-            code=lambda_.Code.from_asset('./cdk/lambdas/startfacedetect.py'),
+            code=lambda_.Code.from_asset('./lambdas/startfacedetect.py'),
             handler="lambda_function.lambda_handler",
             runtime=lambda_.Runtime.PYTHON_3_7
         )
@@ -97,7 +99,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         ## Lambda checking Rekognition job status 
         checkJobStatus = lambda_.Function(self, "checkJobStatus", timeout=cdk.Duration.seconds(600), memory_size=512,
-            code=lambda_.Code.from_asset('./cdk/lambdas/checkJobStatus.py'),
+            code=lambda_.Code.from_asset('./lambdas/checkJobStatus.py'),
             handler="lambda_function.lambda_handler",
             runtime=lambda_.Runtime.PYTHON_3_7)
 
@@ -109,7 +111,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         ## Lambda getting data from Rekognition
         getFacesInfo = lambda_.Function(self, "getFacesInfo", timeout=cdk.Duration.seconds(600), memory_size=512,
-            code=lambda_.Code.from_asset('./cdk/lambdas/getfacesinfo.py'),
+            code=lambda_.Code.from_asset('./lambdas/getfacesinfo.py'),
             handler="lambda_function.lambda_handler",
             runtime=lambda_.Runtime.PYTHON_3_7)
 
@@ -121,7 +123,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         
         ## Lambda blurring the faces on the video based on Rekognition data
         blurFaces = lambda_.DockerImageFunction(self, "blurFaces", timeout=cdk.Duration.seconds(600), memory_size=2048,
-            code=lambda_.DockerImageCode.from_image_asset("./cdk/lambdas/blurfaces-dockersetup"))
+            code=lambda_.DockerImageCode.from_image_asset("./lambdas/blurfaces-dockersetup"))
 
         #Adding the S3 output bucket name as an ENV variable to the blurFaces 
         blurFaces.add_environment(key="OUTPUT_BUCKET", value=recordingBlurredBucket.bucket_name)

@@ -9,7 +9,7 @@ from aws_cdk import core as cdk
 # being updated to use `cdk`.  You may delete this import if you don't need it.
 from aws_cdk import core
 
-from cdk.getrecording-cdkstack.py import RecordWithFaceBlurStack
+from getblurredrecordingstack import RecordWithFaceBlurStack
 
 
 app = core.App()
