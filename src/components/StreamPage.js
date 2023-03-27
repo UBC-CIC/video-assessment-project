@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { startMaster, stopMaster, master }from './master';
 import { stopViewer } from './viewer';
+import { configureStream, deleteStream} from './configStream.js';
 import AWS from 'aws-sdk';
 import * as KVSWebRTC from 'amazon-kinesis-video-streams-webrtc';
 
