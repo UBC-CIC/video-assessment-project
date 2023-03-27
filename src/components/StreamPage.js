@@ -29,6 +29,9 @@ let   endTime       = new Date().toISOString();
 let   UserID        = '';
 let   AssessmentID  = '';
 
+// let   channelName   = `${UserID}_Channel`;  // planned implementation of channel name
+let   channelName = 'michael-test';
+
 class StreamPage extends React.Component {
   render () {
     return <Box sx={{ display: 'flex' }}>
@@ -85,8 +88,6 @@ function getRandomClientId() {
       .substring(2)
       .toUpperCase();
 }
-
-let channelName = 'michael-test';
 
 function getFormValues() {
   return {
@@ -306,5 +307,34 @@ async function saveRecording(){
     console.error(err);
   }
 }
+
+// async function createChannel(streamName, channelName){
+//   const DEFAULT_CHANNEL_NAME = 'michael-test';
+
+//   const lambdaClient = new AWS.Lambda({
+//     region: 'us-west-2',
+//     accessKeyId: formValues.accessKeyId,
+//     secretAccessKey: formValues.secretAccessKey // TODO: replace with IAM role permissions
+//   });
+
+//   try{
+//     const allocateChannelPayload = {
+//       streamName: streamName,
+//       channelName: channelName
+//     }
+
+//     const allocateChannelResponse = await lambdaClient.invoke({
+//       FunctionName: '', //TODO: fill in
+//       InvocationType: 'RequestResponse',
+//       LogType: 'Tail',
+//       Payload: JSON.stringify(allocateChannelPayload)
+//     }).promise();
+//     if(!allocateChannelResponse) throw new Error('[ERROR]: no response from createchannel');
+//     return allocateChannelResponse.Payload.body.createChannel; // TODO: change to fit actual response
+//   }catch(err){
+//     console.error('[ERROR]: ' + err);
+//     return DEFAULT_CHANNEL_NAME;
+//   }
+// }
 
 export default StreamPage;

@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 exports.handler = async(event) => {
     let   StreamARN    = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
     let   StreamName   = 'muhan-ingestion-test';
-    let   BucketName   = 'fragments-raw';
+    let   BucketName   = process.env.CLIPS_BUCKET;
     let   AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
     let   UserID       = Math.random().toString(36).substring(6).toUpperCase();
     let   startTime    = new Date();

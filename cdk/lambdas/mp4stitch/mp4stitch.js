@@ -5,8 +5,8 @@ exports.handler = async (event) => {
     let   UserID        = 'NOT_SET';
     let   AssessmentID  = 'NOT_SET';
     let   NumOfClips    = 0;
-    let   OutputBucket  = 'recording-output';
-    let   InputBucket   = 'fragments-raw';
+    let   OutputBucket  = process.env.NOTBLURRED_BUCKET;
+    let   InputBucket   = process.env.CLIPS_BUCKET;
     let   UserMetadata  = {};
     let   RecordingName = '';
     
