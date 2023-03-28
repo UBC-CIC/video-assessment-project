@@ -5,7 +5,7 @@ import AWS from 'aws-sdk';
 import { SignalingClient } from 'amazon-kinesis-video-streams-webrtc';
 import { Role } from 'amazon-kinesis-video-streams-webrtc';
 
-const master = {
+export const master = {
     kinesisVideoClient: null,
     signalingClient: null,
     channelARN: null,
@@ -16,7 +16,7 @@ const master = {
     peerConnectionStatsInterval: null,
 };
 
-async function startMaster(localView, remoteView, formValues, onStatsReport, onRemoteDataMessage) {
+export async function startMaster(localView, remoteView, formValues, onStatsReport, onRemoteDataMessage) {
     master.localView = localView;
     master.remoteView = remoteView;
 
@@ -221,7 +221,7 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
     master.signalingClient.open();
 }
 
-async function joinSession(formValues) {
+export async function joinSession(formValues) {
     // Return if both video and audio streams are not enabled.
     if (!formValues.sendAudio || !formValues.sendVideo) {
         console.error('[MASTER] Both Send Video and Send Audio checkboxes need to be checked for calling join session');
@@ -298,7 +298,7 @@ async function joinSession(formValues) {
         });
 }
 
-function stopMaster() {
+export function stopMaster() {
     console.log('[MASTER] Stopping master connection');
     if (master.signalingClient) {
         master.signalingClient.close();
@@ -348,9 +348,4 @@ function sendMasterMessage(message) {
 
 function printSignalingLog(message, clientId) {
     console.log(`${message}${clientId ? ': ' + clientId : ''}`);
-}
-
-export {
-    startMaster,
-    stopMaster,
 }
