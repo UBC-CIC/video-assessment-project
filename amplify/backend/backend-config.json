@@ -1,4 +1,28 @@
 {
+  "api": {
+    "AdminQueries": {
+      "authorizationType": "AMAZON_COGNITO_USER_POOLS",
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "videoassessmentappfbec165b"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "AdminQueriesb3524496"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "userPoolGroups": {
       "dependsOn": [
@@ -57,6 +81,20 @@
     }
   },
   "function": {
+    "AdminQueriesb3524496": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "videoassessmentappfbec165b"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "videoassessmentapp75a7ee21CreateAuthChallenge": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -74,6 +112,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_AdminQueriesb3524496_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AdminQueriesb3524496"
+        }
+      ]
+    },
+    "AMPLIFY_function_AdminQueriesb3524496_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AdminQueriesb3524496"
+        }
+      ]
+    },
     "AMPLIFY_function_videoassessmentapp75a7ee21CreateAuthChallenge_deploymentBucketName": {
       "usedBy": [
         {

@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { stopMaster, startMaster } from './master';
 import { stopViewer } from './viewer';
+import { Auth } from 'aws-amplify';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import awsmobile from '../aws-exports';
 
 let ROLE = null; // Possible values: 'master', 'viewer', null
 
-const KEYID       = 'AKIAWPFL3GVMRQYN5H2U';
-const SECRETKEY   = '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';
 const REGION      = "us-west-2";
 const TRICKLEICE  = true;
 const WIDESCREEN  = true;
@@ -95,9 +95,9 @@ function getFormValues() {
       useTrickleICE: TRICKLEICE,
       natTraversalDisabled: NATDISABLE,
       forceTURN: FORCETURN,
-      accessKeyId: KEYID, // 'accessKeyId'.val(),
+      accessKeyId: Auth.currentCredentials().accessKeyId,
       // endpoint: $('#endpoint').val() || null,
-      secretAccessKey: SECRETKEY, //'secretAccessKey'.val(),
+      secretAccessKey: Auth.currentCredentials().secretAccessKey, 
       // sessionToken: $('#sessionToken').val() || null,
   };
 }

@@ -1,4 +1,46 @@
 {
+  "linn": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-videoassessmentapp-linn-161508-authRole",
+      "UnauthRoleArn": "arn:aws:iam::444889511257:role/amplify-videoassessmentapp-linn-161508-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::444889511257:role/amplify-videoassessmentapp-linn-161508-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-videoassessmentapp-linn-161508-deployment",
+      "UnauthRoleName": "amplify-videoassessmentapp-linn-161508-unauthRole",
+      "StackName": "amplify-videoassessmentapp-linn-161508",
+      "StackId": "arn:aws:cloudformation:us-west-2:444889511257:stack/amplify-videoassessmentapp-linn-161508/8e73adb0-c34c-11ed-bd3d-024670c6b6bb",
+      "AmplifyAppId": "dxwp8g16s5onh",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-videoassessmentapp-linn-161508-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "videoassessmentappfbec165b": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "videoassessmentapp75a7ee21CreateAuthChallenge": {
+          "deploymentBucketName": "amplify-videoassessmentapp-linn-161508-deployment",
+          "s3Key": "amplify-builds/videoassessmentapp75a7ee21CreateAuthChallenge-4c35646668684d6d4b72-build.zip"
+        },
+        "videoassessmentapp75a7ee21DefineAuthChallenge": {
+          "deploymentBucketName": "amplify-videoassessmentapp-linn-161508-deployment",
+          "s3Key": "amplify-builds/videoassessmentapp75a7ee21DefineAuthChallenge-47686f6a6a6742446138-build.zip"
+        },
+        "videoassessmentappfbec165bPostConfirmation": {
+          "deploymentBucketName": "amplify-videoassessmentapp-linn-161508-deployment",
+          "s3Key": "amplify-builds/videoassessmentappfbec165bPostConfirmation-7269316d4b456d484f32-build.zip",
+          "GROUP": ""
+        },
+        "AdminQueriesb3524496": {
+          "deploymentBucketName": "amplify-videoassessmentapp-linn-161508-deployment",
+          "s3Key": "amplify-builds/AdminQueriesb3524496-6a5769396c514d505448-build.zip"
+        }
+      },
+      "api": {
+        "AdminQueries": {}
+      }
+    }
+  },
   "dev": {
     "awscloudformation": {
       "AuthRoleName": "amplify-videoassessmentapp-dev-10516-authRole",
