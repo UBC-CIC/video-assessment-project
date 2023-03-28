@@ -284,9 +284,9 @@ async function saveRecording(){
     const mp4StitchPayload = {
       UserID: UserID,
       AssessmentID: AssessmentID,
-      NumOfClips: clipResponseBody.fragmentcount,
+      NumOfClips: clipResponse.fragmentcount,
       OutputBucket: 'recording-output',
-      InputBucket: clipResponseBody.destination,
+      InputBucket: clipResponse.destination,
       UserMetadata: {UserID: UserID, AssessmentID: AssessmentID},
       RecordingName: `${UserID}/${AssessmentID}-${startTime}.mp4`
     }
