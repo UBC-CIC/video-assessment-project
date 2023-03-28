@@ -103,9 +103,9 @@ function getFormValues() {
       useTrickleICE: TRICKLEICE,
       natTraversalDisabled: NATDISABLE,
       forceTURN: FORCETURN,
-      accessKeyId: null, // document.getElementById('accessKeyId').value,// 'accessKeyId'.val(),
+      accessKeyId:  document.getElementById('accessKeyId').value,// 'accessKeyId'.val(),
       // endpoint: $('#endpoint').val() || null,
-      secretAccessKey: null // document.getElementById('secretAccessKey').value, //'secretAccessKey'.val(),
+      secretAccessKey:  document.getElementById('secretAccessKey').value, //'secretAccessKey'.val(),
       // sessionToken: $('#sessionToken').val() || null,
   };
 }
