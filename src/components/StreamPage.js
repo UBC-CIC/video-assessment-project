@@ -273,7 +273,7 @@ async function saveRecording(){
     }
     console.log(getClipPayload);
     const clipResponse = await lambdaClient.invoke({
-      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
+      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-getClipsKVS3F97D572-XUMiGALsvrQK', //'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
       InvocationType: 'RequestResponse',
       LogType: 'Tail',
       Payload: JSON.stringify(getClipPayload)
@@ -292,7 +292,7 @@ async function saveRecording(){
       RecordingName: `${UserID}/${AssessmentID}-${startTime}.mp4`
     }
     const recordingResponse = await lambdaClient.invoke({
-      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
+      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-mp4stitch3D9F2EDC-NtXL5sSfhuH6', //'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
       InvocationType: 'RequestResponse',
       LogType: 'Tail',
       Payload: JSON.stringify(mp4StitchPayload)
