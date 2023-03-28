@@ -4,6 +4,7 @@ import { startMaster, stopMaster, master }from './master';
 import { stopViewer } from './viewer';
 import AWS from 'aws-sdk';
 import * as KVSWebRTC from 'amazon-kinesis-video-streams-webrtc';
+import { Auth } from 'aws-amplify';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -101,9 +102,9 @@ function getFormValues() {
       useTrickleICE: TRICKLEICE,
       natTraversalDisabled: NATDISABLE,
       forceTURN: FORCETURN,
-      accessKeyId: document.getElementById('accessKeyId').value,// 'accessKeyId'.val(),
+      accessKeyId: Auth.currentCredentials().accessKeyId,
       // endpoint: $('#endpoint').val() || null,
-      secretAccessKey: document.getElementById('secretAccessKey').value, //'secretAccessKey'.val(),
+      secretAccessKey: Auth.currentCredentials().secretAccessKey,
       // sessionToken: $('#sessionToken').val() || null,
   };
 }
