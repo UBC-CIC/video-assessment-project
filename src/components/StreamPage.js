@@ -283,9 +283,6 @@ async function saveRecording(){
     let clipResponseInfo = JSON.parse(clipResponse.Payload).body;
     console.log(clipResponseInfo);
 
-    console.log(startTime);
-    let a = new Date().toISOString();
-    console.log(a);                      // TODO: remove
     const mp4StitchPayload = {
       UserID: UserID,
       AssessmentID: AssessmentID,
@@ -293,7 +290,7 @@ async function saveRecording(){
       OutputBucket: 'recording-output',
       InputBucket: clipResponseInfo.destination,
       UserMetadata: {UserID: UserID, AssessmentID: AssessmentID},
-      RecordingName: `${UserID}/${AssessmentID}-${startTime}.mp4`
+      RecordingName: `${UserID}/${AssessmentID}-${startTime.getTime()}.mp4`
     }
     const recordingResponse = await lambdaClient.invoke({
       FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-mp4stitch3D9F2EDC-NtXL5sSfhuH6', //'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
@@ -303,10 +300,8 @@ async function saveRecording(){
     }).promise();
     if(!recordingResponse) throw new Error('no response from mp4stitch');
     console.log('lambda 2');
-    let recordingResponseInfo = JSON.parse(recordingResponse.Payload).body;
-    let temp = JSON.parse(recordingResponseInfo);
+    let recordingResponseInfo = JSON.parse(JSON.parse(recordingResponse.Payload).body);
     console.log(recordingResponseInfo);
-    console.log(temp);
     
   }catch(err){
     console.log('ERROR');
