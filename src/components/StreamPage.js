@@ -301,7 +301,9 @@ async function saveRecording(){
     if(!recordingResponse) throw new Error('no response from mp4stitch');
     console.log('lambda 2');
     let recordingResponseInfo = JSON.parse(recordingResponse.Payload).body;
+    let temp = JSON.parse(recordingResponseInfo);
     console.log(recordingResponseInfo);
+    console.log(temp);
     
   }catch(err){
     console.log('ERROR');
