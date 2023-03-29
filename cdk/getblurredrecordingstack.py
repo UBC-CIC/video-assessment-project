@@ -82,8 +82,8 @@ class RecordWithFaceBlurStack(cdk.Stack):
             resources=["*"]
         ))
 
-        getClipFromKVS.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
-        getClipFromKVS.add_environment(key="NOTBLURRED_BUCKET", value=recordingNotBlurredBucket.bucket_name)
+        mp4stitch.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
+        mp4stitch.add_environment(key="NOTBLURRED_BUCKET", value=recordingNotBlurredBucket.bucket_name)
 
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,

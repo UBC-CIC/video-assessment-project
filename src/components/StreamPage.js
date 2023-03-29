@@ -288,8 +288,8 @@ async function saveRecording(){
       UserID: UserID,
       AssessmentID: AssessmentID,
       NumOfClips: clipResponseInfo.fragmentcount,
-      OutputBucket: 'recording-output',
-      InputBucket: clipResponseInfo.destination,
+      // OutputBucket: 'recording-output',
+      // InputBucket: clipResponseInfo.destination,
       UserMetadata: {UserID: UserID, AssessmentID: AssessmentID},
       RecordingName: `${UserID}/${AssessmentID}-${startTimeInt}.mp4`
     }
