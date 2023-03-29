@@ -265,7 +265,7 @@ async function saveRecording(){
   try{
     const getClipPayload = {
       StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/michael-testing/1677783281493',
-      BucketName: 'fragments-raw',
+      // BucketName: 'fragments-raw',
       startTime: startTime,
       endTime: endTime,
       UserID: UserID,
@@ -279,16 +279,16 @@ async function saveRecording(){
       Payload: JSON.stringify(getClipPayload)
     }).promise();
     if(!clipResponse) throw new Error('no response from getclip');
-    console.log('lambda 1');
-    let clipResponsePayload = JSON.parse(clipResponse.Payload);
-    console.log(clipResponsePayload);
+    console.log('get clip response: ');
+    let clipResponseInfo = JSON.parse(clipResponse.Payload).body;
+    console.log(clipResponseInfo);
 
     const mp4StitchPayload = {
       UserID: UserID,
       AssessmentID: AssessmentID,
-      NumOfClips: clipResponse.fragmentcount,
+      NumOfClips: clipResponseInfo.fragmentcount,
       OutputBucket: 'recording-output',
-      InputBucket: clipResponse.destination,
+      InputBucket: clipResponseInfo.destination,
       UserMetadata: {UserID: UserID, AssessmentID: AssessmentID},
       RecordingName: `${UserID}/${AssessmentID}-${startTime}.mp4`
     }
@@ -300,8 +300,8 @@ async function saveRecording(){
     }).promise();
     if(!recordingResponse) throw new Error('no response from mp4stitch');
     console.log('lambda 2');
-    let recordingResponsePayload = JSON.parse(recordingResponse.Payload);
-    console.log(recordingResponsePayload);
+    let recordingResponseInfo = JSON.parse(recordingResponse.Payload).body;
+    console.log(recordingResponseInfo);
     
   }catch(err){
     console.log('ERROR');

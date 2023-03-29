@@ -75,7 +75,6 @@ exports.handler = async (event) => {
                             Container: 'MP4',
                             Mp4Settings: {}
                         },
-                        NameModifier: '',
                         VideoDescription: Outputs_VideoDescription,
                         AudioDescriptions: [Outputs_AudioDescription],
                         Extension: 'mp4',
