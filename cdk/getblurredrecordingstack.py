@@ -44,6 +44,12 @@ class RecordWithFaceBlurStack(cdk.Stack):
             ]
         ))
 
+        getClipFromKVS.add_to_role_policy(_iam.PolicyStatement(
+            effect=_iam.Effect.ALLOW,
+            actions=["kinesisvideo:GetDataEndpoint", "kinesisvideo:GetClip"],
+            resources=['*']
+        ))
+
         getClipFromKVS.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
 
         #start mediaconvert and store unblurred recording into 2nd bucket
@@ -67,6 +73,12 @@ class RecordWithFaceBlurStack(cdk.Stack):
         mp4stitch.add_to_role_policy(_iam.PolicyStatement(
             effect=_iam.Effect.ALLOW,
             actions=["mediaconvert:CreateJob"],
+            resources=["*"]
+        ))
+
+        mp4stitch.add_to_role_policy(_iam.PolicyStatement(
+            effect=_iam.Effect.ALLOW,
+            actions=["iam:PassRole"],
             resources=["*"]
         ))
 
