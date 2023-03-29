@@ -283,6 +283,9 @@ async function saveRecording(){
     let clipResponseInfo = JSON.parse(clipResponse.Payload).body;
     console.log(clipResponseInfo);
 
+    console.log(startTime);
+    let a = new Date().toISOString();
+    console.log(a);                      // TODO: remove
     const mp4StitchPayload = {
       UserID: UserID,
       AssessmentID: AssessmentID,
