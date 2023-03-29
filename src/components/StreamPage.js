@@ -283,6 +283,7 @@ async function saveRecording(){
     let clipResponseInfo = JSON.parse(clipResponse.Payload).body;
     console.log(clipResponseInfo);
 
+    let startTimeInt = new Date(startTime).getTime();
     const mp4StitchPayload = {
       UserID: UserID,
       AssessmentID: AssessmentID,
@@ -290,7 +291,7 @@ async function saveRecording(){
       OutputBucket: 'recording-output',
       InputBucket: clipResponseInfo.destination,
       UserMetadata: {UserID: UserID, AssessmentID: AssessmentID},
-      RecordingName: `${UserID}/${AssessmentID}-${startTime.getTime()}.mp4`
+      RecordingName: `${UserID}/${AssessmentID}-${startTimeInt}.mp4`
     }
     const recordingResponse = await lambdaClient.invoke({
       FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-mp4stitch3D9F2EDC-NtXL5sSfhuH6', //'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
