@@ -31,7 +31,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             timeout=cdk.Duration.seconds(600), 
             memory_size=1024,
             code=lambda_.Code.from_asset('./lambdas/getclip'),
-            handler='lambda_function.lambda_handler',
+            handler='getclip.handler',
             runtime=lambda_.Runtime.NODEJS_16_X
         )
 
@@ -49,7 +49,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         #start mediaconvert and store unblurred recording into 2nd bucket
         mp4stitch = lambda_.Function(self, "mp4stitch", timeout=cdk.Duration.seconds(600), memory_size=512,
             code=lambda_.Code.from_asset('./lambdas/mp4stitch'),
-            handler='lambda_function.lambda_handler',
+            handler='mp4stitch.handler',
             runtime=lambda_.Runtime.NODEJS_16_X
         )
 
@@ -76,7 +76,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,
             code=lambda_.Code.from_asset('./lambdas/startfacedetect'),
-            handler="lambda_function.lambda_handler",
+            handler="startfacedetect.handler",
             runtime=lambda_.Runtime.PYTHON_3_7
         )
 
@@ -105,7 +105,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ## Lambda checking Rekognition job status 
         checkJobStatus = lambda_.Function(self, "checkJobStatus", timeout=cdk.Duration.seconds(600), memory_size=512,
             code=lambda_.Code.from_asset('./lambdas/checkJobStatus'),
-            handler="lambda_function.lambda_handler",
+            handler="checkjobstatus.lambda_handler",
             runtime=lambda_.Runtime.PYTHON_3_7)
 
         #Allowing checkJobStatus to call Rekognition
@@ -117,7 +117,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ## Lambda getting data from Rekognition
         getFacesInfo = lambda_.Function(self, "getFacesInfo", timeout=cdk.Duration.seconds(600), memory_size=512,
             code=lambda_.Code.from_asset('./lambdas/getfacesinfo'),
-            handler="lambda_function.lambda_handler",
+            handler="getfacesinfo.lambda_handler",
             runtime=lambda_.Runtime.PYTHON_3_7)
 
         #Allowing getFacesInfo to call Rekognition

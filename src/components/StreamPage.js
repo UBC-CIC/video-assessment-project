@@ -279,7 +279,8 @@ async function saveRecording(){
       Payload: JSON.stringify(getClipPayload)
     }).promise();
     if(!clipResponse) throw new Error('no response from getclip');
-    console.log('lambda 1 ' + clipResponse);
+    console.log('lambda 1 ');
+    console.log(clipResponse);
 
     const mp4StitchPayload = {
       UserID: UserID,
@@ -297,7 +298,8 @@ async function saveRecording(){
       Payload: JSON.stringify(mp4StitchPayload)
     }).promise();
     if(!recordingResponse) throw new Error('no response from mp4stitch');
-    console.log('lambda 2 ' + recordingResponse);
+    console.log('lambda 2 ');
+    console.log(recordingResponse);
     
   }catch(err){
     console.log('ERROR');
