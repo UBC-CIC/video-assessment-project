@@ -169,12 +169,16 @@ async function masterClick() {
       remoteMessage.append(`${event.data}\n`);
   });
 
+  await new Promise(r => setTimeout(r, 3000));
+
+  console.log('calling join session');
   joinSession(formValues);
 };
 
 async function startRecording(){
   try{
-    joinSession(getFormValues());
+    const formValues = getFormValues();
+    joinSession(formValues);
   }catch(err){};
   startTime = new Date().toISOString();
 }
