@@ -176,11 +176,8 @@ async function masterClick() {
 };
 
 async function startRecording(){
-  try{
-    const formValues = getFormValues();
-    joinSession(formValues);
-  }catch(err){};
   startTime = new Date().toISOString();
+  console.log('Start time: ' + startTime);
 }
 
 async function saveRecording(){
