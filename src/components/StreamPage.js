@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { startMaster, stopMaster, master }from './master';
+import { startMaster, stopMaster, master, joinSession }from './master';
 import { stopViewer } from './viewer';
 import { configureStream, deleteStream} from './configStream.js';
 import AWS from 'aws-sdk';
@@ -168,83 +168,15 @@ async function masterClick() {
   startMaster(localView, remoteView, formValues, onStatsReport, event => {
       remoteMessage.append(`${event.data}\n`);
   });
+
+  joinSession(formValues);
 };
 
 async function startRecording(){
-  const formValues = getFormValues();
-  let getSignalingChannelEndpointResponse;
-  try {
-    // Get signaling channel endpoints for WEBRTC
-    getSignalingChannelEndpointResponse = await master.kinesisVideoClient
-      .getSignalingChannelEndpoint({
-          ChannelARN: master.channelARN,
-          SingleMasterChannelEndpointConfiguration: {
-              Protocols: ['WEBRTC'],
-              Role: KVSWebRTC.Role.MASTER,
-          },
-      })
-      .promise();
-  } catch (e) {
-    console.error('[MASTER] Storage Session is not configured for this channel');
-    return;
-  }
-
-  // Fetch webrtc endpoint
-  const endpointsByProtocol = getSignalingChannelEndpointResponse.ResourceEndpointList.reduce((endpoints, endpoint) => {
-    endpoints[endpoint.Protocol] = endpoint.ResourceEndpoint;
-    return endpoints;
-  }, {});
-
-  console.log('[MASTER] Received webrtc endpoint: ' + endpointsByProtocol.WEBRTC);
-
-  // TODO: Remove sigv4 signing logic once changes are added to the KinesisVideoClient
-  const endpoint = new AWS.Endpoint(endpointsByProtocol.WEBRTC);
-  const request = new AWS.HttpRequest(endpoint, formValues.region);
-
-  request.method = 'POST';
-  request.path = '/joinStorageSession';
-  request.body = JSON.stringify({
-    "channelArn": master.channelARN
-  });
-  request.headers['Host'] = endpoint.host;
-
-  const signer = new AWS.Signers.V4(request, 'kinesisvideo', true);
-  signer.addAuthorization({
-    accessKeyId: formValues.accessKeyId,
-    secretAccessKey: formValues.secretAccessKey,
-    sessionToken: null,
-  }, new Date());
-
+  try{
+    joinSession(getFormValues());
+  }catch(err){};
   startTime = new Date().toISOString();
-
-  const response = await fetch(endpointsByProtocol.WEBRTC + request.path, {
-    method: request.method,
-    headers: {
-        'Content-Type': 'application/json',
-        ...request.headers
-    },
-    body: request.body})
-  .then((response) => {
-    return new Promise((resolve) => response.json()
-        .then((json) => resolve({
-            status: response.status,
-            ok: response.ok,
-            json,
-        })));
-  })
-  .then(({ status, json, ok }) => {
-      if (!ok) {
-          console.log('[MASTER] Error occured while calling join session: ', json);
-      } else {
-          console.log('[MASTER] Successfully called join session.');
-          startTime = new Date().toISOString();
-          console.log(startTime);
-      }
-  })
-  .catch((error) => {
-      console.error('[MASTER] Error occured while calling join session:', error);
-  });
-  console.log(response);
 }
 
 async function saveRecording(){
@@ -254,13 +186,10 @@ async function saveRecording(){
     accessKeyId: formValues.accessKeyId,
     secretAccessKey: formValues.secretAccessKey // TODO: replace with IAM role permissions
   });
-  endTime = new Date().toISOString();
-  console.log('endTime = ' + endTime);
 
+  endTime = new Date().toISOString();
   UserID = Math.random().toString(36).substring(6).toUpperCase();
   AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
-  console.log(`UserID: ${UserID}`);
-  console.log(`AssessmentID: ${AssessmentID}`);
 
   try{
     const getClipPayload = {
@@ -300,7 +229,7 @@ async function saveRecording(){
       Payload: JSON.stringify(mp4StitchPayload)
     }).promise();
     if(!recordingResponse) throw new Error('no response from mp4stitch');
-    console.log('lambda 2');
+    console.log('mp4stitch response');
     let recordingResponseInfo = JSON.parse(JSON.parse(recordingResponse.Payload).body);
     console.log(recordingResponseInfo);
     

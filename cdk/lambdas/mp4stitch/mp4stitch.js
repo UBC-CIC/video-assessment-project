@@ -13,8 +13,8 @@ exports.handler = async (event) => {
     if(event.UserID)        UserID        = event.UserID;
     if(event.AssessmentID)  AssessmentID  = event.AssessmentID;
     if(event.NumOfClips)    NumOfClips    = event.NumOfClips;
-    if(event.OutputBucket)  OutputBucket  = event.OutputBucket;
-    if(event.InputBucket)   InputBucket   = event.InputBucket;
+    // if(event.OutputBucket)  OutputBucket  = event.OutputBucket;
+    // if(event.InputBucket)   InputBucket   = event.InputBucket;
     if(event.UserMetadata)  UserMetadata  = event.UserMetadata;
     if(event.RecordingName) RecordingName = event.RecordingName;
 
@@ -93,7 +93,7 @@ exports.handler = async (event) => {
 
         return {statusCode: 200, body: JSON.stringify({
             message: '[SUCCESS]: Recording uploaded to S3',
-            recordingName: RecordingName,                       //TODO: change this to reflect actual name
+            recordingName: RecordingName,                      
             mediaConvertResponse: createJobResponse
         })};
     }catch(err){

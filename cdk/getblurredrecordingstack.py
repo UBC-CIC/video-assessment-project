@@ -5,6 +5,7 @@ import aws_cdk.aws_lambda as lambda_
 from aws_cdk.aws_lambda_event_sources import S3EventSource
 import aws_cdk.aws_stepfunctions as sfn
 import aws_cdk.aws_stepfunctions_tasks as tasks
+import aws_cdk.aws_logs as logs
 
 class RecordWithFaceBlurStack(cdk.Stack):
 
@@ -88,7 +89,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,
             code=lambda_.Code.from_asset('./lambdas/startfacedetect'),
-            handler="startfacedetect.handler",
+            handler="startfacedetect.lambda_handler",
             runtime=lambda_.Runtime.PYTHON_3_7
         )
 
@@ -208,10 +209,17 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ## Definition of the State Machine
         definition = update_job_status.next(choice)
 
+        ## Logging group for State Machine execution
+        log_group = logs.LogGroup(self, "faceblur-statemachine-logs")
+
         ## Actuel State Machine built with the above definition
         stateMachine = sfn.StateMachine(self, "StateMachine",
             definition=definition,
-            timeout=cdk.Duration.minutes(15)
+            timeout=cdk.Duration.minutes(15),
+            logs=sfn.LogOptions(
+                destination=log_group,
+                level=sfn.LogLevel.ALL
+            )
         )
 
         ## Adding the State Machine ARN to the ENV variables of the Lambda startFaceDetectFunction
