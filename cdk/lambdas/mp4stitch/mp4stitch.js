@@ -48,11 +48,16 @@ exports.handler = async (event) => {
 
     const MediaConvertClient = new AWS.MediaConvert({
         region: 'us-west-2',
-        endpoint: 'https://hvtjrir1c.mediaconvert.us-west-2.amazonaws.com',
         correctClockSkew: null,
     })
 
     try{
+        const mediaconvertEndpoint = await MediaConvertClient.describeEndpoints({
+            MaxResults: 1,
+        }).promise();
+        console.log(mediaconvertEndpoint);
+        MediaConvertClient.endpoint = mediaconvertEndpoint.Endpoints.Url;
+
         const inputList = getInputList(InputBucket, NumOfClips, UserID, AssessmentID, RecordingName);
         const convertJobParams = {
             Queue: "arn:aws:mediaconvert:us-west-2:444889511257:queues/Default",

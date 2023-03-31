@@ -73,7 +73,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         mp4stitch.add_to_role_policy(_iam.PolicyStatement(
             effect=_iam.Effect.ALLOW,
-            actions=["mediaconvert:CreateJob"],
+            actions=["mediaconvert:CreateJob", "mediaconvert:DescribeEndpoints"],
             resources=["*"]
         ))
 
