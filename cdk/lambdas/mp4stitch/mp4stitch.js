@@ -2,19 +2,19 @@ const AWS = require('aws-sdk');
 
 exports.handler = async (event) => {
     const AccessRole    = process.env.MEDIACONVERT_ACCESSROLE;
+    const OutputBucket  = process.env.NOTBLURRED_BUCKET;
+    const InputBucket   = process.env.CLIPS_BUCKET;
+    const AWSRegion     = process.env.AWS_REGION;
+    const QueueARN      = process.env.MEDIACONVERT_QUEUE;
     let   UserID        = 'NOT_SET';
     let   AssessmentID  = 'NOT_SET';
     let   NumOfClips    = 0;
-    let   OutputBucket  = process.env.NOTBLURRED_BUCKET;
-    let   InputBucket   = process.env.CLIPS_BUCKET;
     let   UserMetadata  = {};
     let   RecordingName = '';
     
     if(event.UserID)        UserID        = event.UserID;
     if(event.AssessmentID)  AssessmentID  = event.AssessmentID;
     if(event.NumOfClips)    NumOfClips    = event.NumOfClips;
-    // if(event.OutputBucket)  OutputBucket  = event.OutputBucket;
-    // if(event.InputBucket)   InputBucket   = event.InputBucket;
     if(event.UserMetadata)  UserMetadata  = event.UserMetadata;
     if(event.RecordingName) RecordingName = event.RecordingName;
 
@@ -47,7 +47,7 @@ exports.handler = async (event) => {
     };
 
     const MediaConvertClient = new AWS.MediaConvert({
-        region: 'us-west-2',
+        region: AWSRegion,
         correctClockSkew: null,
     })
 
@@ -60,7 +60,7 @@ exports.handler = async (event) => {
 
         const inputList = getInputList(InputBucket, NumOfClips, UserID, AssessmentID, RecordingName);
         const convertJobParams = {
-            Queue: "arn:aws:mediaconvert:us-west-2:444889511257:queues/Default",
+            Queue: QueueARN,
             UserMetadata: UserMetadata,
             Role: AccessRole,
             Settings: {
@@ -70,10 +70,7 @@ exports.handler = async (event) => {
                     Name: 'File_Group',
                     OutputGroupSettings: {
                         Type: 'FILE_GROUP_SETTINGS',
-                        FileGroupSettings: {
-                            Destination: `s3://${OutputBucket}/${UserID}/`,
-                            // destination settings - security, encryption, etc
-                        },
+                        FileGroupSettings: {Destination: `s3://${OutputBucket}/${UserID}/`,},
                     },
                     Outputs: [{
                         ContainerSettings: {

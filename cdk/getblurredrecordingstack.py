@@ -6,6 +6,7 @@ from aws_cdk.aws_lambda_event_sources import S3EventSource
 import aws_cdk.aws_stepfunctions as sfn
 import aws_cdk.aws_stepfunctions_tasks as tasks
 import aws_cdk.aws_logs as logs
+import aws_cdk.aws_mediaconvert as mediaconvert
 
 class RecordWithFaceBlurStack(cdk.Stack):
 
@@ -83,6 +84,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             resources=["*"]
         ))
 
+        # Create access role for the mediaconvert job
         mediaconvert_accessrole = _iam.Role(self, "mediaconvert-access",
             actions=["sts:AssumeRole"],
             effect=_iam.Effect.ALLOW,
@@ -107,9 +109,17 @@ class RecordWithFaceBlurStack(cdk.Stack):
             ]
         ))
 
+        # Create a media convert queue to manage the job
+        mediaconvertQueue = mediaconvert.CfnQueue(self, "stitchJobQueue",
+            name="stitchJobQueue",
+            pricing_plan="ON_DEMAND",
+            status="active"
+        )
+
         mp4stitch.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
         mp4stitch.add_environment(key="NOTBLURRED_BUCKET", value=recordingNotBlurredBucket.bucket_name)
         mp4stitch.add_environment(key="MEDIACONVERT_ACCESSROLE", value=mediaconvert_accessrole.role_arn)
+        mp4stitch.add_environment(key="MEDIACONVERT_QUEUE", value=mediaconvertQueue.attr_arn)
 
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,
