@@ -1,43 +1,42 @@
 const AWS = require('aws-sdk');
 
 exports.handler = async(event) => {
-    let   StreamARN    = 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403';
-    let   StreamName   = 'muhan-ingestion-test';
-    let   BucketName   = process.env.CLIPS_BUCKET;
-    let   AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
-    let   UserID       = Math.random().toString(36).substring(6).toUpperCase();
-    let   startTime    = new Date();
-    let   endTime      = new Date();
+    const   BucketName   = process.env.CLIPS_BUCKET;
+    const   AWSRegion    = process.env.AWS_REGION;
+    let     AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
+    let     UserID       = Math.random().toString(36).substring(6).toUpperCase();
+    let     StreamARN;
+    let     startTime;
+    let     endTime;
     
     if(!event.startTime || !event.endTime) throw new Error('[ERROR]: missing time parameters');
     startTime = new Date(event.startTime);
     endTime   = new Date(event.endTime);
-    console.log('Received endTime: ' + endTime.toISOString());
-    console.log('Received startTime: ' + startTime.toISOString());
-
     if(isNaN(startTime.getTime())) throw new Error('[ERROR]: invalid start time');
     if(isNaN(endTime.getTime()))   throw new Error('[ERROR]: invalid end time');
+    console.log('Received endTime: ' + endTime.toISOString());
+    console.log('Received startTime: ' + startTime.toISOString());
     
-    if(event.StreamARN)    StreamARN     = event.StreamARN;
-    if(event.StreamName)   StreamName    = event.StreamName;
-    if(event.BucketName)   BucketName    = event.BucketName;
+    if(!event.StreamARN) throw new Error('[ERROR]: no StreamARN in input parameters');
+    StreamARN = event.StreamARN;
+
     if(event.AssessmentID) AssessmentID  = event.AssessmentID;
     if(event.UserID)       UserID        = event.UserID;
 
     const KVSClient = new AWS.KinesisVideo({
-        region: 'us-west-2',
+        region: AWSRegion,
         endpoint: null,
         correctClockSkew: true,
     })
 
     const KVSArchiveClient = new AWS.KinesisVideoArchivedMedia({
-        region: 'us-west-2',
+        region: AWSRegion,
         endpoint: null,
         correctClockSkew: true,
     })
     
     const S3Client = new AWS.S3({
-        region: 'us-west-2',
+        region: AWSRegion,
         correctClockSkew: true,
     })
 
