@@ -62,7 +62,8 @@ constructs==3.3.112
 docutils==0.15.2
 jmespath==0.10.0
 jsii
-numpy==1.22.0
+numpy
+pathlib
 publication==0.0.3
 pyasn1==0.4.8
 python-dateutil==2.8.2
