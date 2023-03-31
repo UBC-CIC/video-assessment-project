@@ -83,8 +83,33 @@ class RecordWithFaceBlurStack(cdk.Stack):
             resources=["*"]
         ))
 
+        mediaconvert_accessrole = _iam.Role(self, "mediaconvert-access",
+            actions=["sts:AssumeRole"],
+            effect=_iam.Effect.ALLOW,
+            principals=[_iam.ServicePrincipal("mediaconvert.amazonaws.com")]
+        )
+
+        mediaconvert_accessrole.attach_inline_policy(_iam.PolicyStatement(
+            effect=_iam.Effect.ALLOW,
+            actions=["s3:Put*"],
+            resources=[
+                recordingBlurredBucket.bucket_arn,
+                '{}/*'.format(recordingBlurredBucket.bucket_arn)
+            ]
+        ))
+
+        mediaconvert_accessrole.attach_inline_policy(_iam.PolicyStatement(
+            effect=_iam.Effect.ALLOW,
+            actions=["s3:Get*", "s3:List*"],
+            resources=[
+                recordingNotBlurredBucket.bucket_arn,
+                '{}/*'.format(recordingNotBlurredBucket.bucket_arn)
+            ]
+        ))
+
         mp4stitch.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
         mp4stitch.add_environment(key="NOTBLURRED_BUCKET", value=recordingNotBlurredBucket.bucket_name)
+        mp4stitch.add_environment(key="MEDIACONVERT_ACCESSROLE", value=mediaconvert_accessrole.role_arn)
 
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,

@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 
 exports.handler = async (event) => {
-    const AccessRole    = 'arn:aws:iam::444889511257:role/service-role/mediaconvert';
+    const AccessRole    = process.env.MEDIACONVERT_ACCESSROLE;
     let   UserID        = 'NOT_SET';
     let   AssessmentID  = 'NOT_SET';
     let   NumOfClips    = 0;
