@@ -11,7 +11,6 @@ from aws_cdk import core
 
 from getblurredrecordingstack import RecordWithFaceBlurStack
 
-
 app = core.App()
 RecordWithFaceBlurStack(app, "RecordWithFaceBlurStack",
     # If you don't specify 'env', this stack will be environment-agnostic.

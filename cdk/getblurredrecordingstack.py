@@ -10,8 +10,9 @@ import aws_cdk.aws_mediaconvert as mediaconvert
 
 class RecordWithFaceBlurStack(cdk.Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> dict:
         super().__init__(scope, construct_id, **kwargs)
+        output = {"fn1": '', "fn2": ''}
 
         ###############################################################################################
                                                 #S3#
@@ -53,6 +54,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ))
 
         getClipFromKVS.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
+        output['fn1'] = getClipFromKVS.function_arn
 
         #start mediaconvert and store unblurred recording into 2nd bucket
         mp4stitch = lambda_.Function(self, "mp4stitch", timeout=cdk.Duration.seconds(600), memory_size=512,
@@ -85,13 +87,12 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ))
 
         # Create access role for the mediaconvert job
-        mediaconvert_accessrole = _iam.Role(self, "mediaconvert-access",
-            actions=["sts:AssumeRole"],
-            effect=_iam.Effect.ALLOW,
-            principals=[_iam.ServicePrincipal("mediaconvert.amazonaws.com")]
+        mediaconvertAccessRole = _iam.Role(self, "mediaconvertAccess",
+            assumed_by=_iam.ServicePrincipal("mediaconvert.amazonaws.com")
         )
 
-        mediaconvert_accessrole.attach_inline_policy(_iam.PolicyStatement(
+        mediaconvertAccessRole.add_to_policy(
+            _iam.PolicyStatement(
             effect=_iam.Effect.ALLOW,
             actions=["s3:Put*"],
             resources=[
@@ -100,7 +101,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             ]
         ))
 
-        mediaconvert_accessrole.attach_inline_policy(_iam.PolicyStatement(
+        mediaconvertAccessRole.add_to_policy(_iam.PolicyStatement(
             effect=_iam.Effect.ALLOW,
             actions=["s3:Get*", "s3:List*"],
             resources=[
@@ -113,13 +114,14 @@ class RecordWithFaceBlurStack(cdk.Stack):
         mediaconvertQueue = mediaconvert.CfnQueue(self, "stitchJobQueue",
             name="stitchJobQueue",
             pricing_plan="ON_DEMAND",
-            status="active"
+            status="ACTIVE"
         )
 
         mp4stitch.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
         mp4stitch.add_environment(key="NOTBLURRED_BUCKET", value=recordingNotBlurredBucket.bucket_name)
-        mp4stitch.add_environment(key="MEDIACONVERT_ACCESSROLE", value=mediaconvert_accessrole.role_arn)
+        mp4stitch.add_environment(key="MEDIACONVERT_ACCESSROLE", value=mediaconvertAccessRole.role_arn)
         mp4stitch.add_environment(key="MEDIACONVERT_QUEUE", value=mediaconvertQueue.attr_arn)
+        output["fn2"] = mp4stitch.function_arn
 
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,
@@ -267,6 +269,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             resources=[
                 stateMachine.state_machine_arn,
                 '{}/*'.format(stateMachine.state_machine_arn)]))
+
 
         
 
