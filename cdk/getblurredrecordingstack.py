@@ -131,9 +131,6 @@ class RecordWithFaceBlurStack(cdk.Stack):
         )
 
         #Adding S3 event sources triggers for the startFaceDetectFunction, allowing .mp4 files only
-        # startFaceDetectFunction.add_event_source(S3EventSource(clipInputBucket,
-        #     events=[s3.EventType.OBJECT_CREATED],
-        #     filters=[s3.NotificationKeyFilter(suffix='.mov')]))
         startFaceDetect.add_event_source(S3EventSource(recordingNotBlurredBucket,
             events=[s3.EventType.OBJECT_CREATED],
             filters=[s3.NotificationKeyFilter(suffix='.mp4')]))
