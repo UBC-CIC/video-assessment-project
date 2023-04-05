@@ -60,14 +60,12 @@ Congratulations, your web app is now deployed!
 
 # Step 3: Backend Deployment
 
-## Configure Role for CDK deployment
-CDK is a tool that can deploy resources as code. For this project, CDK is used to automatically to deploy the serverless resources required. To deploy using CDK, an IAM role must be configured in order to grants CDK the permission to deploy the desired resources.
-
 ## Configure AWS CLI
 Ensure Docker is running, and begin configuring the AWS credentials by typing the following line in the CLI
 ```bash
 aws configure
 ```
+Please note that it is expected for your account to have administrator access for the steps in this deployment guide
 
 ## Deploy Backend (Lambdas + S3)
 Once the AWS CLI has been configured with the credentials, navigate to the directory named 'cdk' 
@@ -97,3 +95,34 @@ cdk destroy
 
 ## Configure Environmental Variables
 Environmental variables on the Amplify deployment will provide information about the lambda functions that make up the backend. 
+
+Start by navigating to the [CloudFormation console](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/).
+
+Open the sidebar and navigate to the "stacks" section
+![alt text](images/mainmenu.png)
+
+The stack named "RecordWithFaceBlurStack" should be the first item in the list, click on it in order to display information about the deployed stack.
+![alt text](images/stackmenu.png)
+
+Select the tab named "resources"
+![alt text](images/resources.png)
+
+Find the two resources with "GetClip" and "mp4stitch" in their names, click on the blue link in the column "physical id". These links will open new tabs that contain more information about these specific lambda functions.
+![alt text](images/lambdas.png)
+
+In the new tab, use the "copy ARN" button to copy the ARN of the lambda function, paste this in a temporary text file. Repeat this process for the lambda function with "mp4stitch" in its name.
+![alt text](images/copyarn.png)
+
+Now, navigate to the [Amplify console](https://us-west-2.console.aws.amazon.com/amplify/home?region=us-west-2#/), the front end that was deployed in part 1 should be visible here.
+
+Click on the app that corresponds to the one deployed in part 1, then select the "environment variables" tab on the left bar.
+![alt text](images/amplifymenu.png)
+
+Click on "manage variables" to open the following page, use the "add variable" button to add the following variables:
+| Variable      | Value |
+| --------      | ----- |
+| GETCLIP_ARN   | copy the corresponding arn from the temporary text file prepared 
+| MP4STITCH_ARN | copy the corresponding arn from the temporary text file prepared
+------
+Click save to save the variable configuration 
+![alt text](images/env.png)
