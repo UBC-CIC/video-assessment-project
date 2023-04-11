@@ -12,6 +12,8 @@ import { Stream } from '@mui/icons-material';
 
 let   ROLE          = null; // Possible values: 'master', 'viewer', null
 
+const GETCLIP_ARN   = process.env.GETCLIP_ARN;
+const MP4STTICH_ARN = process.env.MP4STTICH_ARN;
 const KEYID         = '';
 const SECRETKEY     = '';
 const REGION        = "us-west-2";
@@ -178,6 +180,9 @@ async function masterClick() {
 async function startRecording(){
   startTime = new Date().toISOString();
   console.log('Start time: ' + startTime);
+
+  console.log('region' + process.env.AMPLIFY_USERPOOL_ID);
+  console.log(process.env.AWS_REGION);
 }
 
 async function saveRecording(){
@@ -203,7 +208,7 @@ async function saveRecording(){
     }
     console.log(getClipPayload);
     const clipResponse = await lambdaClient.invoke({
-      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-getClipsKVS3F97D572-XUMiGALsvrQK', //'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
+      FunctionName: GETCLIP_ARN, //'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
       InvocationType: 'RequestResponse',
       LogType: 'Tail',
       Payload: JSON.stringify(getClipPayload)
@@ -224,7 +229,7 @@ async function saveRecording(){
       RecordingName: `${UserID}/${AssessmentID}-${startTimeInt}.mp4`
     }
     const recordingResponse = await lambdaClient.invoke({
-      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-mp4stitch3D9F2EDC-NtXL5sSfhuH6', //'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
+      FunctionName: MP4STTICH_ARN, //'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
       InvocationType: 'RequestResponse',
       LogType: 'Tail',
       Payload: JSON.stringify(mp4StitchPayload)
@@ -239,34 +244,5 @@ async function saveRecording(){
     console.error(err);
   }
 }
-
-// async function createChannel(streamName, channelName){
-//   const DEFAULT_CHANNEL_NAME = 'michael-test';
-
-//   const lambdaClient = new AWS.Lambda({
-//     region: 'us-west-2',
-//     accessKeyId: formValues.accessKeyId,
-//     secretAccessKey: formValues.secretAccessKey // TODO: replace with IAM role permissions
-//   });
-
-//   try{
-//     const allocateChannelPayload = {
-//       streamName: streamName,
-//       channelName: channelName
-//     }
-
-//     const allocateChannelResponse = await lambdaClient.invoke({
-//       FunctionName: '', //TODO: fill in
-//       InvocationType: 'RequestResponse',
-//       LogType: 'Tail',
-//       Payload: JSON.stringify(allocateChannelPayload)
-//     }).promise();
-//     if(!allocateChannelResponse) throw new Error('[ERROR]: no response from createchannel');
-//     return allocateChannelResponse.Payload.body.createChannel; // TODO: change to fit actual response
-//   }catch(err){
-//     console.error('[ERROR]: ' + err);
-//     return DEFAULT_CHANNEL_NAME;
-//   }
-// }
 
 export default StreamPage;
