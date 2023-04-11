@@ -181,7 +181,8 @@ async function startRecording(){
   startTime = new Date().toISOString();
   console.log('Start time: ' + startTime);
 
-  console.log('region' + process.env.AMPLIFY_USERPOOL_ID);
+  console.log(GETCLIP_ARN);
+  console.log('region ' + process.env.AMPLIFY_USERPOOL_ID);
   console.log(process.env.AWS_REGION);
 }
 
