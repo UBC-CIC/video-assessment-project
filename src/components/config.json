@@ -1,0 +1,6 @@
+{
+    "region"    : "us-west-2",
+    "getclip"   : "arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-getClipsKVS3F97D572-8QA4KUya6ic5",
+    "mp4stitch" : "arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-mp4stitch3D9F2EDC-Bv7WK65Lb2R3"
+}
+

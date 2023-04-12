@@ -11,12 +11,13 @@ import Button from '@mui/material/Button';
 import { Stream } from '@mui/icons-material';
 
 let   ROLE          = null; // Possible values: 'master', 'viewer', null
+let   config        = require('./config.json');
 
-const GETCLIP_ARN   = process.env.GETCLIP_ARN;
-const MP4STTICH_ARN = process.env.MP4STTICH_ARN;
+const GETCLIP_ARN   = config.getclip;
+const MP4STTICH_ARN = config.mp4stitch;
 const KEYID         = '';
 const SECRETKEY     = '';
-const REGION        = "us-west-2";
+const REGION        = 'us-west-2'; // Config.region;
 const TRICKLEICE    = true;
 const WIDESCREEN    = true;
 const SENDVID       = true;
@@ -31,6 +32,7 @@ let   endTime       = new Date().toISOString();
 
 let   UserID        = '';
 let   AssessmentID  = '';
+
 
 // let   channelName   = `${UserID}_Channel`;  // planned implementation of channel name
 let   channelName = 'michael-test';
@@ -181,8 +183,7 @@ async function startRecording(){
   startTime = new Date().toISOString();
   console.log('Start time: ' + startTime);
 
-  console.log(process.env);
-  console.log('region ' + process.env.AMPLIFY_USERPOOL_ID);
+  console.log(config);
 }
 
 async function saveRecording(){
