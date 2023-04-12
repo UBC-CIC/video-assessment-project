@@ -129,7 +129,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         getsignedurl.add_to_role_policy(_iam.PolicyStatement(
             effect=_iam.Effect.ALLOW,
-            actions=["s3:GetObject", "s3:GetSignedURL"]
+            actions=["s3:GetObject"]
             resources=[
                 recordingBlurredBucket.bucket_arn,
                 '{}/*'.format(recordingBlurredBucket.bucket_arn)
