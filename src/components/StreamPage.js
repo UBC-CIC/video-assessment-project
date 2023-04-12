@@ -17,7 +17,7 @@ const GETCLIP_ARN   = config.getclip;
 const MP4STTICH_ARN = config.mp4stitch;
 const KEYID         = '';
 const SECRETKEY     = '';
-const REGION        = 'us-west-2'; // Config.region;
+const REGION        = config.region;
 const TRICKLEICE    = true;
 const WIDESCREEN    = true;
 const SENDVID       = true;
@@ -182,14 +182,12 @@ async function masterClick() {
 async function startRecording(){
   startTime = new Date().toISOString();
   console.log('Start time: ' + startTime);
-
-  console.log(config);
 }
 
 async function saveRecording(){
   const formValues = getFormValues();
   const lambdaClient = new AWS.Lambda({
-    region: 'us-west-2',
+    region: REGION,
     accessKeyId: formValues.accessKeyId,
     secretAccessKey: formValues.secretAccessKey // TODO: replace with IAM role permissions
   });
