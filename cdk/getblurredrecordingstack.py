@@ -10,7 +10,7 @@ import aws_cdk.aws_mediaconvert as mediaconvert
 
 class RecordWithFaceBlurStack(cdk.Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> none:
+    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
         output = {"fn1": '', "fn2": ''}
 
@@ -23,6 +23,15 @@ class RecordWithFaceBlurStack(cdk.Stack):
         recordingNotBlurredBucket = s3.Bucket(self, "recordings-notblurred")
         recordingBlurredBucket = s3.Bucket(self, "recordings-blurred")
 
+        ###############################################################################################
+                                                #DynamoDB#
+        ###############################################################################################
+
+        ## Allocate dynamodb table to manage user info regarding recordings
+        videoassessmentdata = dynamodb.Table(self, "videoassessmentdata"
+            partition_key=dynamodb.Attribute(name="userid", type=dynamodb.AttributeType.STRING),
+            sort_key=dynamodb.Attribute(name="assessmentid", type=dynamodb.AttributeType.STRING),
+        )
 
         ###############################################################################################
                                                 #Lambda#
@@ -121,7 +130,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         mp4stitch.add_environment(key="MEDIACONVERT_ACCESSROLE", value=mediaconvertAccessRole.role_arn)
         mp4stitch.add_environment(key="MEDIACONVERT_QUEUE", value=mediaconvertQueue.attr_arn)
 
-        getsignedurl = lambda_.function(self, "getsignedurl",
+        getsignedurl = lambda_.Function(self, "getsignedurl",
             code=lambda_.Code.from_asset('./lambdas/getsignedurl'),
             handler='getsignedurl.handler',
             runtime=lambda_.Runtime.NODEJS_16_X
@@ -129,7 +138,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         getsignedurl.add_to_role_policy(_iam.PolicyStatement(
             effect=_iam.Effect.ALLOW,
-            actions=["s3:GetObject"]
+            actions=["s3:GetObject"],
             resources=[
                 recordingBlurredBucket.bucket_arn,
                 '{}/*'.format(recordingBlurredBucket.bucket_arn)
