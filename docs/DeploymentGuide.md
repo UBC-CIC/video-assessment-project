@@ -113,16 +113,26 @@ Find the two resources with "GetClip" and "mp4stitch" in their names, click on t
 In the new tab, use the "copy ARN" button to copy the ARN of the lambda function, paste this in a temporary text file. Repeat this process for the lambda function with "mp4stitch" in its name.
 ![alt text](images/copyarn.png)
 
-Now, navigate to the [Amplify console](https://us-west-2.console.aws.amazon.com/amplify/home?region=us-west-2#/), the front end that was deployed in part 1 should be visible here.
+Now, navigate to the "components directory in your github repo with the following commands.
+```bash
+cd src
+cd components
+```
 
-Click on the app that corresponds to the one deployed in part 1, then select the "environment variables" tab on the left bar.
-![alt text](images/amplifymenu.png)
+Open the file named config.json in your preferred text editor, the file should look something like this:
+```
+{
+    "region"    : "us-west-2",
+    "getclip"   : PASTE GETCLIP ARN HERE,
+    "mp4stitch" : PASTE MP4STITCH ARN HERE
+}
+```
 
-Click on "manage variables" to open the following page, use the "add variable" button to add the following variables:
-| Variable      | Value |
-| --------      | ----- |
-| GETCLIP_ARN   | copy the corresponding arn from the temporary text file prepared 
-| MP4STITCH_ARN | copy the corresponding arn from the temporary text file prepared
-------
-Click save to save the variable configuration 
-![alt text](images/env.png)
+Paste the corresponding ARN obtained from the steps above into the indicated spots in the config.json file. 
+
+Save and push the changes to your github repository for them to take effect on your amplify deployment.
+```bash
+git add src
+git commit -m "CUSTOM COMMIT MESSAGE HERE"
+git push
+```
