@@ -10,7 +10,7 @@ import aws_cdk.aws_mediaconvert as mediaconvert
 
 class RecordWithFaceBlurStack(cdk.Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> dict:
+    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> none:
         super().__init__(scope, construct_id, **kwargs)
         output = {"fn1": '', "fn2": ''}
 
@@ -54,7 +54,6 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ))
 
         getClipFromKVS.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
-        output['fn1'] = getClipFromKVS.function_arn
 
         #start mediaconvert and store unblurred recording into 2nd bucket
         mp4stitch = lambda_.Function(self, "mp4stitch", timeout=cdk.Duration.seconds(600), memory_size=512,
@@ -121,7 +120,23 @@ class RecordWithFaceBlurStack(cdk.Stack):
         mp4stitch.add_environment(key="NOTBLURRED_BUCKET", value=recordingNotBlurredBucket.bucket_name)
         mp4stitch.add_environment(key="MEDIACONVERT_ACCESSROLE", value=mediaconvertAccessRole.role_arn)
         mp4stitch.add_environment(key="MEDIACONVERT_QUEUE", value=mediaconvertQueue.attr_arn)
-        output["fn2"] = mp4stitch.function_arn
+
+        getsignedurl = lambda_.function(self, "getsignedurl",
+            code=lambda_.Code.from_asset('./lambdas/getsignedurl'),
+            handler='getsignedurl.handler',
+            runtime=lambda_.Runtime.NODEJS_16_X
+        )
+
+        getsignedurl.add_to_role_policy(_iam.PolicyStatement(
+            effect=_iam.Effect.ALLOW,
+            actions=["s3:GetObject", "s3:GetSignedURL"]
+            resources=[
+                recordingBlurredBucket.bucket_arn,
+                '{}/*'.format(recordingBlurredBucket.bucket_arn)
+            ]
+        ))
+
+        getsignedurl.add_environment(key="BLURRED_BUCKET", value=recordingBlurredBucket.bucket_name)
 
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,
