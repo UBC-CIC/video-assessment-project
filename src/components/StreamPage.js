@@ -35,7 +35,7 @@ let   AssessmentID  = '';
 
 
 // let   channelName   = `${UserID}_Channel`;  // planned implementation of channel name
-let   channelName = 'michael-test';
+let   channelName = 'muhan-signal-test';
 
 class StreamPage extends React.Component {
   render () {
@@ -175,7 +175,7 @@ async function masterClick() {
 
   await new Promise(r => setTimeout(r, 3000));
 
-  console.log('calling join session');
+  console.log('Calling join session');
   joinSession(formValues);
 };
 
@@ -198,7 +198,7 @@ async function saveRecording(){
 
   try{
     const getClipPayload = {
-      StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/michael-testing/1677783281493',
+      StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403',
       // BucketName: 'fragments-raw',
       startTime: startTime,
       endTime: endTime,
