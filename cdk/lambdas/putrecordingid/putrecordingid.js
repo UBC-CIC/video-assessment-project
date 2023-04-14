@@ -3,16 +3,12 @@ const AWS = require('aws-sdk');
 exports.handler = async (event) => {
     const REGION       = process.env.AWS_REGION;
     const TABLENAME    = process.env.TABLE;
-    let   userid;
-    let   assessmentid;
-    let   starttime;
 
-    // if(!event.userid || !event.assessmentid || !event.starttime) throw new Error('[ERROR] missing input parameters');
-    // userid       = event.userid;
-    // assessmentid = event.assessmentid;
-    // starttime    = event.starttime;
-
-    console.log(event);
+    let   keyinfo      = event.Records[0].s3.object.key.split(/[^a-zA-Z0-9]/);
+    
+    let   userid       = keyinfo[0];
+    let   assessmentid = keyinfo[1];
+    let   starttime    = keyinfo[2];
 
     const DynamoDBClient = new AWS.DynamoDB({
         region: REGION,
@@ -49,3 +45,4 @@ exports.handler = async (event) => {
         )};
     }
 }
+

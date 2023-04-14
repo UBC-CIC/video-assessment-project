@@ -7,6 +7,7 @@ import aws_cdk.aws_stepfunctions as sfn
 import aws_cdk.aws_stepfunctions_tasks as tasks
 import aws_cdk.aws_logs as logs
 import aws_cdk.aws_mediaconvert as mediaconvert
+import aws_cdk.aws_dynamodb as dynamodb
 
 class RecordWithFaceBlurStack(cdk.Stack):
 
@@ -28,7 +29,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ###############################################################################################
 
         ## Allocate dynamodb table to manage user info regarding recordings
-        videoassessmentdata = dynamodb.Table(self, "videoassessmentdata"
+        videodata = dynamodb.Table(self, "videodata",
             partition_key=dynamodb.Attribute(name="userid", type=dynamodb.AttributeType.STRING),
             sort_key=dynamodb.Attribute(name="assessmentid", type=dynamodb.AttributeType.STRING),
         )
@@ -66,8 +67,6 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         #start mediaconvert and store unblurred recording into 2nd bucket
         mp4stitch = lambda_.Function(self, "mp4stitch", timeout=cdk.Duration.seconds(600), memory_size=512,
-            timeout=cdk.Duration.seconds(600), 
-            memory_size=1024,
             code=lambda_.Code.from_asset('./lambdas/mp4stitch'),
             handler='mp4stitch.handler',
             runtime=lambda_.Runtime.NODEJS_16_X
@@ -220,7 +219,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ))
 
         ## Lambda starting on upload of blurred recording to the final S3, this lambda puts the corresponding info into the DynamoDB table
-        putrecordingid = lambda_.Function(self, "putrecordingid"
+        putrecordingid = lambda_.Function(self, "putrecordingid",
             timeout=cdk.Duration.seconds(600), 
             memory_size=1024,
             code=lambda_.Code.from_asset('./lambdas/putrecordingid'),
@@ -232,8 +231,8 @@ class RecordWithFaceBlurStack(cdk.Stack):
             effect=_iam.Effect.ALLOW,
             actions=["dynamodb:PutItem"],
             resources=[
-                videoassessmentdata.table_arn,
-                '{}/*'.format(videoassessmentdata.table_arn)]
+                videodata.table_arn,
+                '{}/*'.format(videodata.table_arn)]
         ))
 
         putrecordingid.add_event_source(S3EventSource(recordingBlurredBucket,
@@ -241,7 +240,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             filters=[s3.NotificationKeyFilter(suffix='.mp4')]
         ))
 
-        putrecordingid.add_environment(key='TABLENAME', value=videoassessmentdata.table_name)
+        putrecordingid.add_environment(key='TABLENAME', value=videodata.table_name)
         
 
         ###############################################################################################
