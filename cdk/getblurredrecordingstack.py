@@ -20,9 +20,9 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ###############################################################################################
 
         ## S3 buckets for input and output locations
-        clipInputBucket = s3.Bucket(self, "clipfragments")
-        recordingNotBlurredBucket = s3.Bucket(self, "recordings-notblurred")
-        recordingBlurredBucket = s3.Bucket(self, "recordings-blurred")
+        clipInputBucket = s3.Bucket(self, "clipfragments", block_public_access=BlockPublicAccess.BLOCK_ALL)
+        recordingNotBlurredBucket = s3.Bucket(self, "recordings-notblurred", block_public_access=BlockPublicAccess.BLOCK_ALL)
+        recordingBlurredBucket = s3.Bucket(self, "recordings-blurred", block_public_access=BlockPublicAccess.BLOCK_ALL)
 
         ###############################################################################################
                                                 #DynamoDB#
