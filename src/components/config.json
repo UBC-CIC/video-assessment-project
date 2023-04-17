@@ -1,7 +1,7 @@
 {
     "region"       : "us-west-2",
-    "getclip"      : "arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-getClipsKVS3F97D572-f0YTgKEfSP9L",
-    "mp4stitch"    : "arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-mp4stitch3D9F2EDC-ovTLIlCcW62L", 
-    "getsignedurl" : "arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-getsignedurl045BA946-AyUpWmHXXMfT"
+    "getclip"      : "RecordWithFaceBlurStack-getClipsKVS3F97D572-f0YTgKEfSP9L",
+    "mp4stitch"    : "RecordWithFaceBlurStack-mp4stitch3D9F2EDC-ovTLIlCcW62L", 
+    "getsignedurl" : "RecordWithFaceBlurStack-getsignedurl045BA946-AyUpWmHXXMfT"
 }
 
