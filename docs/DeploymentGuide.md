@@ -107,7 +107,7 @@ The stack named "RecordWithFaceBlurStack" should be the first item in the list, 
 Select the tab named "resources"
 ![alt text](images/resources.png)
 
-Find the two resources with "GetClip" and "mp4stitch" in their names, click on the blue link in the column "physical id". These links will open new tabs that contain more information about these specific lambda functions.
+Find the two resources with "GetClip", "mp4stitch", and "getsignedurl" in their names, click on the blue link in the column "physical id". These links will open new tabs that contain more information about these specific lambda functions.
 ![alt text](images/lambdas.png)
 
 In the new tab, use the "copy ARN" button to copy the ARN of the lambda function, paste this in a temporary text file. Repeat this process for the lambda function with "mp4stitch" in its name.
@@ -122,9 +122,10 @@ cd components
 Open the file named config.json in your preferred text editor, the file should look something like this:
 ```
 {
-    "region"    : "us-west-2",
-    "getclip"   : PASTE GETCLIP ARN HERE,
-    "mp4stitch" : PASTE MP4STITCH ARN HERE
+    "region"       : "us-west-2",
+    "getclip"      : PASTE GETCLIP ARN HERE,
+    "mp4stitch"    : PASTE MP4STITCH ARN HERE,
+    "getsignedurl" : PASTE GETSIGNEDURL ARN HERE
 }
 ```
 
