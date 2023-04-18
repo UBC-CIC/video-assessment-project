@@ -17,6 +17,7 @@ exports.handler = async(event) => {
         const signedURL = S3Client.getSignedURL('getObject', {
             Bucket: Bucket,
             Key: Key,
+            Expires: 300
         })
         
         return {
