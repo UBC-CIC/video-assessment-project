@@ -106,7 +106,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             actions=["s3:Put*"],
             resources=[
                 recordingBlurredBucket.bucket_arn,
-                '{}/*'.format(recordingBlurredBucket.bucket_arn)
+                '{}/*'.format(recordingNotBlurredBucket.bucket_arn)
             ]
         ))
 
@@ -115,7 +115,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             actions=["s3:Get*", "s3:List*"],
             resources=[
                 recordingNotBlurredBucket.bucket_arn,
-                '{}/*'.format(recordingNotBlurredBucket.bucket_arn)
+                '{}/*'.format(clipInputBucket.bucket_arn)
             ]
         ))
 

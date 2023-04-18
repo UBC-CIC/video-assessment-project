@@ -56,7 +56,7 @@ exports.handler = async (event) => {
             MaxResults: 1,
         }).promise();
         console.log(mediaconvertEndpoint);
-        MediaConvertClient.endpoint = mediaconvertEndpoint.Endpoints.Url;
+        MediaConvertClient.endpoint = mediaconvertEndpoint.Endpoints[0].Url;
 
         const inputList = getInputList(InputBucket, NumOfClips, UserID, AssessmentID, RecordingName);
         const convertJobParams = {
