@@ -189,8 +189,9 @@ async function saveRecording(){
   const lambdaClient = new AWS.Lambda({
     region: REGION,
     accessKeyId: formValues.accessKeyId,
-    secretAccessKey: formValues.secretAccessKey // TODO: replace with IAM role permissions
+    secretAccessKey: formValues.secretAccessKey
   });
+  const blurSelector = true; // CHANGE THIS TO BE TOGGLED BY ELEMENT ON SCREEN
 
   endTime = new Date().toISOString();
   UserID = Math.random().toString(36).substring(6).toUpperCase();
@@ -223,7 +224,8 @@ async function saveRecording(){
       AssessmentID: AssessmentID,
       NumOfClips: clipResponseInfo.fragmentcount,
       UserMetadata: {UserID: UserID, AssessmentID: AssessmentID},
-      RecordingName: `${UserID}/${AssessmentID}-${startTimeInt}.mp4`
+      RecordingName: `${UserID}/${AssessmentID}-${startTimeInt}.mp4`,
+      Blur: blurSelector
     }
     const recordingResponse = await lambdaClient.invoke({
       FunctionName: MP4STTICH_ARN, //'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
