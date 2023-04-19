@@ -1,5 +1,5 @@
 # Architecture Diagram
-![alt text](images/architecture-v1.jpg)
+![alt text](images/architecture3-3.png)
 ## Description 
 | ID | Resource Name                 | Description |
 | -- | ----------------------------- | ----------- | 
@@ -19,6 +19,11 @@
 | 14 | Lambda (Blur faces)           | The final lambda in the step function, triggered by the completion of lambda function (13). This function is deployed with a Docker Image that is deployed in the ECR (15). The reason for this is because of the complexity of the task of blurring faces. Once the face blurring job is complete, the finished recordings are uploaded to the final S3 bucket (16).
 | 15 | Elastic Container Registry    | The Docker Image used for lambda function (14) is uploaded and stored in the AWS Elastic Container Registry. This part is fully managed by the CDK deployment, for more information, refer to the deployment guide.
 | 16 | S3 (Recording - Face blurred) | Recordings are uploaded and stored here after processing. Amplify access this bucket and is able to obtain recordings for users/administrators to view on the react web app.
+| 17 | Lambda (Put recording info)   | Triggered by the upload of a new file into S3 (16), this function takes the userid, assessmentid, and assessment timestamp of the newly uploaded recording and updates the DynamoDB database with the information 
+| 18 | DynamoDB                      | Database for storing assessment information - userid, assessmentid, timestamp of recordings. This database is queried by the react app to get the filename (key) when a user wants to retrieve a recording from the S3 storage (16)
+| 19 | Lambda (Get Signed URL)       | Given a filename (key), this lambda function returns the signed url - a link that begins the download of the desired file when clicked
+---
+
 
 ## Step Function Diagram
 The pink box that represents the step function has a very specific workflow that is represented by this diagram below.
