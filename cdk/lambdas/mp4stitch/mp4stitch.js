@@ -2,7 +2,8 @@ const AWS = require('aws-sdk');
 
 exports.handler = async (event) => {
     const AccessRole    = process.env.MEDIACONVERT_ACCESSROLE;
-    const OutputBucket  = process.env.NOTBLURRED_BUCKET;
+    const EnableBlur    = process.env.NOTBLURRED_BUCKET;
+    const DisableBlur   = process.env.FINAL_BUCKET;
     const InputBucket   = process.env.CLIPS_BUCKET;
     const AWSRegion     = process.env.AWS_REGION;
     const QueueARN      = process.env.MEDIACONVERT_QUEUE;
@@ -11,12 +12,16 @@ exports.handler = async (event) => {
     let   NumOfClips    = 0;
     let   UserMetadata  = {};
     let   RecordingName = '';
+    let   Blur          = true;
     
     if(event.UserID)        UserID        = event.UserID;
     if(event.AssessmentID)  AssessmentID  = event.AssessmentID;
     if(event.NumOfClips)    NumOfClips    = event.NumOfClips;
     if(event.UserMetadata)  UserMetadata  = event.UserMetadata;
     if(event.RecordingName) RecordingName = event.RecordingName;
+    if(event.Blur)          Blur          = event.Blur;
+    
+    let OutputBucket = (Blur) ? EnableBlur : DisableBlur;
 
     const Outputs_VideoDescription = {
         CodecSettings: {

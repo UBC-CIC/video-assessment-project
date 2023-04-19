@@ -20,9 +20,9 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ###############################################################################################
 
         ## S3 buckets for input and output locations
-        clipInputBucket = s3.Bucket(self, "clipfragments", block_public_access=BlockPublicAccess.BLOCK_ALL)
-        recordingNotBlurredBucket = s3.Bucket(self, "recordings-notblurred", block_public_access=BlockPublicAccess.BLOCK_ALL)
-        recordingBlurredBucket = s3.Bucket(self, "recordings-blurred", block_public_access=BlockPublicAccess.BLOCK_ALL)
+        clipInputBucket = s3.Bucket(self, "clipfragments", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
+        recordingNotBlurredBucket = s3.Bucket(self, "recordings-notblurred", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
+        finalStorageBucket = s3.Bucket(self, "recording-storage", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
 
         ###############################################################################################
                                                 #DynamoDB#
@@ -79,7 +79,9 @@ class RecordWithFaceBlurStack(cdk.Stack):
                 clipInputBucket.bucket_arn,
                 '{}/*'.format(clipInputBucket.bucket_arn),
                 recordingNotBlurredBucket.bucket_arn,
-                '{}/*'.format(recordingNotBlurredBucket.bucket_arn)
+                '{}/*'.format(recordingNotBlurredBucket.bucket_arn),
+                finalStorageBucket.bucket_arn,
+                '{}/*'.format(clipInputBucket.bucket_arn)
             ]
         ))
 
@@ -105,7 +107,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             effect=_iam.Effect.ALLOW,
             actions=["s3:Put*"],
             resources=[
-                recordingBlurredBucket.bucket_arn,
+                finalStorageBucket.bucket_arn,
                 '{}/*'.format(recordingNotBlurredBucket.bucket_arn)
             ]
         ))
@@ -128,6 +130,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         mp4stitch.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
         mp4stitch.add_environment(key="NOTBLURRED_BUCKET", value=recordingNotBlurredBucket.bucket_name)
+        mp4stitch.add_environment(key='FINAL_BUCKET', value=finalStorageBucket.bucket_name)
         mp4stitch.add_environment(key="MEDIACONVERT_ACCESSROLE", value=mediaconvertAccessRole.role_arn)
         mp4stitch.add_environment(key="MEDIACONVERT_QUEUE", value=mediaconvertQueue.attr_arn)
 
@@ -143,12 +146,12 @@ class RecordWithFaceBlurStack(cdk.Stack):
             effect=_iam.Effect.ALLOW,
             actions=["s3:GetObject"],
             resources=[
-                recordingBlurredBucket.bucket_arn,
-                '{}/*'.format(recordingBlurredBucket.bucket_arn)
+                finalStorageBucket.bucket_arn,
+                '{}/*'.format(finalStorageBucket.bucket_arn)
             ]
         ))
 
-        getsignedurl.add_environment(key="BLURRED_BUCKET", value=recordingBlurredBucket.bucket_name)
+        getsignedurl.add_environment(key="BLURRED_BUCKET", value=finalStorageBucket.bucket_name)
 
         ## Lambda triggering the Rekognition job and the StepFunctions workflow
         startFaceDetect = lambda_.Function(self, "startFaceDetect", timeout=cdk.Duration.seconds(600), memory_size=512,
@@ -205,7 +208,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             code=lambda_.DockerImageCode.from_image_asset("./lambdas/blurfaces-dockersetup"))
 
         #Adding the S3 output bucket name as an ENV variable to the blurFaces 
-        blurFaces.add_environment(key="OUTPUT_BUCKET", value=recordingBlurredBucket.bucket_name)
+        blurFaces.add_environment(key="OUTPUT_BUCKET", value=finalStorageBucket.bucket_name)
 
         #Allowing blurFaces to access the S3 input and output buckets
         blurFaces.add_to_role_policy(_iam.PolicyStatement(
@@ -213,9 +216,9 @@ class RecordWithFaceBlurStack(cdk.Stack):
             actions=["s3:PutObject", "s3:GetObject"],
             resources=[
                 recordingNotBlurredBucket.bucket_arn,
-                recordingBlurredBucket.bucket_arn,
+                finalStorageBucket.bucket_arn,
                 '{}/*'.format(recordingNotBlurredBucket.bucket_arn),
-                '{}/*'.format(recordingBlurredBucket.bucket_arn)]
+                '{}/*'.format(finalStorageBucket.bucket_arn)]
         ))
 
         ## Lambda starting on upload of blurred recording to the final S3, this lambda puts the corresponding info into the DynamoDB table
@@ -235,7 +238,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
                 '{}/*'.format(videodata.table_arn)]
         ))
 
-        putrecordingid.add_event_source(S3EventSource(recordingBlurredBucket,
+        putrecordingid.add_event_source(S3EventSource(finalStorageBucket,
             events=[s3.EventType.OBJECT_CREATED],
             filters=[s3.NotificationKeyFilter(suffix='.mp4')]
         ))
