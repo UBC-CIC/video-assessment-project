@@ -304,7 +304,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             output_path="$.Payload"
         )
 
-        delete_not_blurred = tasks.LambdaInvoke(self, "Delete Not Blurred Recording",
+        delete_non_blurred = tasks.LambdaInvoke(self, "Delete Non-Blurred Recording",
             lambda_function=deleteobj,
             input_path="$.body",
             output_path="$.Payload"                                       
@@ -315,7 +315,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         #Adding conditions with .when()
         choice.when(sfn.Condition.string_equals("$.body.job_status", "IN_PROGRESS"), wait_1.next(update_job_status))
-        choice.when(sfn.Condition.string_equals("$.body.job_status", "SUCCEEDED"), get_timestamps_and_faces.next(blur_faces).next(delete_not_blurred).next(job_succeeded))
+        choice.when(sfn.Condition.string_equals("$.body.job_status", "SUCCEEDED"), get_timestamps_and_faces.next(blur_faces).next(delete_non_blurred).next(job_succeeded))
         #Adding a default choice with .otherwise() if none of the above choices are matched
         choice.otherwise(job_failed)
 
