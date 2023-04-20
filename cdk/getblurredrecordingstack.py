@@ -245,6 +245,24 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         putrecordingid.add_environment(key='TABLENAME', value=videodata.table_name)
         
+        deleteobj = lambda_.Function(self, "deleteobj", 
+            timeout=cdk.Duration.seconds(600),
+            memory_size=1024,
+            code=lambda_.Code.from_asset('./lambdas/deleteobj'),
+            handler="deleteobj.lambda_handler",
+            runtime=lambda_.Runtime.NODEJS_16_X
+        )
+
+        deleteobj.add_to_role_policy(_iam.PolicyStatement(
+            effect=_iam.Effect.ALLOW,
+            actions=["s3:List*", "s3:DeleteObject"],
+            resources=[
+                recordingNotBlurredBucket.bucket_arn,
+                '{}/*'.format(recordingNotBlurredBucket.bucket_arn)
+            ]
+        ))
+
+        deleteobj.add_environment(key="NOT_BLURRED", value=recordingNotBlurredBucket.bucket_name)
 
         ###############################################################################################
                                                 #StepFunctions#
@@ -286,12 +304,18 @@ class RecordWithFaceBlurStack(cdk.Stack):
             output_path="$.Payload"
         )
 
+        delete_not_blurred = tasks.LambdaInvoke(self, "Delete Not Blurred Recording",
+            lambda_function=deleteobj,
+            input_path="$.body",
+            output_path="$.Payload"                                       
+        )
+
         ## Defining a choice
         choice = sfn.Choice(self, "Job finished?")
 
         #Adding conditions with .when()
         choice.when(sfn.Condition.string_equals("$.body.job_status", "IN_PROGRESS"), wait_1.next(update_job_status))
-        choice.when(sfn.Condition.string_equals("$.body.job_status", "SUCCEEDED"), get_timestamps_and_faces.next(blur_faces).next(job_succeeded))
+        choice.when(sfn.Condition.string_equals("$.body.job_status", "SUCCEEDED"), get_timestamps_and_faces.next(blur_faces).next(delete_not_blurred).next(job_succeeded))
         #Adding a default choice with .otherwise() if none of the above choices are matched
         choice.otherwise(job_failed)
 

@@ -62,6 +62,9 @@ def lambda_function(event, context):
 
     return {
         'statusCode': 200,
-        'body': json.dumps('Faces in video blurred')
+        'body': json.dumps({
+            "message": 'Faces in video blurred',
+            "key": key
+        })
     }
 
