@@ -1,5 +1,5 @@
 # Architecture Diagram
-![alt text](images/architecture3-3.png)
+![alt text](images/architecture4.png)
 ## Description 
 | ID | Resource Name                 | Description |
 | -- | ----------------------------- | ----------- | 
@@ -22,10 +22,11 @@
 | 17 | Lambda (Put recording info)   | Triggered by the upload of a new file into S3 (16), this function takes the userid, assessmentid, and assessment timestamp of the newly uploaded recording and updates the DynamoDB database with the information 
 | 18 | DynamoDB                      | Database for storing assessment information - userid, assessmentid, timestamp of recordings. This database is queried by the react app to get the filename (key) when a user wants to retrieve a recording from the S3 storage (16)
 | 19 | Lambda (Get Signed URL)       | Given a filename (key), this lambda function returns the signed url - a link that begins the download of the desired file when clicked
+| 20 | Lambda (Delete Non-Blurred)   | After generating and uploading the blurred recording into S3 (16), delete the corresponding non-blurred version of the recording
 ---
 
 
 ## Step Function Diagram
 The pink box that represents the step function has a very specific workflow that is represented by this diagram below.
-![alt text](images/stepfunction.png)
+![alt text](images/stepfunctions.png)
 For more information, refer to this [AWS blogpost](https://aws.amazon.com/blogs/machine-learning/blur-faces-in-videos-automatically-with-amazon-rekognition-video/).
