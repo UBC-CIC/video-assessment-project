@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 
 exports.handler = async (event) => {
     const AccessRole    = process.env.MEDIACONVERT_ACCESSROLE;
-    const EnableBlur    = process.env.NOTBLURRED_BUCKET;
+    const EnableBlur    = process.env.AWAITBLUR_BUCKET;
     const DisableBlur   = process.env.FINAL_BUCKET;
     const InputBucket   = process.env.CLIPS_BUCKET;
     const AWSRegion     = process.env.AWS_REGION;

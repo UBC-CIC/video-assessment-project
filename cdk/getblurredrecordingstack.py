@@ -19,18 +19,25 @@ class RecordWithFaceBlurStack(cdk.Stack):
                                                 #S3#
         ###############################################################################################
 
-        ## S3 buckets for input and output locations
-        clipInputBucket = s3.Bucket(self, "clipfragments", block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-            lifecycle_rules=s3.LifecycleRule(
-                id="delete-expire"
-                abort_incomplete_multipart_upload_after=cdk.Duration.days(1),
-                expiration=cdk.Duration.days(1),
-                noncurrent_version_expiration=cdk.Duration.days(1),
-                expired_object_delete_marker=True,
-            )
+        ## S3 Lifecycle Rule for deleting after 1 day
+        deleteafterday = s3.LifecycleRule(
+            id="delete-expire"
+            abort_incomplete_multipart_upload_after=cdk.Duration.days(1),
+            expiration=cdk.Duration.days(1),
+            noncurrent_version_expiration=cdk.Duration.days(1),
+            expired_object_delete_marker=True,
         )
-        recordingNotBlurredBucket = s3.Bucket(self, "recordings-notblurred", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
-        finalStorageBucket = s3.Bucket(self, "recording-storage", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
+
+        ## S3 buckets for input and output locations
+        clipInputBucket = s3.Bucket(self, "clipfragments", 
+            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            lifecycle_rules=deleteafterday
+        )
+        awaitingBlurBucket = s3.Bucket(self, "awaitingblur", 
+            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            lifecycle_rules=deleteafterday
+        )
+        finalStorageBucket = s3.Bucket(self, "recordingstorage", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
 
         ###############################################################################################
                                                 #DynamoDB#
@@ -86,8 +93,8 @@ class RecordWithFaceBlurStack(cdk.Stack):
             resources=[
                 clipInputBucket.bucket_arn,
                 '{}/*'.format(clipInputBucket.bucket_arn),
-                recordingNotBlurredBucket.bucket_arn,
-                '{}/*'.format(recordingNotBlurredBucket.bucket_arn),
+                awaitingBlurBucket.bucket_arn,
+                '{}/*'.format(awaitingBlurBucket.bucket_arn),
                 finalStorageBucket.bucket_arn,
                 '{}/*'.format(clipInputBucket.bucket_arn)
             ]
@@ -116,7 +123,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             actions=["s3:Put*"],
             resources=[
                 finalStorageBucket.bucket_arn,
-                '{}/*'.format(recordingNotBlurredBucket.bucket_arn)
+                '{}/*'.format(awaitingBlurBucket.bucket_arn)
             ]
         ))
 
@@ -124,7 +131,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             effect=_iam.Effect.ALLOW,
             actions=["s3:Get*", "s3:List*"],
             resources=[
-                recordingNotBlurredBucket.bucket_arn,
+                awaitingBlurBucket.bucket_arn,
                 '{}/*'.format(clipInputBucket.bucket_arn)
             ]
         ))
@@ -137,7 +144,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         )
 
         mp4stitch.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
-        mp4stitch.add_environment(key="NOTBLURRED_BUCKET", value=recordingNotBlurredBucket.bucket_name)
+        mp4stitch.add_environment(key="AWAITBLUR_BUCKET", value=awaitingBlurBucket.bucket_name)
         mp4stitch.add_environment(key='FINAL_BUCKET', value=finalStorageBucket.bucket_name)
         mp4stitch.add_environment(key="MEDIACONVERT_ACCESSROLE", value=mediaconvertAccessRole.role_arn)
         mp4stitch.add_environment(key="MEDIACONVERT_QUEUE", value=mediaconvertQueue.attr_arn)
@@ -169,7 +176,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         )
 
         #Adding S3 event sources triggers for the startFaceDetectFunction, allowing .mp4 files only
-        startFaceDetect.add_event_source(S3EventSource(recordingNotBlurredBucket,
+        startFaceDetect.add_event_source(S3EventSource(awaitingBlurBucket,
             events=[s3.EventType.OBJECT_CREATED],
             filters=[s3.NotificationKeyFilter(suffix='.mp4')]))
 
@@ -178,8 +185,8 @@ class RecordWithFaceBlurStack(cdk.Stack):
             effect=_iam.Effect.ALLOW,
             actions=["s3:PutObject", "s3:GetObject"],
             resources=[
-                recordingNotBlurredBucket.bucket_arn,
-                '{}/*'.format(recordingNotBlurredBucket.bucket_arn)]))
+                awaitingBlurBucket.bucket_arn,
+                '{}/*'.format(awaitingBlurBucket.bucket_arn)]))
 
         #Allowing startFaceDetect to call Rekognition
         startFaceDetect.add_to_role_policy(_iam.PolicyStatement(
@@ -223,9 +230,9 @@ class RecordWithFaceBlurStack(cdk.Stack):
             effect=_iam.Effect.ALLOW,
             actions=["s3:PutObject", "s3:GetObject"],
             resources=[
-                recordingNotBlurredBucket.bucket_arn,
+                awaitingBlurBucket.bucket_arn,
                 finalStorageBucket.bucket_arn,
-                '{}/*'.format(recordingNotBlurredBucket.bucket_arn),
+                '{}/*'.format(awaitingBlurBucket.bucket_arn),
                 '{}/*'.format(finalStorageBucket.bucket_arn)]
         ))
 
@@ -265,12 +272,13 @@ class RecordWithFaceBlurStack(cdk.Stack):
             effect=_iam.Effect.ALLOW,
             actions=["s3:List*", "s3:DeleteObject"],
             resources=[
-                recordingNotBlurredBucket.bucket_arn,
-                '{}/*'.format(recordingNotBlurredBucket.bucket_arn)
+                awaitingBlurBucket.bucket_arn,
+                '{}/*'.format(awaitingBlurBucket.bucket_arn)
             ]
         ))
 
-        deleteobj.add_environment(key="NOT_BLURRED", value=recordingNotBlurredBucket.bucket_name)
+        deleteobj.add_environment(key="CLIPS_BUCKET", value=clipInputBucket.bucket_name)
+        deleteobj.add_environment(key="AWAITBLUR_BUCKET", value=awaitingBlurBucket.bucket_name)
 
         ###############################################################################################
                                                 #StepFunctions#
