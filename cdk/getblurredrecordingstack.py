@@ -20,7 +20,15 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ###############################################################################################
 
         ## S3 buckets for input and output locations
-        clipInputBucket = s3.Bucket(self, "clipfragments", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
+        clipInputBucket = s3.Bucket(self, "clipfragments", block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            lifecycle_rules=s3.LifecycleRule(
+                id="delete-expire"
+                abort_incomplete_multipart_upload_after=cdk.Duration.days(1),
+                expiration=cdk.Duration.days(1),
+                noncurrent_version_expiration=cdk.Duration.days(1),
+                expired_object_delete_marker=True,
+            )
+        )
         recordingNotBlurredBucket = s3.Bucket(self, "recordings-notblurred", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
         finalStorageBucket = s3.Bucket(self, "recording-storage", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
 
