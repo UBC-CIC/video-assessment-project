@@ -18,24 +18,22 @@ class RecordWithFaceBlurStack(cdk.Stack):
                                                 #S3#
         ###############################################################################################
 
-        ## S3 Lifecycle Rule for deleting after 1 day
-        deleteafterday = s3.LifecycleRule(
-            id="deleteafterday",
-            abort_incomplete_multipart_upload_after=cdk.Duration.days(1),
+        ## S3 buckets for input and output locations
+        clipInputBucket = s3.Bucket(self, "clipfragments", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
+        awaitingBlurBucket = s3.Bucket(self, "awaitingblur", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
+        finalStorageBucket = s3.Bucket(self, "recordingstorage", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
+
+        clipInputBucket.add_lifecycle_rule(
+            id="deleteclip",
             expiration=cdk.Duration.days(1),
-            expired_object_delete_marker=True
+            enable=True
         )
 
-        ## S3 buckets for input and output locations
-        clipInputBucket = s3.Bucket(self, "clipfragments", 
-            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-            lifecycle_rules=[deleteafterday]
+        awaitingBlurBucket.add_lifecycle_rule(
+            id="deletenotblurred",
+            expiration=cdk.Duration.days(1),
+            enable=True
         )
-        awaitingBlurBucket = s3.Bucket(self, "awaitingblur", 
-            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-            lifecycle_rules=[deleteafterday]
-        )
-        finalStorageBucket = s3.Bucket(self, "recordingstorage", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
 
         ###############################################################################################
                                                 #DynamoDB#
