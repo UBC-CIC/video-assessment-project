@@ -249,7 +249,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             timeout=cdk.Duration.seconds(600),
             memory_size=1024,
             code=lambda_.Code.from_asset('./lambdas/deleteobj'),
-            handler="deleteobj.lambda_handler",
+            handler="deleteobj.handler",
             runtime=lambda_.Runtime.NODEJS_16_X
         )
 
