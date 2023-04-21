@@ -20,21 +20,20 @@ class RecordWithFaceBlurStack(cdk.Stack):
 
         ## S3 Lifecycle Rule for deleting after 1 day
         deleteafterday = s3.LifecycleRule(
-            id="delete-expire"
+            id="deleteafterday",
             abort_incomplete_multipart_upload_after=cdk.Duration.days(1),
             expiration=cdk.Duration.days(1),
-            noncurrent_version_expiration=cdk.Duration.days(1),
-            expired_object_delete_marker=True,
+            expired_object_delete_marker=True
         )
 
         ## S3 buckets for input and output locations
         clipInputBucket = s3.Bucket(self, "clipfragments", 
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-            lifecycle_rules=deleteafterday
+            lifecycle_rules=[deleteafterday]
         )
         awaitingBlurBucket = s3.Bucket(self, "awaitingblur", 
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-            lifecycle_rules=deleteafterday
+            lifecycle_rules=[deleteafterday]
         )
         finalStorageBucket = s3.Bucket(self, "recordingstorage", block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
 
