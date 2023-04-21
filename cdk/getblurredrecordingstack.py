@@ -271,6 +271,8 @@ class RecordWithFaceBlurStack(cdk.Stack):
             effect=_iam.Effect.ALLOW,
             actions=["s3:List*", "s3:DeleteObject"],
             resources=[
+                clipInputBucket.bucket_arn,
+                '{}/*'.format(clipInputBucket.bucket_arn),
                 awaitingBlurBucket.bucket_arn,
                 '{}/*'.format(awaitingBlurBucket.bucket_arn)
             ]
