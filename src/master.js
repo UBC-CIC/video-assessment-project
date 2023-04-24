@@ -32,6 +32,17 @@ export async function startMaster(localView, remoteView, formValues, onStatsRepo
 
     master.kinesisVideoClient = kinesisVideoClient;
 
+    // Create signaling channel
+    // const createSignalingChannelResponse = await kinesisVideoClient
+    //     .createSignalingChannel({
+    //         ChannelName: formValues.channelName,
+    //         ChannelType: 'SINGLE_MASTER',
+    //         SingleMasterConfiguration: {MessageTtlSeconds: 60}
+    //     })
+    //     .promise();
+    // console.log('[MASTER] Created signaling channel');
+    // console.log(createSignalingChannelResponse);
+
     // Get signaling channel ARN
     const describeSignalingChannelResponse = await kinesisVideoClient
         .describeSignalingChannel({
@@ -58,6 +69,37 @@ export async function startMaster(localView, remoteView, formValues, onStatsRepo
         return endpoints;
     }, {});
     console.log('[MASTER] Endpoints: ', endpointsByProtocol);
+
+    // Create Stream
+    // const createStreamResponse = await KVSClient
+    //     .createStream({
+    //         StreamName: `${formValues.channelName}-storageStream`,
+    //         DataRetentionInHours: 24,
+    //         MediaType: "video/h264,audio/aac"
+    //     }).promise();
+    // console.log('[MASTER] Created stream');
+    // console.log(createStreamResponse);
+
+    // Get stream ARN
+    // const describeStreamResponse = await kinesisVideoClient
+    //     .describeStream({
+    //         StreamName: `${formValues.channelName}-storageStream`
+    //     })
+    //     .promise();
+    // const streamARN = describeStreamResponse.StreamInfo.StreamARN;
+    // console.log('[MASTER] Stream ARN: ', streamARN);
+
+    // Configure storage
+    // const configureStorageResponse = await KVSClient
+    //     .updateMediaStorageConfiguration({
+    //         ChannelARN: channelARN,
+    //         MediaStorageConfiguration: { 
+    //             Status: 'ENABLE',
+    //             StreamARN: streamARN 
+    //         }
+    //     }).promise();
+    // console.log('[MASTER] Linked stream and channel for storage');
+    // console.log(configureStorageResponse);
 
     // Create Signaling Client
     master.signalingClient = new SignalingClient({

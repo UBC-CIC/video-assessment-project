@@ -13,7 +13,7 @@ reko = boto3.client('rekognition')
 s3 = boto3.client('s3')
 sfn = boto3.client('stepfunctions')
 
-state_machine_arn = 'arn:aws:states:us-west-2:444889511257:stateMachine:rekofaceblur-statemachine'
+state_machine_arn = os.environ['STATE_MACHINE_ARN']
 
 def lambda_handler(event, context):
     successful_records = []

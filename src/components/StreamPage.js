@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { startMaster, stopMaster, master }from '../master';
-import { stopViewer } from '../viewer';
+import { startMaster, stopMaster, master, joinSession }from './master';
+import { stopViewer } from './viewer';
+import { configureStream, deleteStream} from './configStream.js';
 import AWS from 'aws-sdk';
 import * as KVSWebRTC from 'amazon-kinesis-video-streams-webrtc';
 import { Auth } from 'aws-amplify';
@@ -12,8 +13,14 @@ import { Stream } from '@mui/icons-material';
 import { createSignalingChannel } from '../createSignalingChannel.js';
 
 let   ROLE          = null; // Possible values: 'master', 'viewer', null
+let   config        = require('./config.json');
 
-const REGION        = "us-west-2";
+
+const REGION        = config.region;
+const GETCLIP_ARN   = config.getclip;
+const MP4STTICH_ARN = config.mp4stitch;
+const KEYID         = '';
+const SECRETKEY     = '';
 const TRICKLEICE    = true;
 const WIDESCREEN    = true;
 const SENDVID       = true;
@@ -26,7 +33,12 @@ const drawerWidth   = 240;
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
 
-let   AssessmentID  = Math.random().toString(36).substring(6).toUpperCase();
+let   UserID        = '';
+let   AssessmentID  = '';
+
+// let   channelName   = `${UserID}_Channel`;  // planned implementation of channel name
+let   channelName = 'muhan-signal-test';
+
 
 class StreamPage extends React.Component {
   render () {
@@ -77,7 +89,6 @@ async function getFormValues() {
   // console.log(credentials);
   
   // AWS.config.credentials = credentials;
-
   return {
       region: REGION, 
       channelName: user.attributes.sub, 
@@ -159,83 +170,16 @@ async function masterClick() {
   startMaster(localView, remoteView, formValues, onStatsReport, event => {
       remoteMessage.append(`${event.data}\n`);
   });
+
+  await new Promise(r => setTimeout(r, 3000));
+
+  console.log('Calling join session');
+  joinSession(formValues);
 };
 
 async function startRecording(){
-  const formValues = await getFormValues();
-  let getSignalingChannelEndpointResponse;
-  try {
-    // Get signaling channel endpoints for WEBRTC
-    getSignalingChannelEndpointResponse = await master.kinesisVideoClient
-      .getSignalingChannelEndpoint({
-          ChannelARN: master.channelARN,
-          SingleMasterChannelEndpointConfiguration: {
-              Protocols: ['WEBRTC'],
-              Role: KVSWebRTC.Role.MASTER,
-          },
-      })
-      .promise();
-  } catch (e) {
-    console.error('[MASTER] Storage Session is not configured for this channel');
-    return;
-  }
-
-  // Fetch webrtc endpoint
-  const endpointsByProtocol = getSignalingChannelEndpointResponse.ResourceEndpointList.reduce((endpoints, endpoint) => {
-    endpoints[endpoint.Protocol] = endpoint.ResourceEndpoint;
-    return endpoints;
-  }, {});
-
-  console.log('[MASTER] Received webrtc endpoint: ' + endpointsByProtocol.WEBRTC);
-
-  // TODO: Remove sigv4 signing logic once changes are added to the KinesisVideoClient
-  const endpoint = new AWS.Endpoint(endpointsByProtocol.WEBRTC);
-  const request = new AWS.HttpRequest(endpoint, formValues.region);
-
-  request.method = 'POST';
-  request.path = '/joinStorageSession';
-  request.body = JSON.stringify({
-    "channelArn": master.channelARN
-  });
-  request.headers['Host'] = endpoint.host;
-
-  const signer = new AWS.Signers.V4(request, 'kinesisvideo', true);
-  signer.addAuthorization({
-    accessKeyId: formValues.accessKeyId,
-    secretAccessKey: formValues.secretAccessKey,
-    sessionToken: null,
-  }, new Date());
-
   startTime = new Date().toISOString();
-
-  const response = await fetch(endpointsByProtocol.WEBRTC + request.path, {
-    method: request.method,
-    headers: {
-        'Content-Type': 'application/json',
-        ...request.headers
-    },
-    body: request.body})
-  .then((response) => {
-    return new Promise((resolve) => response.json()
-        .then((json) => resolve({
-            status: response.status,
-            ok: response.ok,
-            json,
-        })));
-  })
-  .then(({ status, json, ok }) => {
-      if (!ok) {
-          console.log('[MASTER] Error occured while calling join session: ', json);
-      } else {
-          console.log('[MASTER] Successfully called join session.');
-          startTime = new Date().toISOString();
-          console.log(startTime);
-      }
-  })
-  .catch((error) => {
-      console.error('[MASTER] Error occured while calling join session:', error);
-  });
-  console.log(response);
+  console.log('Start time: ' + startTime);
 }
 
 async function saveRecording(){
@@ -243,17 +187,20 @@ async function saveRecording(){
   const UserID = await Auth.currentUserInfo().attributes.sub;
 
   const lambdaClient = new AWS.Lambda({
-    region: 'us-west-2',
+    region: REGION,
     accessKeyId: formValues.accessKeyId,
-    secretAccessKey: formValues.secretAccessKey // TODO: replace with IAM role permissions
+    secretAccessKey: formValues.secretAccessKey
   });
+  const blurSelector = true; // CHANGE THIS TO BE TOGGLED BY ELEMENT ON SCREEN
+
   endTime = new Date().toISOString();
-  console.log('endTime = ' + endTime);
+  UserID = Math.random().toString(36).substring(6).toUpperCase();
+  AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
 
   try{
     const getClipPayload = {
-      StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/michael-testing/1677783281493',
-      BucketName: 'fragments-raw',
+      StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403',
+      // BucketName: 'fragments-raw',
       startTime: startTime,
       endTime: endTime,
       UserID: UserID,
@@ -261,33 +208,35 @@ async function saveRecording(){
     }
     console.log(getClipPayload);
     const clipResponse = await lambdaClient.invoke({
-      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
+      FunctionName: GETCLIP_ARN, //'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
       InvocationType: 'RequestResponse',
       LogType: 'Tail',
       Payload: JSON.stringify(getClipPayload)
     }).promise();
     if(!clipResponse) throw new Error('no response from getclip');
-    let clipResponseBody = JSON.parse(clipResponse.Payload).body;
-    console.log(clipResponseBody);
+    console.log('get clip response: ');
+    let clipResponseInfo = JSON.parse(clipResponse.Payload).body;
+    console.log(clipResponseInfo);
 
+    let startTimeInt = new Date(startTime).getTime();
     const mp4StitchPayload = {
       UserID: UserID,
       AssessmentID: AssessmentID,
-      NumOfClips: clipResponseBody.fragmentcount,
-      OutputBucket: 'recording-output',
-      InputBucket: clipResponseBody.destination,
+      NumOfClips: clipResponseInfo.fragmentcount,
+      UserMetadata: {UserID: UserID, AssessmentID: AssessmentID},
+      RecordingName: `${UserID}/${AssessmentID}-${startTimeInt}.mp4`,
+      Blur: blurSelector
     }
     const recordingResponse = await lambdaClient.invoke({
-      FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
+      FunctionName: MP4STTICH_ARN, //'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
       InvocationType: 'RequestResponse',
       LogType: 'Tail',
       Payload: JSON.stringify(mp4StitchPayload)
     }).promise();
     if(!recordingResponse) throw new Error('no response from mp4stitch');
-    let recordingResponseBody = JSON.parse(recordingResponse.Payload).body;
-    const temp = JSON.parse(recordingResponseBody);
-    console.log(temp);
-    console.log(temp.stack);
+    console.log('mp4stitch response');
+    let recordingResponseInfo = JSON.parse(JSON.parse(recordingResponse.Payload).body);
+    console.log(recordingResponseInfo);
     
   }catch(err){
     console.log('ERROR');

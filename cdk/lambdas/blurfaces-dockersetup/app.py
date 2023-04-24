@@ -14,7 +14,7 @@ logger.setLevel(logging.INFO)
 reko = boto3.client('rekognition')
 s3 = boto3.client('s3')
 
-output_bucket = 'blurred-recordings-output'
+output_bucket = os.environ['OUTPUT_BUCKET']
 
 def lambda_function(event, context):
     # download file locally to /tmp retrieve metadata
@@ -62,6 +62,9 @@ def lambda_function(event, context):
 
     return {
         'statusCode': 200,
-        'body': json.dumps('Faces in video blurred')
+        'body': {
+            "message": 'Faces in video blurred',
+            "key": key
+        }
     }
 
