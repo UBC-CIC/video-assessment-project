@@ -19,22 +19,10 @@ let   config        = require('./config.json');
 const REGION        = config.region;
 const GETCLIP_ARN   = config.getclip;
 const MP4STTICH_ARN = config.mp4stitch;
-const KEYID         = '';
-const SECRETKEY     = '';
-const TRICKLEICE    = true;
-const WIDESCREEN    = true;
-const SENDVID       = true;
-const SENDAUD       = true;
-const DATACHANNEL   = false;
-const FORCETURN     = false;
-const NATDISABLE    = false;
 const drawerWidth   = 240;
 
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
-
-let   UserID        = '';
-let   AssessmentID  = '';
 
 // let   channelName   = `${UserID}_Channel`;  // planned implementation of channel name
 let   channelName = 'muhan-signal-test';
@@ -93,14 +81,14 @@ async function getFormValues() {
       region: REGION, 
       channelName: user.attributes.sub, 
       clientId: getRandomClientId(),
-      sendVideo: SENDVID,
-      sendAudio: SENDAUD,
-      openDataChannel: DATACHANNEL,
-      widescreen: WIDESCREEN,
-      fullscreen: !WIDESCREEN,
-      useTrickleICE: TRICKLEICE,
-      natTraversalDisabled: NATDISABLE,
-      forceTURN: FORCETURN,
+      sendVideo: true,
+      sendAudio: true,
+      openDataChannel: false,
+      widescreen: true,
+      fullscreen: false,
+      useTrickleICE: true,
+      natTraversalDisabled: false,
+      forceTURN: false,
       accessKeyId: credentials.accessKeyId,
       // endpoint: $('#endpoint').val() || null,
       secretAccessKey: credentials.secretAccessKey,
@@ -183,8 +171,11 @@ async function startRecording(){
 }
 
 async function saveRecording(){
-  const formValues = await getFormValues();
-  const UserID = await Auth.currentUserInfo().attributes.sub;
+  const formValues   = await getFormValues();
+  const UserID       = await Auth.currentUserInfo().attributes.sub;
+  let   AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
+
+  endTime = new Date().toISOString();
 
   const lambdaClient = new AWS.Lambda({
     region: REGION,
@@ -192,10 +183,6 @@ async function saveRecording(){
     secretAccessKey: formValues.secretAccessKey
   });
   const blurSelector = true; // CHANGE THIS TO BE TOGGLED BY ELEMENT ON SCREEN
-
-  endTime = new Date().toISOString();
-  UserID = Math.random().toString(36).substring(6).toUpperCase();
-  AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
 
   try{
     const getClipPayload = {
