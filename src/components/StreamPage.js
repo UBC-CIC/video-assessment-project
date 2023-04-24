@@ -22,6 +22,8 @@ const drawerWidth   = 240;
 
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
+let   streamARN;
+let   channelARN;
 
 class StreamPage extends React.Component {
   render () {
@@ -146,7 +148,10 @@ async function masterClick() {
   // localMessage.value = '';
   // toggleDataChannelElements();
 
-  createSignalingChannel(formValues);
+  // createSignalingChannel(formValues);
+  const arnResp = await configureStream(`${formValues.channelName}-stream`, formValues);
+  streamARN = arnResp.StreamARN;
+  channelARN = arnResp.ChannelARN;
 
   await new Promise(r => setTimeout(r, 1000)); //sleep 1 second
   
@@ -181,7 +186,7 @@ async function saveRecording(){
 
   try{
     const getClipPayload = {
-      StreamARN: 'arn:aws:kinesisvideo:us-west-2:444889511257:stream/muhan-ingestion-test/1675293375403',
+      StreamARN: streamARN,
       // BucketName: 'fragments-raw',
       startTime: startTime,
       endTime: endTime,
