@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import { Table } from '@mui/material';
 import { List, ListItem, ListItemText, Button } from '@mui/material';
 
+let   config       = require('./config.json');
 const GETSIGNEDURL = config.GETSIGNEDURL;
 
 class DownloadPage extends React.Component {

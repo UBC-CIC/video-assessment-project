@@ -15,7 +15,6 @@ import { createSignalingChannel } from '../createSignalingChannel.js';
 let   ROLE          = null; // Possible values: 'master', 'viewer', null
 let   config        = require('./config.json');
 
-
 const REGION        = config.region;
 const GETCLIP_ARN   = config.getclip;
 const MP4STTICH_ARN = config.mp4stitch;
@@ -23,10 +22,6 @@ const drawerWidth   = 240;
 
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
-
-// let   channelName   = `${UserID}_Channel`;  // planned implementation of channel name
-let   channelName = 'muhan-signal-test';
-
 
 class StreamPage extends React.Component {
   render () {
