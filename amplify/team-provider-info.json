@@ -10,7 +10,8 @@
       "StackName": "amplify-videoassessmentapp-linn-161508",
       "StackId": "arn:aws:cloudformation:us-west-2:444889511257:stack/amplify-videoassessmentapp-linn-161508/8e73adb0-c34c-11ed-bd3d-024670c6b6bb",
       "AmplifyAppId": "dxwp8g16s5onh",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-videoassessmentapp-linn-161508-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-videoassessmentapp-linn-161508-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-videoassessmentapp-linn-161508-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
@@ -34,10 +35,22 @@
         "AdminQueriesb3524496": {
           "deploymentBucketName": "amplify-videoassessmentapp-linn-161508-deployment",
           "s3Key": "amplify-builds/AdminQueriesb3524496-6a5769396c514d505448-build.zip"
+        },
+        "userDataLambda": {
+          "deploymentBucketName": "amplify-videoassessmentapp-linn-161508-deployment",
+          "s3Key": "amplify-builds/userDataLambda-3342555776564d757750-build.zip"
         }
       },
       "api": {
-        "AdminQueries": {}
+        "AdminQueries": {},
+        "VideoAssessmentUserInfo": {}
+      },
+      "storage": {
+        "videoassessmentappc8d8518e": {
+          "bucketName": "blurred-recordings-output",
+          "region": "us-west-2"
+        },
+        "VideoAssessmentData": {}
       }
     }
   },

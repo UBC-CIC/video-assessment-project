@@ -1,0 +1,14 @@
+{
+  "resourceName": "VideoAssessmentData",
+  "tableName": "VideoAssessmentData",
+  "partitionKey": {
+    "fieldName": "userid",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "assessmentid",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

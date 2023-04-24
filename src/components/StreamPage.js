@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { startMaster, stopMaster, master }from './master';
-import { stopViewer } from './viewer';
+import { startMaster, stopMaster, master }from '../master';
+import { stopViewer } from '../viewer';
 import AWS from 'aws-sdk';
 import * as KVSWebRTC from 'amazon-kinesis-video-streams-webrtc';
 import { Auth } from 'aws-amplify';
@@ -9,11 +9,10 @@ import { Auth } from 'aws-amplify';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Stream } from '@mui/icons-material';
+import { createSignalingChannel } from '../createSignalingChannel.js';
 
 let   ROLE          = null; // Possible values: 'master', 'viewer', null
 
-const KEYID         = '';
-const SECRETKEY     = '';
 const REGION        = "us-west-2";
 const TRICKLEICE    = true;
 const WIDESCREEN    = true;
@@ -27,7 +26,6 @@ const drawerWidth   = 240;
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
 
-let   UserID        = Math.random().toString(36).substring(6).toUpperCase();
 let   AssessmentID  = Math.random().toString(36).substring(6).toUpperCase();
 
 class StreamPage extends React.Component {
@@ -35,45 +33,30 @@ class StreamPage extends React.Component {
     return <Box sx={{ display: 'flex' }}>
         <Box
           component="main"
-          sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+          sx={{ flexGrow: 1, bgcolor: 'background.default' }}
         >
         <br/>
         <br/>
         <br/>
-
-          <form>
-              <input type="text" name="accessKeyId" className="form-control" id="accessKeyId" placeholder="Access Key ID" onChange={this.handleAccessKeyChange}></input>
-              <input type="password" name="secretAccessKey" className="form-control" id="secretAccessKey" placeholder="Secret Access Key" onChange={this.handleSecretAccessKeyChange}></input>
-          </form>
           <br/>
           <div id="master" className="d-none">
               <div className="row">
                   <div className="col">
-                      <div className="video-container"><video className="local-view" autoPlay playsInline controls muted /></div>
+                      <div className="video-container">
+                        <video className="local-view" autoPlay playsInline controls muted width="640" height="360"/>
+                      </div>
                   </div>
               </div>
-              {/* <div className="row datachannel">
-                  <div className="col">
-                      <div className="form-group">
-                        <textarea type="text" className="form-control local-message" placeholder="DataChannel Message"> </textarea>
-                      </div>
-                  </div>
-                  <div className="col">
-                      <div className="card bg-light mb-3">
-                          <pre className="remote-message card-body text-monospace preserve-whitespace"></pre>
-                      </div>
-                  </div>
-              </div> */}
           </div>
           <div className="card">
           <div style = {{alignItems: 'flex-right'}}>
             <Button variant="outlined" onClick={masterClick} id="master-button" type="button" className="btn btn-primary">Start Stream</Button>
             <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop Stream and Recording</Button>
-            <Button variant="outlined" >Review Recording</Button>
+            {/* <Button variant="outlined" >Review Recording</Button> */}
             <Button variant="outlined" onClick={startRecording} id="start-recording" type="button" className="btn btn-primary">Start Recording</Button>
             <Button variant="outlined" onClick={saveRecording} id="save-recording" type="button" className="btn btn=primary">Save Recording</Button>
           </div>
-        </div>
+        </div>  
         </Box>
       </Box>
     
@@ -87,12 +70,17 @@ function getRandomClientId() {
       .toUpperCase();
 }
 
-let channelName = 'michael-test';
+async function getFormValues() {
+  const credentials = await Auth.currentCredentials();
+  const user = await Auth.currentAuthenticatedUser();
+  // console.log(credentials.sessionToken);
+  // console.log(credentials);
+  
+  // AWS.config.credentials = credentials;
 
-function getFormValues() {
   return {
       region: REGION, 
-      channelName: channelName, 
+      channelName: user.attributes.sub, 
       clientId: getRandomClientId(),
       sendVideo: SENDVID,
       sendAudio: SENDAUD,
@@ -102,20 +90,21 @@ function getFormValues() {
       useTrickleICE: TRICKLEICE,
       natTraversalDisabled: NATDISABLE,
       forceTURN: FORCETURN,
-      accessKeyId: Auth.currentCredentials().accessKeyId,
+      accessKeyId: credentials.accessKeyId,
       // endpoint: $('#endpoint').val() || null,
-      secretAccessKey: Auth.currentCredentials().secretAccessKey,
-      // sessionToken: $('#sessionToken').val() || null,
+      secretAccessKey: credentials.secretAccessKey,
+      sessionToken: credentials.sessionToken,
   };
 }
 
-function toggleDataChannelElements() {
-  if (getFormValues().openDataChannel) {
-      '.datachannel'.removeClass('d-none');
-  } else {
-      '.datachannel'.addClass('d-none');
-  }
-}
+
+// function toggleDataChannelElements() {
+//   if (getFormValues().openDataChannel) {
+//       '.datachannel'.removeClass('d-none');
+//   } else {
+//       '.datachannel'.addClass('d-none');
+//   }
+// }
 
 function onStatsReport(report) {
   // TODO: Publish stats
@@ -154,23 +143,26 @@ async function masterClick() {
   const remoteView = 0;//'#master .remote-view'[0];
   const localMessage = '';//#master .local-message'[0];
   const remoteMessage = '';//#master .remote-message'[0];
-  const formValues = getFormValues();
+  const formValues = await getFormValues();
+
+  console.log(formValues.accessKeyId);
+  console.log(formValues.secretAccessKey);
 
   // remoteMessage = '';
   // localMessage.value = '';
   // toggleDataChannelElements();
 
-  // createSignalingChannel(formValues);
+  createSignalingChannel(formValues);
 
   await new Promise(r => setTimeout(r, 1000)); //sleep 1 second
-
+  
   startMaster(localView, remoteView, formValues, onStatsReport, event => {
       remoteMessage.append(`${event.data}\n`);
   });
 };
 
 async function startRecording(){
-  const formValues = getFormValues();
+  const formValues = await getFormValues();
   let getSignalingChannelEndpointResponse;
   try {
     // Get signaling channel endpoints for WEBRTC
@@ -247,7 +239,9 @@ async function startRecording(){
 }
 
 async function saveRecording(){
-  const formValues = getFormValues();
+  const formValues = await getFormValues();
+  const UserID = await Auth.currentUserInfo().attributes.sub;
+
   const lambdaClient = new AWS.Lambda({
     region: 'us-west-2',
     accessKeyId: formValues.accessKeyId,

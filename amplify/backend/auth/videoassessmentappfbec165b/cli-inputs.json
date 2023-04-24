@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "videoassessmentappfbec165b_identitypool_fbec165b",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "videoafbec165b",
     "userPoolName": "videoassessmentappfbec165b_userpool_fbec165b",
     "autoVerifiedAttributes": [

@@ -25,7 +25,7 @@ export async function startMaster(localView, remoteView, formValues, onStatsRepo
         region: formValues.region,
         accessKeyId: formValues.accessKeyId,
         secretAccessKey: formValues.secretAccessKey,
-        sessionToken: null, //formValues.sessionToken,
+        sessionToken: formValues.sessionToken,
         endpoint: null, //formValues.endpoint,
         correctClockSkew: true,
     });
@@ -68,7 +68,7 @@ export async function startMaster(localView, remoteView, formValues, onStatsRepo
         credentials: {
             accessKeyId: formValues.accessKeyId,
             secretAccessKey: formValues.secretAccessKey,
-            sessionToken: null, //formValues.sessionToken,
+            sessionToken: formValues.sessionToken,
         },
         systemClockOffset: kinesisVideoClient.config.systemClockOffset,
     });

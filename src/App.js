@@ -24,9 +24,9 @@ import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
-import StreamPage from "./components/StreamPage";
-import { createSignalingChannel } from './createSignalingChannel';
-import Dashboard from './login';
+import StreamPage from './components/StreamPage';
+import Dashboard from './components/login';
+import DownloadPage from './components/DownloadPage';
 
 
 function App() {
@@ -35,24 +35,23 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
         <div style={{ display: 'flex' }}>
           <CssBaseline />
-          {/* <AppBar position="fixed">
+          <AppBar position="fixed">
             <Toolbar>
-              <Typography variant="h6" noWrap component="div">
+              <Typography variant="h6" noWrap align='center'>
                 Video Upload Centre
               </Typography>
             </Toolbar>
-          </AppBar> */}
+          </AppBar>
+          <Router>
           <Drawer
-            style={{ width: '500px' }}
+            style={{ width: '500px', marginTop:100 }}
             variant="permanent"
             anchor="left"
             open={true}
             width='inherit'
           >
-            
             <List>
               <Link to="/" className='link'>
                 <ListItem>
@@ -64,7 +63,6 @@ function App() {
                   </ListItemButton>
                 </ListItem>
               </Link>
-
               <Link to="/record" className='link'>
                 <ListItem>
                   <ListItemButton>
@@ -75,7 +73,6 @@ function App() {
                   </ListItemButton>
                 </ListItem>
               </Link>
-
               <Link to="/recordings" className='link'>
                 <ListItem>
                   <ListItemButton>
@@ -89,15 +86,17 @@ function App() {
 
             </List>
           </Drawer>
-
-          <Routes>
-            <Route path="/" element={<Dashboard/>}/>
-            <Route path="/record" element={<StreamPage/>}/>
-            <Route path="/recordings" element={<Container>Recordings</Container>}/>
-          </Routes>
+          <main 
+            style={{marginTop: 100, alignContent:'center'}}
+          >
+            <Routes>
+              <Route path="/" element={<Dashboard/>}/>
+              <Route path="/record" element={<StreamPage/>}/>
+              <Route path="/recordings" element={<DownloadPage/>}/>
+            </Routes>
+          </main>
+          </Router>
         </div>
-      </Router>
-      {/* <StreamPage /> */}
     </div>
   );
 }

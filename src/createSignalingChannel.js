@@ -9,7 +9,7 @@ async function createSignalingChannel(formValues) {
         region: formValues.region,
         accessKeyId: formValues.accessKeyId,
         secretAccessKey: formValues.secretAccessKey,
-        sessionToken: null, //formValues.sessionToken,
+        sessionToken: formValues.sessionToken,
         endpoint: null, //formValues.endpoint,
     });
 
