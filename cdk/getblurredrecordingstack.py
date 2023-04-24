@@ -26,13 +26,11 @@ class RecordWithFaceBlurStack(cdk.Stack):
         clipInputBucket.add_lifecycle_rule(
             id="deleteclip",
             expiration=cdk.Duration.days(1),
-            enable=True
         )
 
         awaitingBlurBucket.add_lifecycle_rule(
             id="deletenotblurred",
             expiration=cdk.Duration.days(1),
-            enable=True
         )
 
         ###############################################################################################
