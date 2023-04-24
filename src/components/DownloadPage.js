@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import { Table } from '@mui/material';
 import { List, ListItem, ListItemText, Button } from '@mui/material';
 
+const GETSIGNEDURL = config.GETSIGNEDURL;
+
 class DownloadPage extends React.Component {
     constructor(props) {
         super(props);
@@ -135,7 +137,7 @@ async function getPresignedUrls() {
         const string = keys[i];
         console.log("string is " + keys[i]);
         const params = {
-            FunctionName: 'arn:aws:lambda:us-west-2:444889511257:function:RecordWithFaceBlurStack-getsignedurl045BA946-AdotSjD2PWkY',
+            FunctionName: GETSIGNEDURL,
             // InvocationType: 'RequestResponse',
             // LogType: 'Tail',
             Payload: JSON.stringify({ key: string }),
