@@ -24,8 +24,12 @@ let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
 let   streamARN;
 let   channelARN;
+let   blurSelector  = true;
 
 class StreamPage extends React.Component {
+  componentDidMount() {window.addEventListener('beforeunload', deleteStream(streamARN, channelARN, getFormValues()))}
+  componentWillUnmount() {window.addEventListener('beforeunload', deleteStream(streamARN, channelARN, getFormValues()))} // not sure if this works
+
   render () {
     return <Box sx={{ display: 'flex' }}>
         <Box
@@ -51,6 +55,7 @@ class StreamPage extends React.Component {
             <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop Stream and Recording</Button>
             {/* <Button variant="outlined" >Review Recording</Button> */}
             <Button variant="outlined" onClick={startRecording} id="start-recording" type="button" className="btn btn-primary">Start Recording</Button>
+            <Switch label="Blur faces in recording" onChange={()=>{blurSelector = !blurSelector}} defaultChecked />
             <Button variant="outlined" onClick={saveRecording} id="save-recording" type="button" className="btn btn=primary">Save Recording</Button>
           </div>
         </div>  
@@ -182,7 +187,6 @@ async function saveRecording(){
     accessKeyId: formValues.accessKeyId,
     secretAccessKey: formValues.secretAccessKey
   });
-  const blurSelector = true; // CHANGE THIS TO BE TOGGLED BY ELEMENT ON SCREEN
 
   try{
     const getClipPayload = {
