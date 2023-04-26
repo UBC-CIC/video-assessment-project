@@ -121,6 +121,7 @@ function onStop() {
   } else {
       stopViewer();
   }
+  deleteStream(streamARN, channelARN, getFormValues());
 
   ROLE = null;
 }
