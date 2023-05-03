@@ -67,7 +67,7 @@ export async function deleteStream(streamARN, channelARN, formValues){
         .updateMediaStorageConfiguration({
             ChannelARN: channelARN,
             MediaStorageConfiguration: { 
-                Status: 'DISABLE',
+                Status: 'DISABLED',
                 StreamARN: streamARN 
             }
         })
