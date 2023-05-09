@@ -15,7 +15,7 @@ exports.handler = async (event) => {
     })
 
     try{
-        const putItemResponse = DynamoDBClient.putItem({
+        const putItemResponse = await DynamoDBClient.putItem({
             Item: {
                 "userid": {S: userid},
                 "assessmentid": {S: assessmentid},
@@ -23,7 +23,7 @@ exports.handler = async (event) => {
             },
             ReturnConsumedCapacity: 'TOTAL',
             TableName: TABLENAME
-        })
+        }).promise();
         console.log(putItemResponse);
 
         return {
