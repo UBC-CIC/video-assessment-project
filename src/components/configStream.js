@@ -7,8 +7,37 @@ export async function configureStream(streamName, formValues){
         correctClockSkew: true,
         accessKeyId: formValues.accessKeyId,
         secretAccessKey: formValues.secretAccessKey,
+        sessionToken: formValues.sessionToken,
     })
 
+    // const describeStreamResponse = await KVSClient
+    //     .describeStream({
+    //         StreamName: streamName,
+    //     })
+    //     .promise();
+    // console.log(describeStreamResponse);
+    // const streamARN = describeStreamResponse.StreamInfo.StreamARN;
+
+    // console.log("testing describechannel");
+    // const describeChannelResponse = await KVSClient
+    //     .describeSignalingChannel({
+    //         ChannelName: formValues.channelName,
+    //     }).promise();
+    // console.log(describeChannelResponse);
+    // const channelARN = describeChannelResponse.ChannelInfo.ChannelARN;
+
+
+    // const configureStorageResponse = await KVSClient
+    //     .updateMediaStorageConfiguration({
+    //         ChannelARN: channelARN,
+    //         MediaStorageConfiguration: { 
+    //             Status: 'DISABLED',
+    //             StreamARN: streamARN
+    //         }
+    //     }).promise();
+    // console.log(configureStorageResponse);
+
+    console.log("testing createsignalingchannel");
     const createChannelResponse = await KVSClient
         .createSignalingChannel({
             ChannelName: formValues.channelName,
@@ -18,13 +47,7 @@ export async function configureStream(streamName, formValues){
         .promise();
     console.log(createChannelResponse);
 
-    const describeChannelResponse = await KVSClient
-        .describeSignalingChannel({
-            ChannelName: formValues.channelName,
-        }).promise();
-    console.log(describeChannelResponse);
-    const channelARN = describeChannelResponse.ChannelInfo.ChannelARN;
-
+    console.log("testing createStream");
     const createStreamResponse = await KVSClient
         .createStream({
             StreamName: streamName,
@@ -35,17 +58,25 @@ export async function configureStream(streamName, formValues){
 
     const describeStreamResponse = await KVSClient
         .describeStream({
-            streamName: streamName,
+            StreamName: streamName,
         })
         .promise();
     console.log(describeStreamResponse);
     const streamARN = describeStreamResponse.StreamInfo.StreamARN;
 
+    console.log("testing describechannel");
+    const describeChannelResponse = await KVSClient
+        .describeSignalingChannel({
+            ChannelName: formValues.channelName,
+        }).promise();
+    console.log(describeChannelResponse);
+    const channelARN = describeChannelResponse.ChannelInfo.ChannelARN;
+
     const configureStorageResponse = await KVSClient
         .updateMediaStorageConfiguration({
             ChannelARN: channelARN,
             MediaStorageConfiguration: { 
-                Status: 'ENABLE',
+                Status: 'ENABLED',
                 StreamARN: streamARN
             }
         }).promise();
@@ -54,34 +85,55 @@ export async function configureStream(streamName, formValues){
     return {StreamARN: streamARN, ChannelARN: channelARN};
 }
 
-export async function deleteStream(streamARN, channelARN, formValues){
-    const KVSClient = new AWS.KinesisVideo({
+export async function deleteStream(streamName, formValues){
+    const KVSClient2 = new AWS.KinesisVideo({
         region: 'us-west-2',
         endpoint: null,
         correctClockSkew: true,
         accessKeyId: formValues.accessKeyId,
         secretAccessKey: formValues.secretAccessKey,
+        sessionToken: formValues.sessionToken,
     })
 
-    const configureStorageResponse = await KVSClient
+    console.log("trying describestream in deletestream");
+    const describeStreamResponse = await KVSClient2
+        .describeStream({
+            StreamName: streamName,
+        })
+        .promise();
+    console.log(describeStreamResponse);
+    const streamARN = describeStreamResponse.StreamInfo.StreamARN;
+
+    console.log("trying describechannel in delete");
+    const describeChannelResponse = await KVSClient2
+        .describeSignalingChannel({
+            ChannelName: formValues.channelName,
+        }).promise();
+    console.log(describeChannelResponse);
+    const channelARN = describeChannelResponse.ChannelInfo.ChannelARN;
+    
+    console.log("trying configuration in deletestream");
+    const configureStorageResponse = await KVSClient2
         .updateMediaStorageConfiguration({
             ChannelARN: channelARN,
             MediaStorageConfiguration: { 
-                Status: 'DISABLE',
+                Status: 'DISABLED',
                 StreamARN: streamARN 
             }
         })
         .promise();
     console.log(configureStorageResponse);
 
-    const deleteStreamResponse = await KVSClient
+    console.log("testing deletestream");
+    const deleteStreamResponse = await KVSClient2
         .deleteStream({
             StreamARN: streamARN
         })
         .promise();
     console.log(deleteStreamResponse);
 
-    const deleteChannelResponse = await KVSClient
+    console.log("testing deletesignalingchannel");
+    const deleteChannelResponse = await KVSClient2
         .deleteSignalingChannel({
             ChannelARN: channelARN
         })

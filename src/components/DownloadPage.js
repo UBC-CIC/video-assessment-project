@@ -39,7 +39,7 @@ class DownloadPage extends React.Component {
         );
       }
 }
-async function getUserVideos(){ //TODO return keys
+async function getUserVideos(){ 
     const creds = await Auth.currentCredentials();
     const user = await Auth.currentUserInfo();
 

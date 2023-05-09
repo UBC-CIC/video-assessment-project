@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { startMaster, stopMaster, master, joinSession }from './master';
-import { stopViewer } from './viewer';
+import { useState, useEffect } from 'react';
+import { startMaster, stopMaster, master, joinSession }from '../master';
+import { stopViewer } from '../viewer';
 import { configureStream, deleteStream} from './configStream.js';
 import AWS from 'aws-sdk';
 import * as KVSWebRTC from 'amazon-kinesis-video-streams-webrtc';
@@ -9,6 +9,7 @@ import { Auth } from 'aws-amplify';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Switch from '@mui/material/Switch';
 import { Stream } from '@mui/icons-material';
 import { createSignalingChannel } from '../createSignalingChannel.js';
 
@@ -22,13 +23,23 @@ const drawerWidth   = 240;
 
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
-let   streamARN;
-let   channelARN;
 let   blurSelector  = true;
 
 class StreamPage extends React.Component {
-  componentDidMount() {window.addEventListener('beforeunload', deleteStream(streamARN, channelARN, getFormValues()))}
-  componentWillUnmount() {window.addEventListener('beforeunload', deleteStream(streamARN, channelARN, getFormValues()))} // not sure if this works
+  async componentDidMount() {
+    console.log("trying masterclick");
+    const formValues = await getFormValues();
+    await configureStream(formValues.channelName, formValues);
+    console.log("masterclick success");
+  }
+  async componentWillUnmount() {
+    // const user = await Auth.currentAuthenticatedUser();
+    // let streamName = user.attributes.sub;
+    // const formValues = await getFormValues();
+    // console.log("trying deletestream");
+    // await deleteStream(streamName, formValues);
+    // console.log("deletestream success")
+  } // The above implementation is currently buggy, if the user tries to load the page again while the stream is deleting on AWS, there will be an unresolved error that requires manual deletion
 
   render () {
     return <Box sx={{ display: 'flex' }}>
@@ -51,12 +62,10 @@ class StreamPage extends React.Component {
           </div>
           <div className="card">
           <div style = {{alignItems: 'flex-right'}}>
-            <Button variant="outlined" onClick={masterClick} id="master-button" type="button" className="btn btn-primary">Start Stream</Button>
-            <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop Stream and Recording</Button>
-            {/* <Button variant="outlined" >Review Recording</Button> */}
-            <Button variant="outlined" onClick={startRecording} id="start-recording" type="button" className="btn btn-primary">Start Recording</Button>
-            <Switch label="Blur faces in recording" onChange={()=>{blurSelector = !blurSelector}} defaultChecked />
-            <Button variant="outlined" onClick={saveRecording} id="save-recording" type="button" className="btn btn=primary">Save Recording</Button>
+            <Button variant="outlined" onClick={masterClick}>Start Recording</Button>
+            <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop and Save Recording</Button>
+            <Switch label="Blur faces in recording" onChange={()=>{blurSelector = !blurSelector}} defaultChecked>Blur Face?</Switch>
+            {/* <Button variant="outlined" onClick={saveRecording} id="save-recording" type="button" className="btn btn=primary">Save Recording</Button> */}
           </div>
         </div>  
         </Box>
@@ -78,7 +87,6 @@ async function getFormValues() {
   // console.log(credentials.sessionToken);
   // console.log(credentials);
   
-  // AWS.config.credentials = credentials;
   return {
       region: REGION, 
       channelName: user.attributes.sub, 
@@ -111,7 +119,11 @@ function onStatsReport(report) {
   // TODO: Publish stats
 }
 
-function onStop() {
+async function onStop() {
+  const user = await Auth.currentAuthenticatedUser();
+  
+  saveRecording();
+
   if (!ROLE) {
       return;
   }
@@ -121,7 +133,10 @@ function onStop() {
   } else {
       stopViewer();
   }
-  deleteStream(streamARN, channelARN, getFormValues());
+  // console.log("trying deletestream");
+  // let formValues = await getFormValues();
+  // await deleteStream(user.attributes.sub, formValues);
+  // console.log("deletestream success");
 
   ROLE = null;
 }
@@ -147,17 +162,8 @@ async function masterClick() {
   const remoteMessage = '';//#master .remote-message'[0];
   const formValues = await getFormValues();
 
-  console.log(formValues.accessKeyId);
-  console.log(formValues.secretAccessKey);
-
-  // remoteMessage = '';
-  // localMessage.value = '';
-  // toggleDataChannelElements();
-
-  // createSignalingChannel(formValues);
-  const arnResp = await configureStream(`${formValues.channelName}-stream`, formValues);
-  streamARN = arnResp.StreamARN;
-  channelARN = arnResp.ChannelARN;
+  // const arnResp = await configureStream(formValues.channelName, formValues);
+  // console.log("configstream success")
 
   await new Promise(r => setTimeout(r, 1000)); //sleep 1 second
   
@@ -169,6 +175,8 @@ async function masterClick() {
 
   console.log('Calling join session');
   joinSession(formValues);
+
+  startRecording();
 };
 
 async function startRecording(){
@@ -178,15 +186,33 @@ async function startRecording(){
 
 async function saveRecording(){
   const formValues   = await getFormValues();
-  const UserID       = await Auth.currentUserInfo().attributes.sub;
-  let   AssessmentID = Math.random().toString(36).substring(6).toUpperCase();
+  const UserID       = formValues.channelName;
+  let   AssessmentID = "TEST";
 
   endTime = new Date().toISOString();
+
+  const KVSClient = new AWS.KinesisVideo({
+    region: 'us-west-2',
+    endpoint: null,
+    correctClockSkew: true,
+    accessKeyId: formValues.accessKeyId,
+    secretAccessKey: formValues.secretAccessKey,
+    sessionToken: formValues.sessionToken,
+  })
+
+  const describeStreamResponse = await KVSClient
+    .describeStream({
+        StreamName: UserID,
+    })
+    .promise();
+  console.log(describeStreamResponse);
+  const streamARN = describeStreamResponse.StreamInfo.StreamARN;
 
   const lambdaClient = new AWS.Lambda({
     region: REGION,
     accessKeyId: formValues.accessKeyId,
-    secretAccessKey: formValues.secretAccessKey
+    secretAccessKey: formValues.secretAccessKey,
+    sessionToken: formValues.sessionToken,
   });
 
   try{
