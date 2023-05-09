@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 
 exports.handler = async (event) => {
     const REGION       = process.env.AWS_REGION;
-    const TABLENAME    = process.env.TABLE;
+    const TABLENAME    = process.env.TABLENAME;
 
     let   keyinfo      = event.Records[0].s3.object.key.split(/[^a-zA-Z0-9]/);
     
