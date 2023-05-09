@@ -117,7 +117,7 @@ function getInputList(InputBucket, NumOfClips, UserID, AssessmentID, RecordingNa
     const output = new Array(NumOfClips);
 
     for(let i=0; i<NumOfClips; i++){
-        let clipName = (i==0) ? `s3://${InputBucket}/${RecordingName}` : `s3://${InputBucket}/${UserID}/${AssessmentID}-${i}.mp4`
+        let clipName = (i==0) ? `s3://${InputBucket}/${RecordingName}` : `s3://${InputBucket}/${UserID}/${RecordingName}-${i}.mp4`
         output[i] = {
             AudioSelectors: {'Audio Selector 1': {DefaultSelection: 'DEFAULT'}},
             TimecodeSource: 'ZEROBASED',
