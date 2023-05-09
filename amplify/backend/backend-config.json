@@ -21,20 +21,6 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
-    },
-    "VideoAssessmentUserInfo": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "userDataLambda"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
     }
   },
   "auth": {
@@ -109,25 +95,6 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "userDataLambda": {
-      "build": true,
-      "dependsOn": [
-        {
-          "attributeEnvMap": {
-            "Arn": "TABLE_ARN",
-            "Name": "TABLE_NAME"
-          },
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "storage",
-          "resourceName": "VideoAssessmentData"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "videoassessmentapp75a7ee21CreateAuthChallenge": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -158,22 +125,6 @@
         {
           "category": "function",
           "resourceName": "AdminQueriesb3524496"
-        }
-      ]
-    },
-    "AMPLIFY_function_userDataLambda_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "userDataLambda"
-        }
-      ]
-    },
-    "AMPLIFY_function_userDataLambda_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "userDataLambda"
         }
       ]
     },
@@ -251,10 +202,6 @@
     }
   },
   "storage": {
-    "VideoAssessmentData": {
-      "providerPlugin": "awscloudformation",
-      "service": "DynamoDB"
-    },
     "videoassessmentappc8d8518e": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
