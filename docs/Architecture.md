@@ -1,5 +1,5 @@
 # Architecture Diagram
-![alt text](images/architecture4-1.png)
+![alt text](images/architecture4-3.png)
 ## Description 
 | ID | Resource Name                 | Description |
 | -- | ----------------------------- | ----------- | 
