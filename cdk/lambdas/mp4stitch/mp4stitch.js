@@ -12,6 +12,7 @@ exports.handler = async (event) => {
     let   NumOfClips    = 0;
     let   UserMetadata  = {};
     let   RecordingName = '';
+    let   StartTimeInt  = '';
     let   Blur          = true;
     
     if(event.UserID)        UserID        = event.UserID;
@@ -19,6 +20,7 @@ exports.handler = async (event) => {
     if(event.NumOfClips)    NumOfClips    = event.NumOfClips;
     if(event.UserMetadata)  UserMetadata  = event.UserMetadata;
     if(event.RecordingName) RecordingName = event.RecordingName;
+    if(event.StartTimeInt)  StartTimeInt  = event.StartTimeInt;
     if(event.Blur)          Blur          = event.Blur;
     
     let OutputBucket = (Blur) ? EnableBlur : DisableBlur;
@@ -63,7 +65,7 @@ exports.handler = async (event) => {
         console.log(mediaconvertEndpoint);
         MediaConvertClient.endpoint = mediaconvertEndpoint.Endpoints[0].Url;
 
-        const inputList = getInputList(InputBucket, NumOfClips, UserID, AssessmentID, RecordingName);
+        const inputList = getInputList(InputBucket, NumOfClips, UserID, AssessmentID, StartTimeInt);
         const convertJobParams = {
             Queue: QueueARN,
             UserMetadata: UserMetadata,
@@ -100,7 +102,7 @@ exports.handler = async (event) => {
 
         return {statusCode: 200, body: JSON.stringify({
             message: '[SUCCESS]: Recording uploaded to S3',
-            recordingName: RecordingName,                      
+            recordingName: `${AssessmentID}-${StartTimeInt}.mp4`,                      
             mediaConvertResponse: createJobResponse
         })};
     }catch(err){
@@ -113,11 +115,12 @@ exports.handler = async (event) => {
     }
 };
 
-function getInputList(InputBucket, NumOfClips, UserID, AssessmentID, RecordingName){
+function getInputList(InputBucket, NumOfClips, UserID, AssessmentID, StartTimeInt){
     const output = new Array(NumOfClips);
 
     for(let i=0; i<NumOfClips; i++){
-        let clipName = (i==0) ? `s3://${InputBucket}/${RecordingName}` : `s3://${InputBucket}/${RecordingName}-${i}.mp4`
+        let clipName = `s3://${InputBucket}/${AssessmentID}-${StartTimeInt}-${i}.mp4`;
+        if(i==0) clipName = `s3://${InputBucket}/${AssessmentID}-${StartTimeInt}.mp4`;
         output[i] = {
             AudioSelectors: {'Audio Selector 1': {DefaultSelection: 'DEFAULT'}},
             TimecodeSource: 'ZEROBASED',
