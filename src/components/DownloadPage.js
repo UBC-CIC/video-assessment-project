@@ -146,9 +146,9 @@ async function getPresignedUrls() {
         };
         const response = await lambda.invoke(params).promise();
         if (!response) throw new Error('no response');
-        const links = JSON.parse(response.Payload);
-        console.log(links);
-        urls.push(links);
+        console.log(response);
+        // console.log(links);
+        // urls.push(links);
     }
     console.log(urls);
     return urls;
