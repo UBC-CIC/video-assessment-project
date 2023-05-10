@@ -247,7 +247,7 @@ async function saveRecording(){
       AssessmentID: AssessmentID,
       NumOfClips: clipResponseInfo.fragmentcount,
       UserMetadata: {UserID: UserID, AssessmentID: AssessmentID},
-      RecordingName: `${UserID}/${AssessmentID}-${startTimeInt}.mp4`,
+      StartTimeInt: startTimeInt,
       Blur: blurSelector
     }
     const recordingResponse = await lambdaClient.invoke({

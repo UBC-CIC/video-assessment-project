@@ -2,20 +2,20 @@ const AWS = require('aws-sdk');
 
 exports.handler = async (event) => {
     const REGION       = process.env.AWS_REGION;
-    const TABLENAME    = process.env.TABLE;
+    const TABLENAME    = process.env.TABLENAME;
 
-    let   keyinfo      = event.Records[0].s3.object.key.split(/[^a-zA-Z0-9]/);
+    let   keyinfo      = event.Records[0].s3.object.key.split('\/');
     
     let   userid       = keyinfo[0];
-    let   assessmentid = keyinfo[1];
-    let   starttime    = keyinfo[2];
+    let   assessmentid = keyinfo[1].split(/[.-]/)[0];
+    let   starttime    = keyinfo[1].split(/[.-]/)[1];
 
     const DynamoDBClient = new AWS.DynamoDB({
         region: REGION,
     })
 
     try{
-        const putItemResponse = DynamoDBClient.putItem({
+        const putItemResponse = await DynamoDBClient.putItem({
             Item: {
                 "userid": {S: userid},
                 "assessmentid": {S: assessmentid},
@@ -23,7 +23,7 @@ exports.handler = async (event) => {
             },
             ReturnConsumedCapacity: 'TOTAL',
             TableName: TABLENAME
-        })
+        }).promise();
         console.log(putItemResponse);
 
         return {

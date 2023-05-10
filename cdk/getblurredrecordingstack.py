@@ -40,7 +40,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
         ## Allocate dynamodb table to manage user info regarding recordings
         videodata = dynamodb.Table(self, "videodata",
             partition_key=dynamodb.Attribute(name="userid", type=dynamodb.AttributeType.STRING),
-            sort_key=dynamodb.Attribute(name="assessmentid", type=dynamodb.AttributeType.STRING),
+            sort_key=dynamodb.Attribute(name="starttime", type=dynamodb.AttributeType.STRING)
         )
 
         ###############################################################################################
@@ -235,7 +235,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             timeout=cdk.Duration.seconds(600), 
             memory_size=1024,
             code=lambda_.Code.from_asset('./lambdas/putrecordingid'),
-            handler="putrecordingid.lambda_handler",
+            handler="putrecordingid.handler",
             runtime=lambda_.Runtime.NODEJS_16_X
         )
 
