@@ -21,7 +21,7 @@ class DownloadPage extends React.Component {
       async componentDidMount() {
         const urls = await getPresignedUrls();
         console.log("first url is " + urls[0]);
-        // this.setState({ urls });
+        this.setState({ urls });
       }
 
       render() {
@@ -60,7 +60,7 @@ async function getUserVideos(){
     const params = {
         // Define the expression attribute value, which are substitutes for the values you want to compare.
         ExpressionAttributeValues: {
-            ":userid": {S: "testid" }, //user.attributes.sub},
+            ":userid": {S: user.attributes.sub},
         },
         KeyConditionExpression: "userid=:userid",
         ProjectionExpression: "userid, assessmentid, starttime",
@@ -127,7 +127,7 @@ async function getPresignedUrls() {
     let keys = await getUserVideos();
     console.log("keys in geturl are " + keys);
 
-    const urls = [];
+    let urls = [];
     const lambda = new AWS.Lambda({
         accessKeyId: creds.accessKeyId,
         secretAccessKey: creds.secretAccessKey,
@@ -136,21 +136,22 @@ async function getPresignedUrls() {
     });
           
     for (let i = 0; i < keys.length; i++) {
-        const string = keys[i];
+        let string = keys[i];
         console.log("string is " + keys[i]);
-        const params = {
+        let params = {
             FunctionName: GETSIGNEDURL,
             // InvocationType: 'RequestResponse',
             // LogType: 'Tail',
             Payload: JSON.stringify({ key: string }),
         };
-        const response = await lambda.invoke(params).promise();
+        let response = await lambda.invoke(params).promise();
         if (!response) throw new Error('no response');
-        const links = JSON.parse(response.Payload);
-        console.log(links);
-        urls.push(links);
+        let links = JSON.parse(response.Payload);
+        let link = links.body;
+        console.log("link is " + link);
+        urls.push(link);
     }
-    console.log(urls);
+    console.log("urls are " + urls);
     return urls;
 } 
 export default DownloadPage;
