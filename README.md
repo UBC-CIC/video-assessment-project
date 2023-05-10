@@ -12,7 +12,7 @@ Start by following the instructions [here](https://github.com/UBC-CIC/video-asse
 # Screenshots
 
 ## Login Page
-
+![alt text](./docs/images/login.png)
 ## Recording Page
 
 ## Download Page
