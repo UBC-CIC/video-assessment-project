@@ -10,6 +10,8 @@ import { Auth } from 'aws-amplify';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { Stream } from '@mui/icons-material';
 
 let   ROLE          = null; // Possible values: 'master', 'viewer', null
@@ -48,12 +50,13 @@ class StreamPage extends React.Component {
         >
           <br/>
           <br/>
-          <br/>
-          <br/>
           <div>
             <form>
-              <input type="text" id="assessmentId" placeholder="Assessment ID"></input>
+              <input type="text" id="assessmentId" placeholder="Assessment ID" style = {{alignItems: 'right'}}></input>
             </form>
+            <FormGroup>
+              <FormControlLabel control={<Switch onChange={()=>{blurSelector = !blurSelector}} defaultChecked/>} label="Face Blurring"/>
+            </FormGroup>
           </div>
           <br/>
           <div id="master" className="d-none">
@@ -69,8 +72,6 @@ class StreamPage extends React.Component {
             <div style = {{alignItems: 'flex-right'}}>
               <Button variant="outlined" onClick={masterClick}>Start Recording</Button>
               <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop and Save Recording</Button>
-              <Switch label="Blur faces in recording" onChange={()=>{blurSelector = !blurSelector}} defaultChecked>Blur Face?</Switch>
-              {/* <Button variant="outlined" onClick={saveRecording} id="save-recording" type="button" className="btn btn=primary">Save Recording</Button> */}
             </div>
           </div>  
         </Box>
