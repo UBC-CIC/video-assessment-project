@@ -7,7 +7,8 @@ import { Table } from '@mui/material';
 import { List, ListItem, ListItemText, Button } from '@mui/material';
 
 let   config       = require('./config.json');
-const GETSIGNEDURL = config.GETSIGNEDURL;
+const GETSIGNEDURL = config.getsignedurl;
+const VIDEODATA    = config.videodata;
 
 class DownloadPage extends React.Component {
     constructor(props) {
@@ -59,11 +60,11 @@ async function getUserVideos(){
     const params = {
         // Define the expression attribute value, which are substitutes for the values you want to compare.
         ExpressionAttributeValues: {
-            ":userid": {S: "testid"},
+            ":userid": {S: "testid" }, //user.attributes.sub},
         },
         KeyConditionExpression: "userid=:userid",
         ProjectionExpression: "userid, assessmentid, starttime",
-        TableName: "VideoAssessmentData"
+        TableName: VIDEODATA
     };
 
     try {

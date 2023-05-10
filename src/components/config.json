@@ -2,6 +2,7 @@
     "region"       : "us-west-2",
     "getclip"      : "RecordWithFaceBlurStack-getClipsKVS3F97D572-ob7VWMiqB3dh",
     "mp4stitch"    : "RecordWithFaceBlurStack-mp4stitch3D9F2EDC-VyS1ADOrIfQb", 
-    "getsignedurl" : "RecordWithFaceBlurStack-getsignedurl045BA946-AdotSjD2PWkY"
+    "getsignedurl" : "RecordWithFaceBlurStack-getsignedurl045BA946-AdotSjD2PWkY",
+    "videodata"    : "RecordWithFaceBlurStack-videodata743EB43A-HKIVGISX4LHO"
 }
 
