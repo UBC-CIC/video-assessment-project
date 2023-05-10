@@ -147,7 +147,7 @@ class RecordWithFaceBlurStack(cdk.Stack):
             timeout=cdk.Duration.seconds(600), 
             memory_size=1024,
             code=lambda_.Code.from_asset('./lambdas/getsignedurl'),
-            handler='getsignedurl.handler',
+            handler='getSignedURL.handler',
             runtime=lambda_.Runtime.NODEJS_16_X
         )
 
