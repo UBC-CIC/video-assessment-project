@@ -39,9 +39,11 @@ The two buttons and one switch on this page are the three ways for the user to i
 - The `Start Recording` button starts the camera feed and sets the timestamp that marks the beginning of the recording session. Pressing this button while the recording is ongoing will reset the starting time
 - The `Stop and Save Recording` button stops the camera feed and sets the timestamp that marks the end of the recording session. The time it takes to save a recording is dependent on the length of the recording, after a short amount of time, the user will be able to find their recording on the [Download Page](#download-page)
 - The `Face blurring` switch sets whether the saved recording will have faces blurred or unblurred. Users may receive specific instructions from the assessment provider whether a recording should have faces blurred. Users may also be given the choice of having their faces blurred for privacy concerns. The implementation of this switch is ambiguous due to the different potential use cases.
-  ![alt text](images/find_group.png)
+  ![alt text](images/VideoAssessmentRecordingPage.png)
 
 ## Download Page
 
-This page displays a series of buttons, each button corresponding to a recording that was made by the user. Clicking on the button will start the download process for the corresponding recording. 
+This page displays a series of buttons, each row corresponding to a recording that was made by the user. Clicking on the informative `Download Button` will start the download process for the corresponding recording, while clicking on the `Copy Link` button will copy a presigned URL for the download to the user's clipboard, which they can share with others.
+
+![alt text](images/VideoAssessmentDownloadPage.png)
 
