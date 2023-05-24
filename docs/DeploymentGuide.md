@@ -1,36 +1,40 @@
-# Requirements
+# Deployment Guide
+
+## Requirements
 
 Before you deploy, you must have the following in place:
-*  [AWS Account](https://aws.amazon.com/account/) 
-*  [GitHub Account](https://github.com/) 
-*  [AWS CLI](https://aws.amazon.com/cli/) 
-*  [AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
-*  [Docker Desktop](https://www.docker.com/products/docker-desktop/)  
 
+* [AWS Account](https://aws.amazon.com/account/)
+* [GitHub Account](https://github.com/)
+* [AWS CLI](https://aws.amazon.com/cli/)
+* [AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-# Step 1: Clone The Repository
+## Step 1: Clone The Repository
 
 First, clone the github repository onto your machine. To do this:
+
 1. Create a folder on your desktop to contain the code.
 2. Open terminal (or command prompt if on windows) and **cd** into the above folder.
 3. Clone the github repository by entering the following:
+
 ```bash
 git clone https://github.com/UBC-CIC/video-assessment-project.git
 ```
 
 The code should now be in the above folder. Now navigate into the video-assessment-project folder by running the following command:
+
 ```bash
 cd video-assessment-project
 ```
 
-
-# Step 2: Frontend Deployment (TODO)
+## Step 2: Frontend Deployment (WIP)
 
 Before installing Amplify we need to create the IAM Role that associate the policies need to implement this solution. 
 Navigate to the cloned directory, execute the follow CloudFormation template:
 
 ```bash
-aws cloudformation deploy --template-file cfn-amplifyRole.yaml --stack-name amplifyconsole-tapgives-backend-role --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation deploy --template-file cfn-amplifyRole.yaml --stack-name amplifyconsole--backend-role --capabilities CAPABILITY_NAMED_IAM
 ```
 
 If you have multiple AWS Profiles, specify one with sufficient admin permissions by appending this to the command, replacing the profile name 
@@ -38,13 +42,12 @@ If you have multiple AWS Profiles, specify one with sufficient admin permissions
 ```bash
 --profile [PROFILE NAME]
 ```
-The previous command creates the role name **amplifyconsole-tapgives-backend-role** that will be used on the next step.
+
+The previous command creates the role name **amplifyconsole--backend-role** that will be used on the next step.
 
 The **Deploy to Amplify Console** button will take you to your AWS console to deploy the front-end solution.
 
-<a href="https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/UBC-CIC/TapGives">
-    <img src="https://oneclick.amplifyapp.com/button.svg" alt="Deploy to Amplify Console">
-</a>
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/UBC-CIC/video-assessment-project)
 
 1. On the AWS console. select your region on the top right, then connect to github![alt text](images/amplify-console-01.png)
 2. Select the **amplifyconsole-tapgives-backend-role** for deployment![alt text](images/amplify-console-02.png)
