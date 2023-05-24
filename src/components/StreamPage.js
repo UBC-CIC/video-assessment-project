@@ -43,11 +43,10 @@ class StreamPage extends React.Component {
   } // The above implementation is currently buggy, if the user tries to load the page again while the stream is deleting on AWS, there will be an unresolved error that requires manual deletion
 
   render () {
-    return <Box sx={{ display: 'flex' }}>
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: 'background.default' }}
-        >
+    return (
+      <Box justifyContent='center' sx={{ display: 'flex', position: 'relative'}}>
+        <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default' }}>
+          <br/>
           <br/>
           <br/>
           <div>
@@ -56,16 +55,13 @@ class StreamPage extends React.Component {
             </form>
             <FormGroup>
               <FormControlLabel control={<Switch onChange={()=>{blurSelector = !blurSelector}} defaultChecked/>} label="Face Blurring"/>
+              <div align="left">Note: Blur will be applied after recording.</div>
             </FormGroup>
           </div>
           <br/>
           <div id="master" className="d-none">
-              <div className="row">
-                  <div className="col">
-                      <div className="video-container">
-                        <video className="local-view" autoPlay playsInline controls muted width="640" height="360"/>
-                      </div>
-                  </div>
+              <div className="video-container">
+                <video className="local-view" autoPlay playsInline controls muted width="640" height="360"/>
               </div>
           </div>
           <div className="card">
@@ -74,9 +70,13 @@ class StreamPage extends React.Component {
               <Button variant="outlined" onClick={onStop} id="stop-master-button" type="button" className="btn btn-primary">Stop and Save Recording</Button>
             </div>
           </div>  
+          <div style={{ position: 'absolute', top: 0, right: 0, padding: '10px' }}>
+          Recording is only available to authenticated accounts. Please fill in the Assessment ID for your recording.
+          </div>
+          <br/>
         </Box>
       </Box>
-    
+    )
   }
 }
 
@@ -87,7 +87,7 @@ function getRandomClientId() {
       .toUpperCase();
 }
 
-async function getFormValues() {
+export async function getFormValues() {
   const credentials = await Auth.currentCredentials();
   const user = await Auth.currentAuthenticatedUser();
   // console.log(credentials.sessionToken);

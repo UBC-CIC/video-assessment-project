@@ -1,25 +1,36 @@
 
 import React from 'react';
-import { Amplify } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify';
+import {deleteStream} from './configStream';
+import {getFormValues} from './StreamPage';
 
 import awsExports from '../aws-exports';
+import SignIn from '../App.js'
 
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import { CurrencyBitcoin } from '@mui/icons-material';
 
 Amplify.configure(awsExports)
 
-function Dashboard() {
- return(
+async function handleSignOut(){
+  let user = await Auth.currentAuthenticatedUser();
+  let vals = await getFormValues();
+  Auth.signOut();
+  await deleteStream(user.attributes.sub, vals);
+}
+
+function Login() {
+  return(
     <Authenticator>
       {({ signOut, user }) => (
         <main>
           <h1>Logged in as: {user.username}</h1>
-          <button onClick={signOut}>Sign out</button>
+          <button onClick={handleSignOut}>Sign out</button>
         </main>
       )}
     </Authenticator>
  )
 }
 
-export default Dashboard
+export default Login

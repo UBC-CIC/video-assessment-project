@@ -25,7 +25,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 
 import StreamPage from './components/StreamPage';
-import Dashboard from './components/login';
+import Login from './components/Login';
 import DownloadPage from './components/DownloadPage';
 
 
@@ -50,7 +50,7 @@ function App() {
             variant="permanent"
             anchor="left"
             open={true}
-            width='inherit'
+            // width='inherit'
           >
             <List>
               <Link to="/" className='link'>
@@ -87,10 +87,10 @@ function App() {
             </List>
           </Drawer>
           <main 
-            style={{marginTop: 100, alignContent:'center'}}
+            style={{marginTop: 100, alignContent:'centre'}}
           >
             <Routes>
-              <Route path="/" element={<Dashboard/>}/>
+              <Route path="/" element={<Login/>}/>
               <Route path="/record" element={<StreamPage/>}/>
               <Route path="/recordings" element={<DownloadPage/>}/>
             </Routes>

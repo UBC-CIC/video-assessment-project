@@ -3,7 +3,7 @@ import AWS from 'aws-sdk';
 import { Amplify, Storage, Auth } from 'aws-amplify';
 
 // import Button from '@mui/material/Button';
-import { Table } from '@mui/material';
+import { Input } from '@mui/material';
 import { List, ListItem, ListItemText, Button } from '@mui/material';
 
 let   config       = require('./config.json');
@@ -15,31 +15,47 @@ class DownloadPage extends React.Component {
         super(props);
         this.state = {
           urls: [],
+          keys: [],
+          assessmentids: [],
+          starttimes: [],
         };
       }
-    
+
       async componentDidMount() {
-        let urls = await getPresignedUrls();
-        this.setState({ urls });
+        let {urls, keys, assessmentids, starttimes} = await getPresignedUrls();
+        this.setState({ urls, keys, assessmentids, starttimes });
       }
 
       render() {
-        const {urls} = this.state;
+        let {urls, keys, assessmentids, starttimes} = this.state;
       
         return (
           <div>
+            <div>
+              <input defaultValue="TEST" placeholder="Assessment ID" id="admin-search"></input>
+              <Button onClick={async () => {({urls, keys, assessmentids, starttimes} = await getPresignedUrls()); this.setState({ urls, keys, assessmentids, starttimes });}}>Retrieve Recordings</Button>
+              <div>Note: Recordings will only be accessible when logged into a user or assessor account.</div>
+              <div>The above search bar is only in use for an assessor level account.</div>
+            </div>
             <List>
-              {urls.map((urls, index) => (
-                <ListItem key={urls}>
-                  <Button href={urls} target="_blank" rel="noopener noreferrer">
-                    <ListItemText primary={"Download Recording " + index} />
+              {this.state.urls.map((url, index) => (
+                <ListItem key={url}>
+                  <Button variant="outlined" href={url} target="_blank" rel="noopener noreferrer">
+                    <ListItemText primary={"Assessment: " + assessmentids[index] + ",    Date: " + getDate(starttimes[index])} />
                   </Button>
+                  <Button variant="contained" onClick={() => {navigator.clipboard.writeText(url)}}>Copy Link</Button>
                 </ListItem>
               ))}
             </List>
           </div>
         );
       }
+}
+
+function getDate(time) {
+  let d = new Date(parseInt(time));
+  let ds = d.toString();
+  return ds;
 }
 
 async function getUserVideos(){ 
@@ -73,8 +89,14 @@ async function getUserVideos(){
         const data = await ddb.query(params).promise();
         console.log("Success", data);
         const keys = data.Items.map(element => `${element.userid.S}/${element.assessmentid.S}-${element.starttime.S}.mp4`);
-        console.log("Keys in getUserVideos are:", keys);
-        return keys;
+        const assessmentids = data.Items.map(element => `${element.assessmentid.S}`);
+        const starttimes = data.Items.map(element => `${element.starttime.S}`);
+        // console.log("Keys in getUserVideos are:", keys);
+        return {
+          keys: keys,
+          assessmentids: assessmentids,
+          starttimes: starttimes,
+        };
       } catch (err) {
         console.log("Error", err);
         throw err;
@@ -101,7 +123,7 @@ async function getAssessmentVideos(){
     const params = {
         // Define the expression attribute value, which are substitutes for the values you want to compare.
         ExpressionAttributeValues: {
-            ":assessmentid": {S: "abcdef"},
+            ":assessmentid": {S: document.getElementById('admin-search').value},
         },
         KeyConditionExpression: "assessmentid = :assessmentid",
         ProjectionExpression: "userid, assessmentid, starttime",
@@ -113,8 +135,14 @@ async function getAssessmentVideos(){
       const data = await ddb.query(params).promise();
       console.log("Success", data);
       const keys = data.Items.map(element => `${element.userid.S}/${element.assessmentid.S}-${element.starttime.S}.mp4`);
+      const assessmentids = data.Items.map(element => `${element.assessmentid.S}`);
+      const starttimes = data.Items.map(element => `${element.starttime.S}`);
       console.log("Keys in getUserVideos are:", keys);
-      return keys;
+      return {
+        keys: keys,
+        assessmentids: assessmentids,
+        starttimes: starttimes,
+      };
     } catch (err) {
       console.log("Error", err);
       throw err;
@@ -124,8 +152,15 @@ async function getAssessmentVideos(){
 
 async function getPresignedUrls() {
     const creds = await Auth.currentCredentials();
-    let keys = await getUserVideos();
-    // let keys = await getAssessmentVideos();
+    const user = await Auth.currentAuthenticatedUser();
+    let keys, assessmentids, starttimes;
+    const groups = user.signInUserSession.accessToken.payload["cognito:groups"];
+
+    if(groups.includes('admin')) {
+      ({keys, assessmentids, starttimes} = await getAssessmentVideos());
+    } else {
+      ({keys, assessmentids, starttimes} = await getUserVideos());
+    }
     // console.log("keys in geturl are " + keys);
 
     let urls = [];
@@ -144,7 +179,7 @@ async function getPresignedUrls() {
           secretAccessKey: creds.secretAccessKey,
           sessionToken: creds.sessionToken,
           region: 'us-west-2'
-      });
+        });
         let response = await lambda.invoke(params).promise();
         if (!response) throw new Error('no response');
         let links = JSON.parse(response.Payload);
@@ -153,6 +188,11 @@ async function getPresignedUrls() {
         urls.push(link);
     }
     // console.log("urls are " + urls);
-    return urls;
+    return {
+      urls: urls,
+      keys: keys,
+      assessmentids: assessmentids,
+      starttimes: starttimes,
+    };
 } 
 export default DownloadPage;
