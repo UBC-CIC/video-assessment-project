@@ -24,7 +24,7 @@ To deploy this solution, please follow our [Deployment Guide](docs/DeploymentGui
 
 # User Guide
 
-For instructions on how to use the web app, refer to the [User Guide](docs/UserGuide.md).
+For instructions on how to use the web app, refer to the [User Guide](docs/Userguide.md).
 
 
 # License

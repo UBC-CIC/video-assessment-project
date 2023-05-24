@@ -122,7 +122,8 @@ Open the file named config.json in your preferred text editor, the file should l
     "region"       : "us-west-2",
     "getclip"      : PASTE GETCLIP HERE,
     "mp4stitch"    : PASTE MP4STITCH HERE,
-    "getsignedurl" : PASTE GETSIGNEDURL HERE
+    "getsignedurl" : PASTE GETSIGNEDURL HERE,
+    "videodata"    : PASTE VIDEODATA HERE
 }
 ```
 
