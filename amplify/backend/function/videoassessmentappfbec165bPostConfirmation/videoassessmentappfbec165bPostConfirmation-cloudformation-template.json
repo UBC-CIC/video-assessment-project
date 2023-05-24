@@ -4,7 +4,7 @@
   "Parameters": {
     "GROUP": {
       "Type": "String",
-      "Default": ""
+      "Default": "VideoAssessmentUsers"
     },
     "modules": {
       "Type": "String",
