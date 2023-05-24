@@ -13,7 +13,7 @@ There are many contexts in which the ability to record videos within a site woul
 
 ## Stack Overview
 
-The solution is a web application, which allows users to sign up, record video, or download their past recordings. A admin account is also able to search by assessment ID to obtain downloads for videos made by any user submitted for that assessment.  
+The solution is a web application, which allows users to sign up via AWS Cognito, record and stream video to Kinesis Video Streams, or download their past recordings from an S3 bucket. An admin level account is also able to search by assessment ID to obtain videos made by any user submitted for that assessment.  
 
 ![alt text](./docs/images/interactions.png)
 
