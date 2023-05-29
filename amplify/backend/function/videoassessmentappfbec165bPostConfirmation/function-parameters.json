@@ -14,5 +14,11 @@
   "roleName": "videoassessmentappfbec165bPostConfirmation",
   "skipEdit": true,
   "GROUP": "VideoAssessmentUsers",
-  "enableCors": false
+  "enableCors": false,
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "group",
+      "environmentVariableName": "GROUP"
+    }
+  ]
 }

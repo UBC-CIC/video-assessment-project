@@ -30,7 +30,8 @@
         "videoassessmentappfbec165bPostConfirmation": {
           "deploymentBucketName": "amplify-videoassessmentapp-linn-161508-deployment",
           "s3Key": "amplify-builds/videoassessmentappfbec165bPostConfirmation-7269316d4b456d484f32-build.zip",
-          "GROUP": "VideoAssessmentUsers"
+          "GROUP": "",
+          "group": "VideoAssessmentUsers"
         },
         "AdminQueriesb3524496": {
           "deploymentBucketName": "amplify-videoassessmentapp-linn-161508-deployment",

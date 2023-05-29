@@ -176,6 +176,14 @@
         }
       ]
     },
+    "AMPLIFY_function_videoassessmentappfbec165bPostConfirmation_group": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "videoassessmentappfbec165bPostConfirmation"
+        }
+      ]
+    },
     "AMPLIFY_function_videoassessmentappfbec165bPostConfirmation_s3Key": {
       "usedBy": [
         {
