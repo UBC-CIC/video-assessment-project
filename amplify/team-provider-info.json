@@ -39,12 +39,6 @@
       },
       "api": {
         "AdminQueries": {}
-      },
-      "storage": {
-        "videoassessmentappc8d8518e": {
-          "bucketName": "blurred-recordings-output",
-          "region": "us-west-2"
-        }
       }
     }
   },

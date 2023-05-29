@@ -6,9 +6,9 @@
 
 | Index                                                               | Description                                                                                        |
 | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------- |
-| [Login Page](#Login-Page)                                       | Features on the login page                                                                       |
-| [Recording Page](#Recording-Page)                               | How to create recordings                                                                               |
-| [Download Page](#Download-Page)                                     | How to download recordings                                       |
+| [Login Page](#login-page)                                       | Features on the login page                                                                       |
+| [Recording Page](#recording-page)                               | How to create recordings                                                                               |
+| [Download Page](#download-page)                                     | How to download recordings                                       |
 |                                                      |
 
 ## Login Page

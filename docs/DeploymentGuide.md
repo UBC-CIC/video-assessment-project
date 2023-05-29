@@ -34,7 +34,7 @@ Before installing Amplify we need to create the IAM Role that associate the poli
 Navigate to the cloned directory, execute the follow CloudFormation template:
 
 ```bash
-aws cloudformation deploy --template-file cfn-amplifyRole.yaml --stack-name amplifyconsole--backend-role --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation deploy --template-file cfn-amplifyRole.yaml --stack-name amplifyconsole-video-assessment-backend-role --capabilities CAPABILITY_NAMED_IAM
 ```
 
 If you have multiple AWS Profiles, specify one with sufficient admin permissions by appending this to the command, replacing the profile name 
@@ -43,14 +43,14 @@ If you have multiple AWS Profiles, specify one with sufficient admin permissions
 --profile [PROFILE NAME]
 ```
 
-The previous command creates the role name **amplifyconsole--backend-role** that will be used on the next step.
+The previous command creates the role name **amplifyconsole-video-assessment-backend-role** that will be used on the next step.
 
 The **Deploy to Amplify Console** button will take you to your AWS console to deploy the front-end solution.
 
 [![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/UBC-CIC/video-assessment-project)
 
 1. On the AWS console. select your region on the top right, then connect to github![alt text](images/amplify-console-01.png)
-2. Select the **amplifyconsole-tapgives-backend-role** for deployment![alt text](images/amplify-console-02.png)
+2. Select the **amplifyconsole-video-assessment-backend-role** for deployment![alt text](images/amplify-console-02.png)
 3. The deployment will take a few minutes.  Wait until the status shows **Verify** in green![alt text](images/amplify-console-03.png)
 4. Click on left taskbar to open menu, click on Rewrites and redirects, and click on edit ![alt text](images/amplify-console-04.png)
 5. Click and replace the first rule's source address (or add a rule if there is none) to ```</^[^.]+$|\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json)$)([^.]+$)/>```, click and replace target address to ```/index.html```, and select and replace **type** with ```200 (Rewrite)```, then save.  

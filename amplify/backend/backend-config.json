@@ -183,30 +183,7 @@
           "resourceName": "videoassessmentappfbec165bPostConfirmation"
         }
       ]
-    },
-    "AMPLIFY_storage_videoassessmentappc8d8518e_bucketName": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "videoassessmentappc8d8518e"
-        }
-      ]
-    },
-    "AMPLIFY_storage_videoassessmentappc8d8518e_region": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "videoassessmentappc8d8518e"
-        }
-      ]
     }
   },
-  "storage": {
-    "videoassessmentappc8d8518e": {
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "S3",
-      "serviceType": "imported"
-    }
-  }
+  "storage": {}
 }
