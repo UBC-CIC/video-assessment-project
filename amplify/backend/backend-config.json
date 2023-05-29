@@ -42,17 +42,7 @@
     },
     "videoassessmentappfbec165b": {
       "customAuth": false,
-      "dependsOn": [
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "videoassessmentappfbec165bPostConfirmation",
-          "triggerProvider": "Cognito"
-        }
-      ],
+      "dependsOn": [],
       "frontendAuthConfig": {
         "mfaConfiguration": "OPTIONAL",
         "mfaTypes": [
@@ -104,11 +94,6 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
-    },
-    "videoassessmentappfbec165bPostConfirmation": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
     }
   },
   "parameters": {
@@ -157,38 +142,6 @@
         {
           "category": "function",
           "resourceName": "videoassessmentapp75a7ee21DefineAuthChallenge"
-        }
-      ]
-    },
-    "AMPLIFY_function_videoassessmentappfbec165bPostConfirmation_GROUP": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "videoassessmentappfbec165bPostConfirmation"
-        }
-      ]
-    },
-    "AMPLIFY_function_videoassessmentappfbec165bPostConfirmation_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "videoassessmentappfbec165bPostConfirmation"
-        }
-      ]
-    },
-    "AMPLIFY_function_videoassessmentappfbec165bPostConfirmation_group": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "videoassessmentappfbec165bPostConfirmation"
-        }
-      ]
-    },
-    "AMPLIFY_function_videoassessmentappfbec165bPostConfirmation_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "videoassessmentappfbec165bPostConfirmation"
         }
       ]
     }

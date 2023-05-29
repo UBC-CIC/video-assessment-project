@@ -61,25 +61,11 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": [
-      {
-        "category": "function",
-        "resourceName": "videoassessmentappfbec165bPostConfirmation",
-        "triggerProvider": "Cognito",
-        "attributes": [
-          "Arn",
-          "Name"
-        ]
-      }
-    ],
+    "dependsOn": [],
     "thirdPartyAuth": false,
-    "userPoolGroups": true,
+    "userPoolGroups": false,
     "adminQueries": true,
-    "triggers": {
-      "PostConfirmation": [
-        "add-to-group"
-      ]
-    },
+    "triggers": {},
     "hostedUI": true,
     "hostedUIDomainName": "videoassessmentapp3e0afea3-3e0afea3",
     "authProvidersUserPool": [],
@@ -88,10 +74,7 @@
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"videoassessmentappfbec165bPostConfirmation\"\n  }\n]",
-    "permissions": [
-      "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
-    ],
+    "permissions": [],
     "adminQueryGroup": "VideoAssessmentUsers",
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"myapp://callback/\",\"myapp://callback/\"],\"LogoutURLs\":[\"myapp://signout/\",\"myapp://signout/\"]}"
   }
