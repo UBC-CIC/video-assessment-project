@@ -136,7 +136,7 @@ cd src
 cd components
 ```
 
-Open the file named config.json in your preferred text editor, fill in the file as shown below, replace the fields in all caps with names of the resources enclosed in quotes
+Create the file named config.json in your preferred text editor, fill in the file as shown below, replace the fields in all caps with names of the resources enclosed in quotes
 ```
 {
     "region"       : "us-west-2",
