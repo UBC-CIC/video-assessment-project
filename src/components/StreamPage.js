@@ -30,14 +30,7 @@ class StreamPage extends React.Component {
     await configureStream(formValues.channelName, formValues);
     console.log("masterclick success");
   }
-  async componentWillUnmount() {
-    // const user = await Auth.currentAuthenticatedUser();
-    // let streamName = user.attributes.sub;
-    // const formValues = await getFormValues();
-    // console.log("trying deletestream");
-    // await deleteStream(streamName, formValues);
-    // console.log("deletestream success")
-  } // The above implementation is currently buggy, if the user tries to load the page again while the stream is deleting on AWS, there will be an unresolved error that requires manual deletion
+  
 
   render () {
     return (
@@ -87,8 +80,6 @@ function getRandomClientId() {
 export async function getFormValues() {
   const credentials = await Auth.currentCredentials();
   const user = await Auth.currentAuthenticatedUser();
-  // console.log(credentials.sessionToken);
-  // console.log(credentials);
   
   return {
       region: REGION, 
@@ -110,14 +101,6 @@ export async function getFormValues() {
 }
 
 
-// function toggleDataChannelElements() {
-//   if (getFormValues().openDataChannel) {
-//       '.datachannel'.removeClass('d-none');
-//   } else {
-//       '.datachannel'.addClass('d-none');
-//   }
-// }
-
 function onStatsReport(report) {
   // TODO: Publish stats
 }
@@ -136,10 +119,6 @@ async function onStop() {
   } else {
       stopViewer();
   }
-  // console.log("trying deletestream");
-  // let formValues = await getFormValues();
-  // await deleteStream(user.attributes.sub, formValues);
-  // console.log("deletestream success");
 
   ROLE = null;
 }
@@ -160,13 +139,10 @@ async function masterClick() {
   ROLE = 'master';
 
   const localView = document.getElementsByClassName('local-view')[0]; // '#master .local-view'[0];
-  const remoteView = 0;//'#master .remote-view'[0];
-  const localMessage = '';//#master .local-message'[0];
-  const remoteMessage = '';//#master .remote-message'[0];
+  const remoteView = 0;
+  const localMessage = '';
+  const remoteMessage = '';
   const formValues = await getFormValues();
-
-  // const arnResp = await configureStream(formValues.channelName, formValues);
-  // console.log("configstream success")
 
   await new Promise(r => setTimeout(r, 1000)); //sleep 1 second
   
@@ -229,7 +205,7 @@ async function saveRecording(){
     }
     console.log(getClipPayload);
     const clipResponse = await lambdaClient.invoke({
-      FunctionName: GETCLIP_ARN, //'arn:aws:lambda:us-west-2:444889511257:function:getclip-sdkv2',
+      FunctionName: GETCLIP_ARN, 
       InvocationType: 'RequestResponse',
       LogType: 'Tail',
       Payload: JSON.stringify(getClipPayload)
@@ -249,7 +225,7 @@ async function saveRecording(){
       Blur: blurSelector
     }
     const recordingResponse = await lambdaClient.invoke({
-      FunctionName: MP4STTICH_ARN, //'arn:aws:lambda:us-west-2:444889511257:function:mp3stitch-mediaconvert',
+      FunctionName: MP4STTICH_ARN, 
       InvocationType: 'RequestResponse',
       LogType: 'Tail',
       Payload: JSON.stringify(mp4StitchPayload)

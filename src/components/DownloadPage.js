@@ -2,7 +2,6 @@ import React from 'react';
 import AWS from 'aws-sdk';
 import { Amplify, Auth } from 'aws-amplify';
 
-// import Button from '@mui/material/Button';
 import { List, ListItem, ListItemText, Button } from '@mui/material';
 
 let   config       = require('./config.json');
@@ -61,8 +60,6 @@ async function getUserVideos(){
     const creds = await Auth.currentCredentials();
     const user = await Auth.currentUserInfo();
 
-    // console.log(creds);
-
     // Create DynamoDB service object.
     var ddb = new AWS.DynamoDB({
         apiVersion: "2012-08-10", 
@@ -105,8 +102,6 @@ async function getUserVideos(){
 async function getAssessmentVideos(){
     const creds = await Auth.currentCredentials();
     const user = await Auth.currentUserInfo();
-
-    // console.log(creds);
 
     // Create DynamoDB service object.
     var ddb = new AWS.DynamoDB({
@@ -160,13 +155,11 @@ async function getPresignedUrls() {
     } else {
       ({keys, assessmentids, starttimes} = await getUserVideos());
     }
-    // console.log("keys in geturl are " + keys);
 
     let urls = [];
           
     for (let i = 0; i < keys.length; i++) {
         let string = keys[i];
-        // console.log("string is " + keys[i]);
         let params = {
             FunctionName: GETSIGNEDURL,
             // InvocationType: 'RequestResponse',
@@ -183,10 +176,8 @@ async function getPresignedUrls() {
         if (!response) throw new Error('no response');
         let links = JSON.parse(response.Payload);
         let link = links.body;
-        // console.log("link is " + link);
         urls.push(link);
     }
-    // console.log("urls are " + urls);
     return {
       urls: urls,
       keys: keys,
