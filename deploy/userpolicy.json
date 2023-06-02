@@ -1,0 +1,32 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "kinesisvideo:GetSignalingChannelEndpoint",
+                "kinesisvideo:ListFragments",
+                "lambda:InvokeFunction",
+                "kinesisvideo:GetIceServerConfig",
+                "kinesisvideo:GetClip",
+                "kinesisvideo:ListStreams",
+                "kinesisvideo:UpdateStream",
+                "kinesisvideo:DeleteStream",
+                "lambda:InvokeAsync",
+                "kinesisvideo:GetMedia",
+                "kinesisvideo:JoinStorageSession",
+                "dynamodb:Query",
+                "kinesisvideo:DeleteSignalingChannel",
+                "kinesisvideo:DescribeSignalingChannel",
+                "kinesisvideo:CreateStream",
+                "kinesisvideo:PutMedia",
+                "kinesisvideo:ConnectAsMaster",
+                "kinesisvideo:CreateSignalingChannel",
+                "kinesisvideo:ListSignalingChannels",
+                "kinesisvideo:DescribeStream"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

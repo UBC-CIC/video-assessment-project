@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { startMaster, stopMaster, master, joinSession }from '../master';
+import { startMaster, stopMaster, joinSession }from '../master';
 import { stopViewer } from '../viewer';
-import { configureStream, deleteStream} from './configStream.js';
+import { configureStream } from './configStream.js';
 import AWS from 'aws-sdk';
-import * as KVSWebRTC from 'amazon-kinesis-video-streams-webrtc';
 import { Auth } from 'aws-amplify';
 
 import Box from '@mui/material/Box';
@@ -12,7 +11,6 @@ import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { Stream } from '@mui/icons-material';
 
 let   ROLE          = null; // Possible values: 'master', 'viewer', null
 let   config        = require('./config.json');
@@ -20,7 +18,6 @@ let   config        = require('./config.json');
 const REGION        = config.region;
 const GETCLIP_ARN   = config.getclip;
 const MP4STTICH_ARN = config.mp4stitch;
-const drawerWidth   = 240;
 
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();

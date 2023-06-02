@@ -37,7 +37,7 @@
       "email"
     ],
     "userpoolClientLambdaRole": "videoafbec165b_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "fbec165b",
     "resourceName": "videoassessmentappfbec165b",
     "authSelections": "identityPoolAndUserPool",
@@ -64,18 +64,14 @@
     "dependsOn": [],
     "thirdPartyAuth": false,
     "userPoolGroups": false,
-    "adminQueries": true,
+    "adminQueries": false,
     "triggers": {},
-    "hostedUI": true,
-    "hostedUIDomainName": "videoassessmentapp3e0afea3-3e0afea3",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
+    "hostedUI": false,
     "authProviders": [],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
     "permissions": [],
-    "adminQueryGroup": "VideoAssessmentUsers",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"myapp://callback/\",\"myapp://callback/\"],\"LogoutURLs\":[\"myapp://signout/\",\"myapp://signout/\"]}"
+    "adminQueryGroup": "VideoAssessmentUsers"
   }
 }

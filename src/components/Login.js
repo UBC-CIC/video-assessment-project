@@ -5,11 +5,9 @@ import {deleteStream} from './configStream';
 import {getFormValues} from './StreamPage';
 
 import awsExports from '../aws-exports';
-import SignIn from '../App.js'
 
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import { CurrencyBitcoin } from '@mui/icons-material';
 
 Amplify.configure(awsExports)
 

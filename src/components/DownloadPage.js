@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AWS from 'aws-sdk';
-import { Amplify, Storage, Auth } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify';
 
 // import Button from '@mui/material/Button';
-import { Input } from '@mui/material';
 import { List, ListItem, ListItemText, Button } from '@mui/material';
 
 let   config       = require('./config.json');
