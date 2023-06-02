@@ -49,3 +49,7 @@ amplifytools.xcconfig
 #cdk
 cdk/__pycache__
 cdk/cdk.out
+
+#configs
+src/components/config.json
+amplify/team-provider-info.json

@@ -127,7 +127,7 @@ The stack named "RecordWithFaceBlurStack" should be the first item in the list, 
 Select the tab named "resources"
 ![alt text](images/resources.png)
 
-Find the two resources with "GetClip", "mp4stitch", and "getsignedurl" in their names, copy the names of the lambda functions in the column "physical id", and paste them to the location described in the next 2 steps.
+Find the resources with "GetClip", "mp4stitch", "getsignedurl", and "videodata" in their names, copy the names of the lambda functions in the column "physical id", and paste them to the location described in the next 2 steps.
 ![alt text](images/lambdaname.png)
 
 Now, navigate to the "components directory in your github repo with the following commands.
@@ -136,20 +136,13 @@ cd src
 cd components
 ```
 
-Open the file named config.json in your preferred text editor, the file should look something like this:
+Create the file named config.json in your preferred text editor, fill in the file as shown below, replace the fields in all caps with names of the resources enclosed in quotes
 ```
 {
-    "region"       : "us-west-2",
-    "getclip"      : PASTE GETCLIP HERE,
-    "mp4stitch"    : PASTE MP4STITCH HERE,
-    "getsignedurl" : PASTE GETSIGNEDURL HERE,
-    "videodata"    : PASTE VIDEODATA HERE
+    "region"       : "YOUR_REGION_HERE",
+    "getclip"      : "EXAMPLE_FUNCTION_NAME (getclip)",
+    "mp4stitch"    : "PASTE_MP4STITCH_HERE",
+    "getsignedurl" : "PASTE_GETSIGNEDURL_HERE",
+    "videodata"    : "PASTE_VIDEODATA_HERE"
 }
-```
-
-Save and push the changes to your github repository for them to take effect on your amplify deployment.
-```bash
-git add src
-git commit -m "CUSTOM COMMIT MESSAGE HERE"
-git push
 ```
