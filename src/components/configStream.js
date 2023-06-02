@@ -1,8 +1,9 @@
 import AWS from 'aws-sdk';
+let   config       = require('./config.json');
 
 export async function configureStream(streamName, formValues){
     const KVSClient = new AWS.KinesisVideo({
-        region: 'us-west-2',
+        region: config.region,
         endpoint: null,
         correctClockSkew: true,
         accessKeyId: formValues.accessKeyId,
@@ -87,7 +88,7 @@ export async function configureStream(streamName, formValues){
 
 export async function deleteStream(streamName, formValues){
     const KVSClient2 = new AWS.KinesisVideo({
-        region: 'us-west-2',
+        region: config.region,
         endpoint: null,
         correctClockSkew: true,
         accessKeyId: formValues.accessKeyId,

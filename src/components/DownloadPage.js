@@ -63,7 +63,7 @@ async function getUserVideos(){
     // Create DynamoDB service object.
     var ddb = new AWS.DynamoDB({
         apiVersion: "2012-08-10", 
-        region: "us-west-2", 
+        region: config.region, 
         credentials: {
             accessKeyId: creds.accessKeyId,
             secretAccessKey: creds.secretAccessKey,
@@ -106,7 +106,7 @@ async function getAssessmentVideos(){
     // Create DynamoDB service object.
     var ddb = new AWS.DynamoDB({
         apiVersion: "2012-08-10", 
-        region: "us-west-2", 
+        region: config.region, 
         credentials: {
             accessKeyId: creds.accessKeyId,
             secretAccessKey: creds.secretAccessKey,
@@ -170,7 +170,7 @@ async function getPresignedUrls() {
           accessKeyId: creds.accessKeyId,
           secretAccessKey: creds.secretAccessKey,
           sessionToken: creds.sessionToken,
-          region: 'us-west-2'
+          region: config.region
         });
         let response = await lambda.invoke(params).promise();
         if (!response) throw new Error('no response');
