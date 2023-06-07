@@ -14,6 +14,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 let   ROLE          = null; // Possible values: 'master', 'viewer', null
 let   config        = require('./config.json');
+let   pmtStore      = process.env.secrets;
 
 const REGION        = config.region;
 const GETCLIP_ARN   = config.getclip;
@@ -161,6 +162,7 @@ async function masterClick() {
 async function startRecording(){
   startTime = new Date().toISOString();
   console.log('Start time: ' + startTime);
+  console.log(`parameter store: ${pmtStore}`);
 }
 
 async function saveRecording(){
