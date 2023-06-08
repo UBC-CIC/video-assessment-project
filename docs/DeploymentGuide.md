@@ -136,13 +136,13 @@ cd src
 cd components
 ```
 
-Create the file named config.json in your preferred text editor, fill in the file as shown below, replace the fields in all caps with names of the resources enclosed in quotes
+Create a file named config.json in your preferred text editor, fill in the file as shown below, replace the fields shown in all caps with names of the resources enclosed in quotes
 ```
 {
-    "region"       : "us-west-2",
-    "getclip"      : "EXAMPLE FUNCTION NAME (getclip)",
-    "mp4stitch"    : "PASTE MP4STITCH HERE",
-    "getsignedurl" : "PASTE GETSIGNEDURL HERE",
-    "videodata"    : "PASTE VIDEODATA HERE"
+    "region"       : "YOUR_REGION_HERE",
+    "getclip"      : "EXAMPLE_FUNCTION_NAME (getclip)",
+    "mp4stitch"    : "PASTE_MP4STITCH_HERE",
+    "getsignedurl" : "PASTE_GETSIGNEDURL_HERE",
+    "videodata"    : "PASTE_VIDEODATA_HERE"
 }
 ```

@@ -160,6 +160,8 @@ async function masterClick() {
 async function startRecording(){
   startTime = new Date().toISOString();
   console.log('Start time: ' + startTime);
+  console.log(`build env variable: ${process.env.REACT_APP_AWS_REGION}`);
+  console.log(`SSM env variable ${process.env.test}`)
 }
 
 async function saveRecording(){
@@ -170,7 +172,7 @@ async function saveRecording(){
   endTime = new Date().toISOString();
 
   const KVSClient = new AWS.KinesisVideo({
-    region: 'us-west-2',
+    region: config.region,
     endpoint: null,
     correctClockSkew: true,
     accessKeyId: formValues.accessKeyId,
