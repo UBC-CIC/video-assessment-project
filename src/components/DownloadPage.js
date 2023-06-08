@@ -4,9 +4,8 @@ import { Amplify, Auth } from 'aws-amplify';
 
 import { List, ListItem, ListItemText, Button } from '@mui/material';
 
-let   config       = require('./config.json');
-const GETSIGNEDURL = config.getsignedurl;
-const VIDEODATA    = config.videodata;
+const GETSIGNEDURL = process.env.REACT_APP_GETSIGNEDURL;
+const VIDEODATA    = process.env.REACT_APP_VIDEODATA;
 
 class DownloadPage extends React.Component {
     constructor(props) {

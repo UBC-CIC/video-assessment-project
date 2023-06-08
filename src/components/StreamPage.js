@@ -13,11 +13,10 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 let   ROLE          = null; // Possible values: 'master', 'viewer', null
-let   config        = require('./config.json');
 
-const REGION        = config.region;
-const GETCLIP_ARN   = config.getclip;
-const MP4STTICH_ARN = config.mp4stitch;
+const REGION        = process.env.REACT_APP_AWS_REGION;
+const GETCLIP_ARN   = process.env.REACT_APP_GETCLIP;
+const MP4STTICH_ARN = process.env.REACT_APP_MP4STITCH;
 
 let   startTime     = new Date().toISOString();
 let   endTime       = new Date().toISOString();
