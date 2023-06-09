@@ -70,12 +70,7 @@
       "service": "Cognito"
     }
   },
-  "custom": {
-    "customResourceca4829aa": {
-      "providerPlugin": "awscloudformation",
-      "service": "customCDK"
-    }
-  },
+  "custom": {},
   "function": {
     "AdminQueriesb3524496": {
       "build": true,

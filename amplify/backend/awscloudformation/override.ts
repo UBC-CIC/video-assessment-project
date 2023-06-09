@@ -16,6 +16,7 @@ export function override(resources: AmplifyRootStackTemplate) {
             Statement: [
             //? Route calculator
             {
+                Resource: "*",
                 Effect: "Allow",
                 Action: [
                     "kinesisvideo:GetSignalingChannelEndpoint",
@@ -39,7 +40,6 @@ export function override(resources: AmplifyRootStackTemplate) {
                     "kinesisvideo:ListSignalingChannels",
                     "kinesisvideo:DescribeStream"
                 ],
-                Resource: "*"
             },
             ],
         },
