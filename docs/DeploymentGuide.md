@@ -27,7 +27,7 @@ The code should now be in the above folder. Now navigate into the video-assessme
 cd video-assessment-project
 ```
 
-## Step 2: Frontend Deployment (WIP)
+## Step 2: Frontend Deployment
 
 Before installing Amplify we need to create the IAM Role that associate the policies need to implement this solution. 
 Navigate to the cloned directory, execute the follow CloudFormation template:
@@ -130,19 +130,78 @@ Select the tab named "resources"
 Find the resources with "GetClip", "mp4stitch", "getsignedurl", and "videodata" in their names, copy the names of the lambda functions in the column "physical id", and paste them to the location described in the next 2 steps.
 ![alt text](images/lambdaname.png)
 
-Now, navigate to the "components directory in your github repo with the following commands.
-```bash
-cd src
-cd components
+Now, navigate to the amplify console that you used in step 1 to deploy the frontend of the project. In the sidebar on the left, navigate to the "environmental variables" section. 
+![alt text](images/envvar.png)
+
+Click on manage variables, then add the five following variables
+|Name|Value|
+|----|-----|
+|REACT_APP_AWS_REGION|us-west-2|
+|REACT_APP_GETCLIP|paste name of your getclip function here (from the step above)|
+|REACT_APP_MP4STITCH|paste name of mp4stitch function here|
+|REACT_APP_GETSIGNEDURL|paste name of getsignedurl function here|
+|REACT_APP_VIDEODATA|paste name of the videodata dynamodb table here|
+
+Once you have added the five variables, your screen should look something like the image below, click save to save your changes
+![alt text](images/addedvars.png)
+
+Finally, navigate to the "build settings" section in the left sidebar. In the upper right corner of the box labeled "app build specification", click on the edit button to edit the build configuration. 
+![alt text](images/buildsettings.png)
+
+A windowed text editor should appear, and the file should look like something this
+```
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - '# Execute Amplify CLI with the helper script'
+        - amplifyPush --simple
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
 ```
 
-Create the file named config.json in your preferred text editor, fill in the file as shown below, replace the fields in all caps with names of the resources enclosed in quotes
+Under the section frontend->build->commands, right above the line 'npm run build' paste the following lines
 ```
-{
-    "region"       : "YOUR_REGION_HERE",
-    "getclip"      : "EXAMPLE_FUNCTION_NAME (getclip)",
-    "mp4stitch"    : "PASTE_MP4STITCH_HERE",
-    "getsignedurl" : "PASTE_GETSIGNEDURL_HERE",
-    "videodata"    : "PASTE_VIDEODATA_HERE"
-}
+- REACT_APP_AWS_REGION=${REACT_APP_AWS_REGION}
+- REACT_APP_GETCLIP=${REACT_APP_GETCLIP}
+- REACT_APP_MP4STITCH=${REACT_APP_MP4STITCH}
+- REACT_APP_GETSIGNEDURL=${REACT_APP_GETSIGNEDURL}
+- REACT_APP_VIDEODATA=${REACT_APP_VIDEODATA}
 ```
+
+The "frontend" section of your file should look like this after pasting the lines
+```
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - REACT_APP_AWS_REGION=${REACT_APP_AWS_REGION}
+        - REACT_APP_GETCLIP=${REACT_APP_GETCLIP}
+        - REACT_APP_MP4STITCH=${REACT_APP_MP4STITCH}
+        - REACT_APP_GETSIGNEDURL=${REACT_APP_GETSIGNEDURL}
+        - REACT_APP_VIDEODATA=${REACT_APP_VIDEODATA}
+        - npm run build
+```
+
+Click save to save your changes and exit the text editor. Then, go to your app, and click on the front end as shown in the image below.
+![alt text](images/buildagain.png)
+
+In this menu, click on the button in the upper right corner labeled 'redeploy this version' in order for the updated environmental variables to take effect.
+![alt text](images/redeploy.png)

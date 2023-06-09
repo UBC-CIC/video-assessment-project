@@ -4,9 +4,8 @@ import { Auth } from 'aws-amplify';
 
 import { List, ListItem, ListItemText, Button } from '@mui/material';
 
-let   config       = require('./config.json');
-const GETSIGNEDURL = config.getsignedurl;
-const VIDEODATA    = config.videodata;
+const GETSIGNEDURL = process.env.REACT_APP_GETSIGNEDURL;
+const VIDEODATA    = process.env.REACT_APP_VIDEODATA;
 
 class DownloadPage extends React.Component {
     constructor(props) {
@@ -105,7 +104,7 @@ async function getAssessmentVideos(){
     // Create DynamoDB service object.
     var ddb = new AWS.DynamoDB({
         apiVersion: "2012-08-10", 
-        region: config.region, 
+        region: process.env.REACT_APP_AWS_REGION, 
         credentials: {
             accessKeyId: creds.accessKeyId,
             secretAccessKey: creds.secretAccessKey,
@@ -169,7 +168,7 @@ async function getPresignedUrls() {
           accessKeyId: creds.accessKeyId,
           secretAccessKey: creds.secretAccessKey,
           sessionToken: creds.sessionToken,
-          region: config.region
+          region: process.env.REACT_APP_AWS_REGION
         });
         let response = await lambda.invoke(params).promise();
         if (!response) throw new Error('no response');
