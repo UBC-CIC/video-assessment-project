@@ -56,26 +56,6 @@ The **Deploy to Amplify Console** button will take you to your AWS console to de
 Refer to [AWS's Page on Single Page Apps](https://docs.aws.amazon.com/amplify/latest/userguide/redirects.html#redirects-for-single-page-web-apps-spa) for further information on why we did that
 ![alt text](images/amplify-console-05.png)
 
-Next, you will create the necessary permissions for logged in users to use the application. Please navigate to the AWS IAM Console and go to the Policies Page.
-
-Click on the Create Policy button in the top right corner.
-![alt text](images/CreatePolicy.png)
-
-Next, find the file named userpolicy.json within the '/deploy' directory of the project. In the IAM Console, switch the view from Visual to JSON, and paste the contents of the above file in the Policy Editor.
-![alt text](images/userpolicy.png)
-
-Click the Next button in the bottom right corner to proceed. On the next page, name your Policy and then click the Create Policy button to finish this task.
-
-Now you will attach the policy to the Authenticated User Role associated with the web app. Navigate back to the IAM Console home page and click on the Roles tab.
-
-Find the role named 'amplify-videoassessmentapp-####-######-authRole' and click on the Role name.
-![alt text](images/rolespage.png)
-
-Here, select 'Add permissions' and click on 'Attach policies' in the dropdown.
-![alt text](images/attachpolicies.png)
-
-On the next page, find and attach the policy you created in the previous steps. 
-
 Congratulations, your front end is now deployed!
 
 # Step 3: Backend Deployment
