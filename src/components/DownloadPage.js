@@ -1,6 +1,6 @@
 import React from 'react';
 import AWS from 'aws-sdk';
-import { Amplify, Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 
 import { List, ListItem, ListItemText, Button } from '@mui/material';
 
@@ -101,7 +101,6 @@ async function getUserVideos(){
 
 async function getAssessmentVideos(){
     const creds = await Auth.currentCredentials();
-    const user = await Auth.currentUserInfo();
 
     // Create DynamoDB service object.
     var ddb = new AWS.DynamoDB({
