@@ -172,7 +172,7 @@ async function saveRecording(){
   endTime = new Date().toISOString();
 
   const KVSClient = new AWS.KinesisVideo({
-    region: config.region,
+    region: REGION,
     endpoint: null,
     correctClockSkew: true,
     accessKeyId: formValues.accessKeyId,

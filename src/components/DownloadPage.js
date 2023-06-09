@@ -6,6 +6,7 @@ import { List, ListItem, ListItemText, Button } from '@mui/material';
 
 const GETSIGNEDURL = process.env.REACT_APP_GETSIGNEDURL;
 const VIDEODATA    = process.env.REACT_APP_VIDEODATA;
+const REGION       = process.env.REACT_APP_AWS_REGION;
 
 class DownloadPage extends React.Component {
     constructor(props) {
@@ -62,7 +63,7 @@ async function getUserVideos(){
     // Create DynamoDB service object.
     var ddb = new AWS.DynamoDB({
         apiVersion: "2012-08-10", 
-        region: config.region, 
+        region: REGION, 
         credentials: {
             accessKeyId: creds.accessKeyId,
             secretAccessKey: creds.secretAccessKey,
