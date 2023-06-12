@@ -44,6 +44,10 @@ To deploy this solution, please follow our [Deployment Guide](docs/DeploymentGui
 
 For instructions on how to use the web app, refer to the [User Guide](docs/Userguide.md).
 
+## Credits
+
+This application was architected and developed by Michael O'Keefe and Muhan Li, with guidance from the UBC CIC technical and project management teams.
+
 ## License
 
 This project is distributed under the [MIT License](./LICENSE).
