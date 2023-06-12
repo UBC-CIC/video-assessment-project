@@ -116,7 +116,7 @@ Now, navigate to the amplify console that you used in step 1 to deploy the front
 Click on manage variables, then add the five following variables
 |Name|Value|
 |----|-----|
-|REACT_APP_AWS_REGION|us-west-2|
+|REACT_APP_AWS_REGION|paste name of your AWS region|
 |REACT_APP_GETCLIP|paste name of your getclip function here (from the step above)|
 |REACT_APP_MP4STITCH|paste name of mp4stitch function here|
 |REACT_APP_GETSIGNEDURL|paste name of getsignedurl function here|
