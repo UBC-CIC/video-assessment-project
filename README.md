@@ -50,4 +50,4 @@ This application was architected and developed by Michael O'Keefe and Muhan Li, 
 
 ## License
 
-This project is distributed under the [MIT License](./LICENSE).
+This project is distributed under the [MIT License](./LICENSE.txt).
