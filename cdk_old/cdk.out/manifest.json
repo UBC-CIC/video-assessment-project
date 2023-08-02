@@ -1,0 +1,1672 @@
+{
+  "version": "21.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "RecordWithFaceBlurStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://444889511257/us-west-2",
+      "properties": {
+        "templateFile": "RecordWithFaceBlurStack.template.json",
+        "validateOnSynth": false
+      },
+      "metadata": {
+        "/RecordWithFaceBlurStack": [
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2",
+              "id": "77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2",
+              "packaging": "zip",
+              "sourceHash": "77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2",
+              "s3BucketParameter": "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2S3BucketB4D4C166",
+              "s3KeyParameter": "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2S3VersionKey39228536",
+              "artifactHashParameter": "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2ArtifactHash9E4A2D00"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:202:29)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4",
+              "id": "51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4",
+              "packaging": "zip",
+              "sourceHash": "51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4",
+              "s3BucketParameter": "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4S3BucketCB8A2988",
+              "s3KeyParameter": "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4S3VersionKeyE944CA90",
+              "artifactHashParameter": "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4ArtifactHashCF8B7988"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:202:29)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9",
+              "id": "f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9",
+              "packaging": "zip",
+              "sourceHash": "f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9",
+              "s3BucketParameter": "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9S3BucketC2839997",
+              "s3KeyParameter": "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9S3VersionKey7DD9FA35",
+              "artifactHashParameter": "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9ArtifactHashD0159608"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:202:29)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830",
+              "id": "9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830",
+              "packaging": "zip",
+              "sourceHash": "9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830",
+              "s3BucketParameter": "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830S3BucketC653CD5B",
+              "s3KeyParameter": "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830S3VersionKeyB938B67B",
+              "artifactHashParameter": "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830ArtifactHashEA4776B2"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:202:29)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795",
+              "id": "0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795",
+              "packaging": "zip",
+              "sourceHash": "0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795",
+              "s3BucketParameter": "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795S3Bucket7FE45212",
+              "s3KeyParameter": "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795S3VersionKeyFE65830B",
+              "artifactHashParameter": "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795ArtifactHashBB3BAB47"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:202:29)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01",
+              "id": "8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01",
+              "packaging": "zip",
+              "sourceHash": "8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01",
+              "s3BucketParameter": "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01S3BucketC7C18346",
+              "s3KeyParameter": "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01S3VersionKey334E1960",
+              "artifactHashParameter": "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01ArtifactHashEE4B5174"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:202:29)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "repositoryName": "aws-cdk/assets",
+              "imageTag": "22a6b7fc5904ac093ed2a2c05d948e1bc13a8d50a5b38f4b8d7ddf91625b201a",
+              "id": "22a6b7fc5904ac093ed2a2c05d948e1bc13a8d50a5b38f4b8d7ddf91625b201a",
+              "packaging": "container-image",
+              "path": "asset.22a6b7fc5904ac093ed2a2c05d948e1bc13a8d50a5b38f4b8d7ddf91625b201a",
+              "sourceHash": "22a6b7fc5904ac093ed2a2c05d948e1bc13a8d50a5b38f4b8d7ddf91625b201a"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddDockerImageAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:177:29)",
+              "LegacyStackSynthesizer.addDockerImageAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:123:25)",
+              "Stack.addDockerImageAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:492:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:128:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addDockerImageAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:128:20)",
+              "new DockerImageAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-ecr-assets\\lib\\image-asset.js:187:44)",
+              "AssetImageCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:451:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "new DockerImageFunction (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\image-function.js:66:9)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642",
+              "id": "b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642",
+              "packaging": "zip",
+              "sourceHash": "b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642",
+              "s3BucketParameter": "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642S3Bucket2B49F154",
+              "s3KeyParameter": "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642S3VersionKeyCEF70DA3",
+              "artifactHashParameter": "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642ArtifactHashA7C7BC02"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:202:29)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          },
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "asset.542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739",
+              "id": "542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739",
+              "packaging": "zip",
+              "sourceHash": "542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739",
+              "s3BucketParameter": "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739S3BucketF35CE4A3",
+              "s3KeyParameter": "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739S3VersionKey93285623",
+              "artifactHashParameter": "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739ArtifactHash5ADDD922"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.js:416:62)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:202:29)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/clipfragments/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "clipfragmentsD830C22A",
+            "trace": [
+              "new Bucket (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:666:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/awaitingblur/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awaitingblur07E8DE9C",
+            "trace": [
+              "new Bucket (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:666:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/awaitingblur/Notifications/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awaitingblurNotifications92C5D55A",
+            "trace": [
+              "BucketNotifications.createResourceOnce (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:104:29)",
+              "BucketNotifications.addNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:46:31)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:63",
+              "Bucket.withNotifications (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:416:9)",
+              "Bucket.addEventNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:14)",
+              "S3EventSource.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda-event-sources\\lib\\s3.js:28:25)",
+              "Function.addEventSource (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:188:16)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/awaitingblur/AllowBucketNotificationsToRecordWithFaceBlurStackstartFaceDetectFD3E0C2B": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awaitingblurAllowBucketNotificationsToRecordWithFaceBlurStackstartFaceDetectFD3E0C2B9DA1EE86",
+            "trace": [
+              "Function.addPermission (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:84:9)",
+              "LambdaDestination.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-notifications\\lib\\lambda.js:26:21)",
+              "BucketNotifications.addNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:49:36)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:63",
+              "Bucket.withNotifications (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:416:9)",
+              "Bucket.addEventNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:14)",
+              "S3EventSource.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda-event-sources\\lib\\s3.js:28:25)",
+              "Function.addEventSource (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:188:16)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/recordingstorage/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "recordingstorage50EEDC53",
+            "trace": [
+              "new Bucket (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:666:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/recordingstorage/Notifications/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "recordingstorageNotifications0BF2D57D",
+            "trace": [
+              "BucketNotifications.createResourceOnce (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:104:29)",
+              "BucketNotifications.addNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:46:31)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:63",
+              "Bucket.withNotifications (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:416:9)",
+              "Bucket.addEventNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:14)",
+              "S3EventSource.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda-event-sources\\lib\\s3.js:28:25)",
+              "Function.addEventSource (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:188:16)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/recordingstorage/AllowBucketNotificationsToRecordWithFaceBlurStackputrecordingid168331C1": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "recordingstorageAllowBucketNotificationsToRecordWithFaceBlurStackputrecordingid168331C1A5D687D8",
+            "trace": [
+              "Function.addPermission (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:84:9)",
+              "LambdaDestination.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-notifications\\lib\\lambda.js:26:21)",
+              "BucketNotifications.addNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:49:36)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:63",
+              "Bucket.withNotifications (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:416:9)",
+              "Bucket.addEventNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:14)",
+              "S3EventSource.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda-event-sources\\lib\\s3.js:28:25)",
+              "Function.addEventSource (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:188:16)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/videodata/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "videodata743EB43A",
+            "trace": [
+              "new Table (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-dynamodb\\lib\\table.js:480:22)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/getClips-KVS/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getClipsKVSServiceRoleB5655F26",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:97:35)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/getClips-KVS/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getClipsKVSServiceRoleDefaultPolicyFBDE8174",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "Function.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:101:19)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/getClips-KVS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getClipsKVS3F97D572",
+            "trace": [
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:172:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2S3BucketB4D4C166",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2S3VersionKey39228536",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2ArtifactHash9E4A2D00",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4S3BucketCB8A2988",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4S3VersionKeyE944CA90",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4ArtifactHashCF8B7988",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9S3BucketC2839997",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9S3VersionKey7DD9FA35",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9ArtifactHashD0159608",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830S3BucketC653CD5B",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830S3VersionKeyB938B67B",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830ArtifactHashEA4776B2",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795S3Bucket7FE45212",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795S3VersionKeyFE65830B",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795ArtifactHashBB3BAB47",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01S3BucketC7C18346",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01S3VersionKey334E1960",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01ArtifactHashEE4B5174",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642S3Bucket2B49F154",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642S3VersionKeyCEF70DA3",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642ArtifactHashA7C7BC02",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739S3BucketF35CE4A3",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:12:36)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739S3VersionKey93285623",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:16:35)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/AssetParameters/542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739ArtifactHash5ADDD922",
+            "trace": [
+              "new FileAssetParameters (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.js:20:38)",
+              "LegacyStackSynthesizer.doAddFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:189:22)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:98:25)",
+              "Stack.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack.js:473:33)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:59",
+              "withoutDeprecationWarnings (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:229:16)",
+              "LegacyStackSynthesizer.addFileAsset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stack-synthesizers\\legacy.js:103:20)",
+              "new Asset (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3-assets\\lib\\asset.js:46:44)",
+              "AssetCode.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\code.js:277:26)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:114:33)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/mp4stitch/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mp4stitchServiceRole9202342B",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:97:35)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/mp4stitch/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mp4stitchServiceRoleDefaultPolicy2673CA82",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "Function.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:101:19)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/mp4stitch/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mp4stitch3D9F2EDC",
+            "trace": [
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:172:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/mediaconvertAccess/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mediaconvertAccess69354078",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/mediaconvertAccess/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mediaconvertAccessDefaultPolicy66E5FAEE",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "Role.addToPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:267:21)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/stitchJobQueue": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "stitchJobQueue",
+            "trace": [
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/getsignedurl/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getsignedurlServiceRole39C15224",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:97:35)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/getsignedurl/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getsignedurlServiceRoleDefaultPolicy396F09D5",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "Function.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:101:19)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/getsignedurl/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getsignedurl045BA946",
+            "trace": [
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:172:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/startFaceDetect/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "startFaceDetectServiceRole5446022F",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:97:35)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/startFaceDetect/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "startFaceDetectServiceRoleDefaultPolicy534DD11D",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "Function.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:101:19)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/startFaceDetect/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "startFaceDetectBFB81E74",
+            "trace": [
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:172:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new NotificationsResourceHandler (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource-handler.js:34:35)",
+              "NotificationsResourceHandler.singleton (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource-handler.js:86:22)",
+              "BucketNotifications.createResourceOnce (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:94:91)",
+              "BucketNotifications.addNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:46:31)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:63",
+              "Bucket.withNotifications (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:416:9)",
+              "Bucket.addEventNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:14)",
+              "S3EventSource.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda-event-sources\\lib\\s3.js:28:25)",
+              "Function.addEventSource (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:188:16)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "new NotificationsResourceHandler (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource-handler.js:38:19)",
+              "NotificationsResourceHandler.singleton (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource-handler.js:86:22)",
+              "BucketNotifications.createResourceOnce (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:94:91)",
+              "BucketNotifications.addNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:46:31)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:63",
+              "Bucket.withNotifications (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:416:9)",
+              "Bucket.addEventNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:14)",
+              "S3EventSource.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda-event-sources\\lib\\s3.js:28:25)",
+              "Function.addEventSource (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:188:16)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
+            "trace": [
+              "new NotificationsResourceHandler (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource-handler.js:60:26)",
+              "NotificationsResourceHandler.singleton (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource-handler.js:86:22)",
+              "BucketNotifications.createResourceOnce (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:94:91)",
+              "BucketNotifications.addNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\notifications-resource\\notifications-resource.js:46:31)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:63",
+              "Bucket.withNotifications (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:416:9)",
+              "Bucket.addEventNotification (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:407:14)",
+              "S3EventSource.bind (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda-event-sources\\lib\\s3.js:28:25)",
+              "Function.addEventSource (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:188:16)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/checkJobStatus/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "checkJobStatusServiceRole74B0348B",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:97:35)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/checkJobStatus/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "checkJobStatusServiceRoleDefaultPolicy8B0F4562",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "Function.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:101:19)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/checkJobStatus/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "checkJobStatus5F5AFEA4",
+            "trace": [
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:172:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/getFacesInfo/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getFacesInfoServiceRoleE547DD59",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:97:35)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/getFacesInfo/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getFacesInfoServiceRoleDefaultPolicyA1719001",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "Function.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:101:19)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/getFacesInfo/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getFacesInfo6001B2C9",
+            "trace": [
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:172:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/blurFaces/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "blurFacesServiceRole3BCA5D4C",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:97:35)",
+              "new DockerImageFunction (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\image-function.js:66:9)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/blurFaces/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "blurFacesServiceRoleDefaultPolicy6DE50163",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "DockerImageFunction.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:101:19)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/blurFaces/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "blurFacesD0AF1D09",
+            "trace": [
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:172:26)",
+              "new DockerImageFunction (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\image-function.js:66:9)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/putrecordingid/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "putrecordingidServiceRole41640680",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:97:35)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/putrecordingid/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "putrecordingidServiceRoleDefaultPolicy0E5383CC",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "Function.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:101:19)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/putrecordingid/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "putrecordingid5E6C611E",
+            "trace": [
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:172:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/deleteobj/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "deleteobjServiceRole5EB6CA66",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:97:35)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/deleteobj/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "deleteobjServiceRoleDefaultPolicy6C13B08E",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "Function.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function-base.js:101:19)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/deleteobj/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "deleteobjD3360417",
+            "trace": [
+              "new Function (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-lambda\\lib\\function.js:172:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/faceblur-statemachine-logs/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "faceblurstatemachinelogsCA640C81",
+            "trace": [
+              "new LogGroup (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-logs\\lib\\log-group.js:261:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/StateMachine/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StateMachineRoleB840431D",
+            "trace": [
+              "new Role (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:63:22)",
+              "new StateMachine (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-stepfunctions\\lib\\state-machine.js:273:35)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/StateMachine/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StateMachineRoleDefaultPolicyDF1E6607",
+            "trace": [
+              "new Policy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:57:26)",
+              "Role.addToPrincipalPolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:247:34)",
+              "StateMachine.addToRolePolicy (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-stepfunctions\\lib\\state-machine.js:309:19)",
+              "StateMachine.buildLoggingConfiguration (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-stepfunctions\\lib\\state-machine.js:323:14)",
+              "new StateMachine (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-stepfunctions\\lib\\state-machine.js:284:53)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/StateMachine/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StateMachine2E01A3A5",
+            "trace": [
+              "new StateMachine (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\aws-stepfunctions\\lib\\state-machine.js:279:26)",
+              "Kernel._create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9964:29)",
+              "Kernel.create (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9693:29)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/RecordWithFaceBlurStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\metadata-resource.js:22:30)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:139:9",
+              "visit (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:200:9)",
+              "visit (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:197:9)",
+              "injectMetadataResources (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:128:5)",
+              "Object.synthesize (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\private\\synthesis.js:17:5)",
+              "App.synth (C:\\Users\\muhanli\\AppData\\Local\\Temp\\jsii-kernel-J5PYdX\\node_modules\\@aws-cdk\\core\\lib\\stage.js:104:41)",
+              "C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:105",
+              "Kernel._ensureSync (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:10358:28)",
+              "Kernel.invoke (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:9769:34)",
+              "KernelHost.processRequest (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11544:36)",
+              "KernelHost.run (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11504:22)",
+              "Immediate._onImmediate (C:\\Users\\muhanli\\AppData\\Local\\Temp\\tmp76i2jpg_\\lib\\program.js:11505:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ]
+      },
+      "displayName": "RecordWithFaceBlurStack"
+    }
+  }
+}

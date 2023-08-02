@@ -1,0 +1,2198 @@
+{
+ "Resources": {
+  "clipfragmentsD830C22A": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "ExpirationInDays": 1,
+       "Id": "deleteclip",
+       "Status": "Enabled"
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/clipfragments/Resource"
+   }
+  },
+  "awaitingblur07E8DE9C": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "ExpirationInDays": 1,
+       "Id": "deletenotblurred",
+       "Status": "Enabled"
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/awaitingblur/Resource"
+   }
+  },
+  "awaitingblurNotifications92C5D55A": {
+   "Type": "Custom::S3BucketNotifications",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "awaitingblur07E8DE9C"
+    },
+    "NotificationConfiguration": {
+     "LambdaFunctionConfigurations": [
+      {
+       "Events": [
+        "s3:ObjectCreated:*"
+       ],
+       "Filter": {
+        "Key": {
+         "FilterRules": [
+          {
+           "Name": "suffix",
+           "Value": ".mp4"
+          }
+         ]
+        }
+       },
+       "LambdaFunctionArn": {
+        "Fn::GetAtt": [
+         "startFaceDetectBFB81E74",
+         "Arn"
+        ]
+       }
+      }
+     ]
+    },
+    "Managed": true
+   },
+   "DependsOn": [
+    "awaitingblurAllowBucketNotificationsToRecordWithFaceBlurStackstartFaceDetectFD3E0C2B9DA1EE86"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/awaitingblur/Notifications/Resource"
+   }
+  },
+  "awaitingblurAllowBucketNotificationsToRecordWithFaceBlurStackstartFaceDetectFD3E0C2B9DA1EE86": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "startFaceDetectBFB81E74",
+      "Arn"
+     ]
+    },
+    "Principal": "s3.amazonaws.com",
+    "SourceAccount": "444889511257",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "awaitingblur07E8DE9C",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/awaitingblur/AllowBucketNotificationsToRecordWithFaceBlurStackstartFaceDetectFD3E0C2B"
+   }
+  },
+  "recordingstorage50EEDC53": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/recordingstorage/Resource"
+   }
+  },
+  "recordingstorageNotifications0BF2D57D": {
+   "Type": "Custom::S3BucketNotifications",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "recordingstorage50EEDC53"
+    },
+    "NotificationConfiguration": {
+     "LambdaFunctionConfigurations": [
+      {
+       "Events": [
+        "s3:ObjectCreated:*"
+       ],
+       "Filter": {
+        "Key": {
+         "FilterRules": [
+          {
+           "Name": "suffix",
+           "Value": ".mp4"
+          }
+         ]
+        }
+       },
+       "LambdaFunctionArn": {
+        "Fn::GetAtt": [
+         "putrecordingid5E6C611E",
+         "Arn"
+        ]
+       }
+      }
+     ]
+    },
+    "Managed": true
+   },
+   "DependsOn": [
+    "recordingstorageAllowBucketNotificationsToRecordWithFaceBlurStackputrecordingid168331C1A5D687D8"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/recordingstorage/Notifications/Resource"
+   }
+  },
+  "recordingstorageAllowBucketNotificationsToRecordWithFaceBlurStackputrecordingid168331C1A5D687D8": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "putrecordingid5E6C611E",
+      "Arn"
+     ]
+    },
+    "Principal": "s3.amazonaws.com",
+    "SourceAccount": "444889511257",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "recordingstorage50EEDC53",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/recordingstorage/AllowBucketNotificationsToRecordWithFaceBlurStackputrecordingid168331C1"
+   }
+  },
+  "videodata743EB43A": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "KeySchema": [
+     {
+      "AttributeName": "userid",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "starttime",
+      "KeyType": "RANGE"
+     }
+    ],
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "userid",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "starttime",
+      "AttributeType": "S"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/videodata/Resource"
+   }
+  },
+  "getClipsKVSServiceRoleB5655F26": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/getClips-KVS/ServiceRole/Resource"
+   }
+  },
+  "getClipsKVSServiceRoleDefaultPolicyFBDE8174": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:PutObject",
+        "s3:GetObject"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "clipfragmentsD830C22A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "clipfragmentsD830C22A",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "kinesisvideo:GetDataEndpoint",
+        "kinesisvideo:GetClip"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "getClipsKVSServiceRoleDefaultPolicyFBDE8174",
+    "Roles": [
+     {
+      "Ref": "getClipsKVSServiceRoleB5655F26"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/getClips-KVS/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "getClipsKVS3F97D572": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Ref": "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2S3BucketB4D4C166"
+     },
+     "S3Key": {
+      "Fn::Join": [
+       "",
+       [
+        {
+         "Fn::Select": [
+          0,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2S3VersionKey39228536"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "Fn::Select": [
+          1,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2S3VersionKey39228536"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      ]
+     }
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "getClipsKVSServiceRoleB5655F26",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "CLIPS_BUCKET": {
+       "Ref": "clipfragmentsD830C22A"
+      }
+     }
+    },
+    "Handler": "getclip.handler",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "getClipsKVSServiceRoleDefaultPolicyFBDE8174",
+    "getClipsKVSServiceRoleB5655F26"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/getClips-KVS/Resource",
+    "aws:asset:path": "asset.77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "mp4stitchServiceRole9202342B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/mp4stitch/ServiceRole/Resource"
+   }
+  },
+  "mp4stitchServiceRoleDefaultPolicy2673CA82": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:PutObject",
+        "s3:GetObject"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "clipfragmentsD830C22A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "clipfragmentsD830C22A",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "awaitingblur07E8DE9C",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "awaitingblur07E8DE9C",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "recordingstorage50EEDC53",
+          "Arn"
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "mediaconvert:CreateJob",
+        "mediaconvert:DescribeEndpoints"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "iam:PassRole",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "mp4stitchServiceRoleDefaultPolicy2673CA82",
+    "Roles": [
+     {
+      "Ref": "mp4stitchServiceRole9202342B"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/mp4stitch/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "mp4stitch3D9F2EDC": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Ref": "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4S3BucketCB8A2988"
+     },
+     "S3Key": {
+      "Fn::Join": [
+       "",
+       [
+        {
+         "Fn::Select": [
+          0,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4S3VersionKeyE944CA90"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "Fn::Select": [
+          1,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4S3VersionKeyE944CA90"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      ]
+     }
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "mp4stitchServiceRole9202342B",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "CLIPS_BUCKET": {
+       "Ref": "clipfragmentsD830C22A"
+      },
+      "AWAITBLUR_BUCKET": {
+       "Ref": "awaitingblur07E8DE9C"
+      },
+      "FINAL_BUCKET": {
+       "Ref": "recordingstorage50EEDC53"
+      },
+      "MEDIACONVERT_ACCESSROLE": {
+       "Fn::GetAtt": [
+        "mediaconvertAccess69354078",
+        "Arn"
+       ]
+      },
+      "MEDIACONVERT_QUEUE": {
+       "Fn::GetAtt": [
+        "stitchJobQueue",
+        "Arn"
+       ]
+      }
+     }
+    },
+    "Handler": "mp4stitch.handler",
+    "MemorySize": 512,
+    "Runtime": "nodejs16.x",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "mp4stitchServiceRoleDefaultPolicy2673CA82",
+    "mp4stitchServiceRole9202342B"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/mp4stitch/Resource",
+    "aws:asset:path": "asset.51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "mediaconvertAccess69354078": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "mediaconvert.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/mediaconvertAccess/Resource"
+   }
+  },
+  "mediaconvertAccessDefaultPolicy66E5FAEE": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:Put*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "recordingstorage50EEDC53",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "awaitingblur07E8DE9C",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:Get*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "awaitingblur07E8DE9C",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "clipfragmentsD830C22A",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "mediaconvertAccessDefaultPolicy66E5FAEE",
+    "Roles": [
+     {
+      "Ref": "mediaconvertAccess69354078"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/mediaconvertAccess/DefaultPolicy/Resource"
+   }
+  },
+  "stitchJobQueue": {
+   "Type": "AWS::MediaConvert::Queue",
+   "Properties": {
+    "Name": "stitchJobQueue",
+    "PricingPlan": "ON_DEMAND",
+    "Status": "ACTIVE"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/stitchJobQueue"
+   }
+  },
+  "getsignedurlServiceRole39C15224": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/getsignedurl/ServiceRole/Resource"
+   }
+  },
+  "getsignedurlServiceRoleDefaultPolicy396F09D5": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "recordingstorage50EEDC53",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "recordingstorage50EEDC53",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "getsignedurlServiceRoleDefaultPolicy396F09D5",
+    "Roles": [
+     {
+      "Ref": "getsignedurlServiceRole39C15224"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/getsignedurl/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "getsignedurl045BA946": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Ref": "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9S3BucketC2839997"
+     },
+     "S3Key": {
+      "Fn::Join": [
+       "",
+       [
+        {
+         "Fn::Select": [
+          0,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9S3VersionKey7DD9FA35"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "Fn::Select": [
+          1,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9S3VersionKey7DD9FA35"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      ]
+     }
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "getsignedurlServiceRole39C15224",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "BLURRED_BUCKET": {
+       "Ref": "recordingstorage50EEDC53"
+      }
+     }
+    },
+    "Handler": "getsignedurl.handler",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "getsignedurlServiceRoleDefaultPolicy396F09D5",
+    "getsignedurlServiceRole39C15224"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/getsignedurl/Resource",
+    "aws:asset:path": "asset.f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "startFaceDetectServiceRole5446022F": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/startFaceDetect/ServiceRole/Resource"
+   }
+  },
+  "startFaceDetectServiceRoleDefaultPolicy534DD11D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:PutObject",
+        "s3:GetObject"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "awaitingblur07E8DE9C",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "awaitingblur07E8DE9C",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "rekognition:StartFaceDetection",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "states:StartExecution",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "StateMachine2E01A3A5"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "StateMachine2E01A3A5"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "startFaceDetectServiceRoleDefaultPolicy534DD11D",
+    "Roles": [
+     {
+      "Ref": "startFaceDetectServiceRole5446022F"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/startFaceDetect/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "startFaceDetectBFB81E74": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Ref": "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830S3BucketC653CD5B"
+     },
+     "S3Key": {
+      "Fn::Join": [
+       "",
+       [
+        {
+         "Fn::Select": [
+          0,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830S3VersionKeyB938B67B"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "Fn::Select": [
+          1,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830S3VersionKeyB938B67B"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      ]
+     }
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "startFaceDetectServiceRole5446022F",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "STATE_MACHINE_ARN": {
+       "Ref": "StateMachine2E01A3A5"
+      }
+     }
+    },
+    "Handler": "startfacedetect.lambda_handler",
+    "MemorySize": 512,
+    "Runtime": "python3.7",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "startFaceDetectServiceRoleDefaultPolicy534DD11D",
+    "startFaceDetectServiceRole5446022F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/startFaceDetect/Resource",
+    "aws:asset:path": "asset.9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource"
+   }
+  },
+  "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:PutBucketNotification",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36",
+    "Roles": [
+     {
+      "Ref": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource"
+   }
+  },
+  "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Description": "AWS CloudFormation handler for \"Custom::S3BucketNotifications\" resources (@aws-cdk/aws-s3)",
+    "Code": {
+     "ZipFile": "import boto3  # type: ignore\nimport json\nimport logging\nimport urllib.request\n\ns3 = boto3.client(\"s3\")\n\nEVENTBRIDGE_CONFIGURATION = 'EventBridgeConfiguration'\n\nCONFIGURATION_TYPES = [\"TopicConfigurations\", \"QueueConfigurations\", \"LambdaFunctionConfigurations\"]\n\ndef handler(event: dict, context):\n  response_status = \"SUCCESS\"\n  error_message = \"\"\n  try:\n    props = event[\"ResourceProperties\"]\n    bucket = props[\"BucketName\"]\n    notification_configuration = props[\"NotificationConfiguration\"]\n    request_type = event[\"RequestType\"]\n    managed = props.get('Managed', 'true').lower() == 'true'\n    stack_id = event['StackId']\n\n    if managed:\n      config = handle_managed(request_type, notification_configuration)\n    else:\n      config = handle_unmanaged(bucket, stack_id, request_type, notification_configuration)\n\n    put_bucket_notification_configuration(bucket, config)\n  except Exception as e:\n    logging.exception(\"Failed to put bucket notification configuration\")\n    response_status = \"FAILED\"\n    error_message = f\"Error: {str(e)}. \"\n  finally:\n    submit_response(event, context, response_status, error_message)\n\ndef handle_managed(request_type, notification_configuration):\n  if request_type == 'Delete':\n    return {}\n  return notification_configuration\n\ndef handle_unmanaged(bucket, stack_id, request_type, notification_configuration):\n  external_notifications = find_external_notifications(bucket, stack_id)\n\n  if request_type == 'Delete':\n    return external_notifications\n\n  def with_id(notification):\n    notification['Id'] = f\"{stack_id}-{hash(json.dumps(notification, sort_keys=True))}\"\n    return notification\n\n  notifications = {}\n  for t in CONFIGURATION_TYPES:\n    external = external_notifications.get(t, [])\n    incoming = [with_id(n) for n in notification_configuration.get(t, [])]\n    notifications[t] = external + incoming\n\n  if EVENTBRIDGE_CONFIGURATION in notification_configuration:\n    notifications[EVENTBRIDGE_CONFIGURATION] = notification_configuration[EVENTBRIDGE_CONFIGURATION]\n  elif EVENTBRIDGE_CONFIGURATION in external_notifications:\n    notifications[EVENTBRIDGE_CONFIGURATION] = external_notifications[EVENTBRIDGE_CONFIGURATION]\n\n  return notifications\n\ndef find_external_notifications(bucket, stack_id):\n  existing_notifications = get_bucket_notification_configuration(bucket)\n  external_notifications = {}\n  for t in CONFIGURATION_TYPES:\n    external_notifications[t] = [n for n in existing_notifications.get(t, []) if not n['Id'].startswith(f\"{stack_id}-\")]\n\n  if EVENTBRIDGE_CONFIGURATION in existing_notifications:\n    external_notifications[EVENTBRIDGE_CONFIGURATION] = existing_notifications[EVENTBRIDGE_CONFIGURATION]\n\n  return external_notifications\n\ndef get_bucket_notification_configuration(bucket):\n  return s3.get_bucket_notification_configuration(Bucket=bucket)\n\ndef put_bucket_notification_configuration(bucket, notification_configuration):\n  s3.put_bucket_notification_configuration(Bucket=bucket, NotificationConfiguration=notification_configuration)\n\ndef submit_response(event: dict, context, response_status: str, error_message: str):\n  response_body = json.dumps(\n    {\n      \"Status\": response_status,\n      \"Reason\": f\"{error_message}See the details in CloudWatch Log Stream: {context.log_stream_name}\",\n      \"PhysicalResourceId\": event.get(\"PhysicalResourceId\") or event[\"LogicalResourceId\"],\n      \"StackId\": event[\"StackId\"],\n      \"RequestId\": event[\"RequestId\"],\n      \"LogicalResourceId\": event[\"LogicalResourceId\"],\n      \"NoEcho\": False,\n    }\n  ).encode(\"utf-8\")\n  headers = {\"content-type\": \"\", \"content-length\": str(len(response_body))}\n  try:\n    req = urllib.request.Request(url=event[\"ResponseURL\"], headers=headers, data=response_body, method=\"PUT\")\n    with urllib.request.urlopen(req) as response:\n      print(response.read().decode(\"utf-8\"))\n    print(\"Status code: \" + response.reason)\n  except Exception as e:\n      print(\"send(..) failed executing request.urlopen(..): \" + str(e))\n"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.7",
+    "Timeout": 300
+   },
+   "DependsOn": [
+    "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36",
+    "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource"
+   }
+  },
+  "checkJobStatusServiceRole74B0348B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/checkJobStatus/ServiceRole/Resource"
+   }
+  },
+  "checkJobStatusServiceRoleDefaultPolicy8B0F4562": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "rekognition:GetFaceDetection",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "checkJobStatusServiceRoleDefaultPolicy8B0F4562",
+    "Roles": [
+     {
+      "Ref": "checkJobStatusServiceRole74B0348B"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/checkJobStatus/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "checkJobStatus5F5AFEA4": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Ref": "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795S3Bucket7FE45212"
+     },
+     "S3Key": {
+      "Fn::Join": [
+       "",
+       [
+        {
+         "Fn::Select": [
+          0,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795S3VersionKeyFE65830B"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "Fn::Select": [
+          1,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795S3VersionKeyFE65830B"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      ]
+     }
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "checkJobStatusServiceRole74B0348B",
+      "Arn"
+     ]
+    },
+    "Handler": "checkjobstatus.lambda_handler",
+    "MemorySize": 512,
+    "Runtime": "python3.7",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "checkJobStatusServiceRoleDefaultPolicy8B0F4562",
+    "checkJobStatusServiceRole74B0348B"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/checkJobStatus/Resource",
+    "aws:asset:path": "asset.0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "getFacesInfoServiceRoleE547DD59": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/getFacesInfo/ServiceRole/Resource"
+   }
+  },
+  "getFacesInfoServiceRoleDefaultPolicyA1719001": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "rekognition:GetFaceDetection",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "getFacesInfoServiceRoleDefaultPolicyA1719001",
+    "Roles": [
+     {
+      "Ref": "getFacesInfoServiceRoleE547DD59"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/getFacesInfo/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "getFacesInfo6001B2C9": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Ref": "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01S3BucketC7C18346"
+     },
+     "S3Key": {
+      "Fn::Join": [
+       "",
+       [
+        {
+         "Fn::Select": [
+          0,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01S3VersionKey334E1960"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "Fn::Select": [
+          1,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01S3VersionKey334E1960"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      ]
+     }
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "getFacesInfoServiceRoleE547DD59",
+      "Arn"
+     ]
+    },
+    "Handler": "getfacesinfo.lambda_handler",
+    "MemorySize": 512,
+    "Runtime": "python3.7",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "getFacesInfoServiceRoleDefaultPolicyA1719001",
+    "getFacesInfoServiceRoleE547DD59"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/getFacesInfo/Resource",
+    "aws:asset:path": "asset.8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "blurFacesServiceRole3BCA5D4C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/blurFaces/ServiceRole/Resource"
+   }
+  },
+  "blurFacesServiceRoleDefaultPolicy6DE50163": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:PutObject",
+        "s3:GetObject"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "awaitingblur07E8DE9C",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "recordingstorage50EEDC53",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "awaitingblur07E8DE9C",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "recordingstorage50EEDC53",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "blurFacesServiceRoleDefaultPolicy6DE50163",
+    "Roles": [
+     {
+      "Ref": "blurFacesServiceRole3BCA5D4C"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/blurFaces/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "blurFacesD0AF1D09": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ImageUri": {
+      "Fn::Join": [
+       "",
+       [
+        "444889511257.dkr.ecr.us-west-2.",
+        {
+         "Ref": "AWS::URLSuffix"
+        },
+        "/aws-cdk/assets:22a6b7fc5904ac093ed2a2c05d948e1bc13a8d50a5b38f4b8d7ddf91625b201a"
+       ]
+      ]
+     }
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "blurFacesServiceRole3BCA5D4C",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "OUTPUT_BUCKET": {
+       "Ref": "recordingstorage50EEDC53"
+      }
+     }
+    },
+    "MemorySize": 2048,
+    "PackageType": "Image",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "blurFacesServiceRoleDefaultPolicy6DE50163",
+    "blurFacesServiceRole3BCA5D4C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/blurFaces/Resource",
+    "aws:asset:path": "asset.22a6b7fc5904ac093ed2a2c05d948e1bc13a8d50a5b38f4b8d7ddf91625b201a",
+    "aws:asset:dockerfile-path": "Dockerfile",
+    "aws:asset:property": "Code.ImageUri"
+   }
+  },
+  "putrecordingidServiceRole41640680": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/putrecordingid/ServiceRole/Resource"
+   }
+  },
+  "putrecordingidServiceRoleDefaultPolicy0E5383CC": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:PutItem",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "videodata743EB43A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "videodata743EB43A",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "putrecordingidServiceRoleDefaultPolicy0E5383CC",
+    "Roles": [
+     {
+      "Ref": "putrecordingidServiceRole41640680"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/putrecordingid/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "putrecordingid5E6C611E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Ref": "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642S3Bucket2B49F154"
+     },
+     "S3Key": {
+      "Fn::Join": [
+       "",
+       [
+        {
+         "Fn::Select": [
+          0,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642S3VersionKeyCEF70DA3"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "Fn::Select": [
+          1,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642S3VersionKeyCEF70DA3"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      ]
+     }
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "putrecordingidServiceRole41640680",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "TABLENAME": {
+       "Ref": "videodata743EB43A"
+      }
+     }
+    },
+    "Handler": "putrecordingid.handler",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "putrecordingidServiceRoleDefaultPolicy0E5383CC",
+    "putrecordingidServiceRole41640680"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/putrecordingid/Resource",
+    "aws:asset:path": "asset.b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "deleteobjServiceRole5EB6CA66": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/deleteobj/ServiceRole/Resource"
+   }
+  },
+  "deleteobjServiceRoleDefaultPolicy6C13B08E": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:List*",
+        "s3:DeleteObject"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "clipfragmentsD830C22A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "clipfragmentsD830C22A",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "awaitingblur07E8DE9C",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "awaitingblur07E8DE9C",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "deleteobjServiceRoleDefaultPolicy6C13B08E",
+    "Roles": [
+     {
+      "Ref": "deleteobjServiceRole5EB6CA66"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/deleteobj/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "deleteobjD3360417": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Ref": "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739S3BucketF35CE4A3"
+     },
+     "S3Key": {
+      "Fn::Join": [
+       "",
+       [
+        {
+         "Fn::Select": [
+          0,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739S3VersionKey93285623"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "Fn::Select": [
+          1,
+          {
+           "Fn::Split": [
+            "||",
+            {
+             "Ref": "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739S3VersionKey93285623"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      ]
+     }
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "deleteobjServiceRole5EB6CA66",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "CLIPS_BUCKET": {
+       "Ref": "clipfragmentsD830C22A"
+      },
+      "AWAITBLUR_BUCKET": {
+       "Ref": "awaitingblur07E8DE9C"
+      }
+     }
+    },
+    "Handler": "deleteobj.handler",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "deleteobjServiceRoleDefaultPolicy6C13B08E",
+    "deleteobjServiceRole5EB6CA66"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/deleteobj/Resource",
+    "aws:asset:path": "asset.542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "faceblurstatemachinelogsCA640C81": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "RetentionInDays": 731
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/faceblur-statemachine-logs/Resource"
+   }
+  },
+  "StateMachineRoleB840431D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "states.us-west-2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/StateMachine/Role/Resource"
+   }
+  },
+  "StateMachineRoleDefaultPolicyDF1E6607": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogDelivery",
+        "logs:GetLogDelivery",
+        "logs:UpdateLogDelivery",
+        "logs:DeleteLogDelivery",
+        "logs:ListLogDeliveries",
+        "logs:PutResourcePolicy",
+        "logs:DescribeResourcePolicies",
+        "logs:DescribeLogGroups"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "checkJobStatus5F5AFEA4",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "checkJobStatus5F5AFEA4",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "getFacesInfo6001B2C9",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "getFacesInfo6001B2C9",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "blurFacesD0AF1D09",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "blurFacesD0AF1D09",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "deleteobjD3360417",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "deleteobjD3360417",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "StateMachineRoleDefaultPolicyDF1E6607",
+    "Roles": [
+     {
+      "Ref": "StateMachineRoleB840431D"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/StateMachine/Role/DefaultPolicy/Resource"
+   }
+  },
+  "StateMachine2E01A3A5": {
+   "Type": "AWS::StepFunctions::StateMachine",
+   "Properties": {
+    "RoleArn": {
+     "Fn::GetAtt": [
+      "StateMachineRoleB840431D",
+      "Arn"
+     ]
+    },
+    "DefinitionString": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"StartAt\":\"Check Job Status\",\"States\":{\"Check Job Status\":{\"Next\":\"Job finished?\",\"Retry\":[{\"ErrorEquals\":[\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\"],\"IntervalSeconds\":2,\"MaxAttempts\":6,\"BackoffRate\":2}],\"Type\":\"Task\",\"InputPath\":\"$.body\",\"OutputPath\":\"$.Payload\",\"Resource\":\"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":states:::lambda:invoke\",\"Parameters\":{\"FunctionName\":\"",
+       {
+        "Fn::GetAtt": [
+         "checkJobStatus5F5AFEA4",
+         "Arn"
+        ]
+       },
+       "\",\"Payload.$\":\"$\"}},\"Wait 1 Second\":{\"Type\":\"Wait\",\"Seconds\":1,\"Next\":\"Check Job Status\"},\"Job finished?\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.body.job_status\",\"StringEquals\":\"IN_PROGRESS\",\"Next\":\"Wait 1 Second\"},{\"Variable\":\"$.body.job_status\",\"StringEquals\":\"SUCCEEDED\",\"Next\":\"Get Timestamps and Faces\"}],\"Default\":\"Execution Failed\"},\"Execution Failed\":{\"Type\":\"Fail\",\"Error\":\"Could not get job_status = 'SUCCEEDED'\",\"Cause\":\"Face Detection Failed\"},\"Get Timestamps and Faces\":{\"Next\":\"Blur Faces on Video\",\"Retry\":[{\"ErrorEquals\":[\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\"],\"IntervalSeconds\":2,\"MaxAttempts\":6,\"BackoffRate\":2}],\"Type\":\"Task\",\"InputPath\":\"$.body\",\"OutputPath\":\"$.Payload\",\"Resource\":\"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":states:::lambda:invoke\",\"Parameters\":{\"FunctionName\":\"",
+       {
+        "Fn::GetAtt": [
+         "getFacesInfo6001B2C9",
+         "Arn"
+        ]
+       },
+       "\",\"Payload.$\":\"$\"}},\"Blur Faces on Video\":{\"Next\":\"Delete Non-Blurred Recording\",\"Retry\":[{\"ErrorEquals\":[\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\"],\"IntervalSeconds\":2,\"MaxAttempts\":6,\"BackoffRate\":2}],\"Type\":\"Task\",\"InputPath\":\"$.body\",\"OutputPath\":\"$.Payload\",\"Resource\":\"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":states:::lambda:invoke\",\"Parameters\":{\"FunctionName\":\"",
+       {
+        "Fn::GetAtt": [
+         "blurFacesD0AF1D09",
+         "Arn"
+        ]
+       },
+       "\",\"Payload.$\":\"$\"}},\"Delete Non-Blurred Recording\":{\"Next\":\"Execution Succeeded\",\"Retry\":[{\"ErrorEquals\":[\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\"],\"IntervalSeconds\":2,\"MaxAttempts\":6,\"BackoffRate\":2}],\"Type\":\"Task\",\"InputPath\":\"$.body\",\"OutputPath\":\"$.Payload\",\"Resource\":\"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":states:::lambda:invoke\",\"Parameters\":{\"FunctionName\":\"",
+       {
+        "Fn::GetAtt": [
+         "deleteobjD3360417",
+         "Arn"
+        ]
+       },
+       "\",\"Payload.$\":\"$\"}},\"Execution Succeeded\":{\"Type\":\"Succeed\"}},\"TimeoutSeconds\":900}"
+      ]
+     ]
+    },
+    "LoggingConfiguration": {
+     "Destinations": [
+      {
+       "CloudWatchLogsLogGroup": {
+        "LogGroupArn": {
+         "Fn::GetAtt": [
+          "faceblurstatemachinelogsCA640C81",
+          "Arn"
+         ]
+        }
+       }
+      }
+     ],
+     "Level": "ALL"
+    }
+   },
+   "DependsOn": [
+    "StateMachineRoleDefaultPolicyDF1E6607",
+    "StateMachineRoleB840431D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/StateMachine/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VRwW7CMAz9lt3dsIrLdttgYkJiEiuTdjapKVnbGMUJU1Xl35e2gNjJL/Z7T89OrvLnJ/X48IK/kumynvWaHal+51HXsGQr3gXtYXmwBQkHpwlu4FWEfGJWxlYDY4sOW/LkIgx2vcxVvwi6plF/QVNZoFCEBtt9iaoftORaI2LYwipY7QeQ2jf8xknm1i1WdO1FKDuLLZd71X/hvqFBMIIIBlvVFzz1xrrlxuhujDmiCDLPcNhA1LgItFQa1GzP5LxKvM9AgYC0u9LuMkyKNFMFnViMZ9cNO4F4Oh0uAUX132g8rNA0sAtaE5WwPLJJt0tn8/SB+mjsmPH+Hf+7ZB6lFrUZj7W2Z64JGq6S+4ard8fhNBhccYwRtp0/sp3NVZ6nv/0RYzIXrDctqWKqf8RmB2n4AQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "RecordWithFaceBlurStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2S3BucketB4D4C166": {
+   "Type": "String",
+   "Description": "S3 bucket for asset \"77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2\""
+  },
+  "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2S3VersionKey39228536": {
+   "Type": "String",
+   "Description": "S3 key for asset version \"77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2\""
+  },
+  "AssetParameters77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2ArtifactHash9E4A2D00": {
+   "Type": "String",
+   "Description": "Artifact hash for asset \"77aa8b8c246844a37fc7ccc186893166797bd02191115efb441bf980914193d2\""
+  },
+  "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4S3BucketCB8A2988": {
+   "Type": "String",
+   "Description": "S3 bucket for asset \"51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4\""
+  },
+  "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4S3VersionKeyE944CA90": {
+   "Type": "String",
+   "Description": "S3 key for asset version \"51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4\""
+  },
+  "AssetParameters51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4ArtifactHashCF8B7988": {
+   "Type": "String",
+   "Description": "Artifact hash for asset \"51b72bab362096691466b9cda49201027fb388253f7aa89c6354dee9465093a4\""
+  },
+  "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9S3BucketC2839997": {
+   "Type": "String",
+   "Description": "S3 bucket for asset \"f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9\""
+  },
+  "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9S3VersionKey7DD9FA35": {
+   "Type": "String",
+   "Description": "S3 key for asset version \"f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9\""
+  },
+  "AssetParametersf00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9ArtifactHashD0159608": {
+   "Type": "String",
+   "Description": "Artifact hash for asset \"f00727b799a4960d8914090d811433284202303e3887a6386940d13ca88414c9\""
+  },
+  "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830S3BucketC653CD5B": {
+   "Type": "String",
+   "Description": "S3 bucket for asset \"9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830\""
+  },
+  "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830S3VersionKeyB938B67B": {
+   "Type": "String",
+   "Description": "S3 key for asset version \"9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830\""
+  },
+  "AssetParameters9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830ArtifactHashEA4776B2": {
+   "Type": "String",
+   "Description": "Artifact hash for asset \"9e2c84e06fcd79eb6cf4076449cc7f860e7be910237a365eadedff1b06e90830\""
+  },
+  "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795S3Bucket7FE45212": {
+   "Type": "String",
+   "Description": "S3 bucket for asset \"0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795\""
+  },
+  "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795S3VersionKeyFE65830B": {
+   "Type": "String",
+   "Description": "S3 key for asset version \"0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795\""
+  },
+  "AssetParameters0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795ArtifactHashBB3BAB47": {
+   "Type": "String",
+   "Description": "Artifact hash for asset \"0b2c7dbe63add3b18b32f66c8053db9165f7032c70997f2db8d71ae833da3795\""
+  },
+  "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01S3BucketC7C18346": {
+   "Type": "String",
+   "Description": "S3 bucket for asset \"8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01\""
+  },
+  "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01S3VersionKey334E1960": {
+   "Type": "String",
+   "Description": "S3 key for asset version \"8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01\""
+  },
+  "AssetParameters8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01ArtifactHashEE4B5174": {
+   "Type": "String",
+   "Description": "Artifact hash for asset \"8a0f55c08a2772692b75bb2e2bc6b98d9c1a6abf4b515364fc907ea575a33d01\""
+  },
+  "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642S3Bucket2B49F154": {
+   "Type": "String",
+   "Description": "S3 bucket for asset \"b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642\""
+  },
+  "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642S3VersionKeyCEF70DA3": {
+   "Type": "String",
+   "Description": "S3 key for asset version \"b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642\""
+  },
+  "AssetParametersb1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642ArtifactHashA7C7BC02": {
+   "Type": "String",
+   "Description": "Artifact hash for asset \"b1564d5a8a548ae923e19bfa2780f4001ed9ecfc63a3bb0c44fa7546ef854642\""
+  },
+  "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739S3BucketF35CE4A3": {
+   "Type": "String",
+   "Description": "S3 bucket for asset \"542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739\""
+  },
+  "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739S3VersionKey93285623": {
+   "Type": "String",
+   "Description": "S3 key for asset version \"542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739\""
+  },
+  "AssetParameters542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739ArtifactHash5ADDD922": {
+   "Type": "String",
+   "Description": "Artifact hash for asset \"542a112c44f61849754fd751ce49b947f64202e0c5d1dbfcc33b0b2be1229739\""
+  }
+ }
+}
