@@ -29,6 +29,12 @@ yarn-error.log*
 cdk/__pycache__
 cdk/cdk.out
 
+cdk/node_modules
+
+# CDK asset staging directory
+cdk/.cdk.staging
+cdk/cdk.out
+
 #configs
 src/components/config.json
 amplify/team-provider-info.json
