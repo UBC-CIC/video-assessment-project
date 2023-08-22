@@ -38,7 +38,8 @@ export function override(resources: AmplifyRootStackTemplate) {
                     "kinesisvideo:ConnectAsMaster",
                     "kinesisvideo:CreateSignalingChannel",
                     "kinesisvideo:ListSignalingChannels",
-                    "kinesisvideo:DescribeStream"
+                    "kinesisvideo:DescribeStream",
+                    "kinesisvideo:UpdateMediaStorageConfiguration"
                 ],
             },
             ],
