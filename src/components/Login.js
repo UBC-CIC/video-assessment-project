@@ -19,8 +19,11 @@ async function handleSignOut(){
 }
 
 function Login() {
+  function handleAuthStateChange(state) {
+      window.location.reload();
+  }
   return(
-    <Authenticator>
+    <Authenticator handleAuthStateChange={handleAuthStateChange}>
       {({ signOut, user }) => (
         <main>
           <h1>Logged in as: {user.username}</h1>
