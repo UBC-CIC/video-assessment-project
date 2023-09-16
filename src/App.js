@@ -1,24 +1,16 @@
-import { useId, useState } from 'react';
-import AWS from 'aws-sdk';
-import './App.css';
 import * as React from 'react';
-import { Amplify } from 'aws-amplify';
-import { Auth } from 'aws-amplify';
+import {FC, useEffect, useId, useState} from 'react';
+import './App.css';
+import {Auth} from 'aws-amplify';
 
-import {
-  BrowserRouter as Router,
-  Routes, Route, Link
-} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
 
-import { 
-  Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Container 
-} from '@mui/material/';
+import {Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material/';
 
 import HomeIcon from '@mui/icons-material/Home';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -32,6 +24,32 @@ import DownloadPage from './components/DownloadPage';
 function App() {
   const [count, setCount] = useState(0)
   const id = useId();
+
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    async function checkUserLogin() {
+      try {
+        const user = await Auth.currentUserInfo();
+        if (user) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (error) {
+        console.error('Error checking user login:', error);
+      }
+    }
+    checkUserLogin();
+  }, []);
+
+  const RequireAuth: FC<{ children: React.ReactElement }> = ({ children }) => {
+    if (!isLoggedIn) {
+      return <Login />;
+    }
+    return children;
+  };
 
   return (
     <div className="App">
@@ -52,6 +70,7 @@ function App() {
             open={true}
             // width='inherit'
           >
+            {isLoggedIn &&
             <List>
               <Link to="/" className='link'>
                 <ListItem>
@@ -83,16 +102,16 @@ function App() {
                   </ListItemButton>
                 </ListItem>
               </Link>
-
             </List>
+            }
           </Drawer>
           <main 
             style={{marginTop: 100, alignContent:'centre'}}
           >
             <Routes>
               <Route path="/" element={<Login/>}/>
-              <Route path="/record" element={<StreamPage/>}/>
-              <Route path="/recordings" element={<DownloadPage/>}/>
+              <Route path="/record" element={<RequireAuth><StreamPage /></RequireAuth>}/>
+              <Route path="/recordings" element={<RequireAuth><DownloadPage /></RequireAuth>}/>
             </Routes>
           </main>
           </Router>
