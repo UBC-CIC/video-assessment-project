@@ -29,6 +29,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    setInterval(() => checkUserLogin(), 1000);
     async function checkUserLogin() {
       try {
         const user = await Auth.currentUserInfo();
@@ -40,9 +41,7 @@ function App() {
       } catch (error) {
         console.error('Error checking user login:', error);
       }
-    }
-    checkUserLogin();
-  }, []);
+    }}, []);
 
   const RequireAuth: FC<{ children: React.ReactElement }> = ({ children }) => {
     if (!isLoggedIn) {
@@ -105,7 +104,7 @@ function App() {
             </List>
             }
           </Drawer>
-          <main 
+          <main
             style={{marginTop: 100, alignContent:'centre'}}
           >
             <Routes>
